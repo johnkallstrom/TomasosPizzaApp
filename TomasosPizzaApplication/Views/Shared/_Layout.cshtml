@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="https://kit.fontawesome.com/761b98f367.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <header id="header">
+            <nav id="navbar">
+                <ul>
+                    <li id="logo"><a asp-action="Index"><i class="fas fa-pizza-slice"></i>TP</a></li>
+                    <li class="nav-item"><a asp-action="Index">Hem</a></li>
+                    <li class="nav-item"><a asp-action="#">Beställa</a></li>
+                    <li class="nav-item"><a asp-action="#">Logga in</a></li>
+                    <li class="nav-item"><a asp-action="#">Registrera</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            @RenderBody()
+        </div>
+        <footer id="footer">
+            <p></p>
+            &copy; Tomasos Pizzeria @DateTime.Now.Year
+        </footer>
+    </div>
+</body>
+</html>

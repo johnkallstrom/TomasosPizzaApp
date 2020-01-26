@@ -1,0 +1,76 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100%;
+    background-color: #fcfcfc;
+    color: #555;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+}
+
+.container{
+    border-radius: 5px;
+    width: 70%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* Header & Navbar */
+#header {
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    background-color: #e0423d;
+    color: #fff;
+}
+
+#logo{
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: unset;
+    padding-right: 2rem;
+}
+
+.fa-pizza-slice {
+    padding-left: 0.5rem;
+    padding-right: 0.7rem;
+}
+
+.nav-item {
+    text-transform: uppercase;
+}
+
+li{
+    display: inline;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    padding: 0 1rem 0 0;
+    color: #fff;
+}
+
+/* Image */
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer */
+#footer {
+    color: #fff;
+    text-align: center;
+    background-color: #6dc98f;
+    padding: 1rem;
+    vertical-align: middle;
+    line-height: 135px;
+    clear: both;
+    position: relative;
+    height: 175px;
+    margin-top: -200px;
+}
+
+
