@@ -1,36 +1,45 @@
-﻿*{
+﻿/* All */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html, body{
+    height: 100%;
+}
+
 body {
-    min-height: 100%;
-    background-color: #fcfcfc;
-    color: #555;
+    background-color: #f6f6f6;
+    color: #1551a0;
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
 }
 
-.container{
-    border-radius: 5px;
+.container {
+    min-height: 100%;
     width: 70%;
     overflow: hidden;
     margin: 0 auto;
+    margin-bottom: -50px;
 }
 
 /* Header & Navbar */
 #header {
-    padding: 1.5rem 1rem 1.5rem 1rem;
-    background-color: #e0423d;
-    color: #fff;
+    text-align: center;
+    padding: 2rem 2rem 1rem 2rem;
+    color: #1551a0;
+}
+
+.branding {
+    color: #b43c0a;
 }
 
 #logo{
     font-size: 24px;
     font-weight: bold;
-    text-transform: unset;
     padding-right: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .fa-pizza-slice {
@@ -39,38 +48,60 @@ body {
 }
 
 .nav-item {
+    display: inline;
     text-transform: uppercase;
+    padding: 0 1rem 0 0;
 }
 
 li{
-    display: inline;
     list-style: none;
 }
 
-a{
+a {
+    color: #1551a0;
     text-decoration: none;
-    padding: 0 1rem 0 0;
-    color: #fff;
 }
 
-/* Image */
-img{
-    max-width: 100%;
-    height: auto;
+a:hover {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #1551a0;
 }
+
 
 /* Footer */
-#footer {
-    color: #fff;
+#footer, .push {
+    height: 50px;
     text-align: center;
-    background-color: #6dc98f;
-    padding: 1rem;
-    vertical-align: middle;
-    line-height: 135px;
-    clear: both;
-    position: relative;
-    height: 175px;
-    margin-top: -200px;
 }
 
+#adress {
+    text-transform: uppercase;
+    text-align: center;
+    color: #b43c0a;
+    padding-bottom: 2rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
 
+.section {
+    margin-top: 15rem;
+}
+
+/* Media Queries */
+@media (max-width: 720px){
+    .nav-item{
+        display: block;
+        line-height: 2.3em;
+    }
+
+    a:hover {
+        cursor: pointer;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #1551a0;
+    }
+
+    .section {
+        margin-top: 10rem;
+    }
+}

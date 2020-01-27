@@ -11,23 +11,23 @@
 <body>
     <div class="container">
         <header id="header">
-            <nav id="navbar">
+            <h1 id="logo"><i class="fas fa-pizza-slice"></i>Tomasos<span class="branding"> Pizzeria</span></h1>
+            <nav>
                 <ul>
-                    <li id="logo"><a asp-action="Index"><i class="fas fa-pizza-slice"></i>TP</a></li>
                     <li class="nav-item"><a asp-action="Index">Hem</a></li>
                     <li class="nav-item"><a asp-action="#">Beställa</a></li>
                     <li class="nav-item"><a asp-action="#">Logga in</a></li>
-                    <li class="nav-item"><a asp-action="#">Registrera</a></li>
+                    <li class="nav-item"><a asp-action="Register">Registrera</a></li>
                 </ul>
             </nav>
         </header>
         <div>
             @RenderBody()
         </div>
-        <footer id="footer">
-            <p></p>
-            &copy; Tomasos Pizzeria @DateTime.Now.Year
-        </footer>
+        <div class="push"></div>
     </div>
+    <footer id="footer">
+        <p>&copy; Tomasos Pizzeria @DateTime.Now.Year</p>
+    </footer>
 </body>
 </html>
