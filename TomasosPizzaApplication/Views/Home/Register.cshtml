@@ -1,0 +1,53 @@
+﻿@model TomasosPizzaApplication.Models.Kund
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/register.css" rel="stylesheet" />
+<div class="wrapper">
+    <form asp-controller="Home" asp-action="Register" method="post">
+        <div class="header">
+            <h1>Skapa ett nytt konto</h1>
+        </div>
+
+        <div class="form-group">
+            <input type="text" asp-for="AnvandarNamn" maxlength="20" placeholder="Användarnamn" />
+        </div>
+
+        <div class="form-group">
+            <input type="password" asp-for="Losenord" maxlength="20" placeholder="Lösenord" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" asp-for="Namn" maxlength="100" placeholder="Namn" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" asp-for="Gatuadress" maxlength="50" placeholder="Adress" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" asp-for="Postnr" maxlength="20" placeholder="Postnummer" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" asp-for="Postort" maxlength="100" placeholder="Postort" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" asp-for="Telefon" maxlength="50" placeholder="Telefon" />
+        </div>
+
+        <div class="form-group">
+            <input type="email" asp-for="Email" maxlength="50" placeholder="Email" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Registrera" class="button" />
+        </div>
+    </form>
+</div>
+
+

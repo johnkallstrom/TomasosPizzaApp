@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TomasosPizzaApplication.Models;
+using TomasosPizzaApplication.Repositories;
 
 namespace TomasosPizzaApplication
 {
@@ -19,6 +20,9 @@ namespace TomasosPizzaApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            // Set up customer repository
+            services.AddTransient<IKundRepository, KundRepository>();
 
             var connection = configuration.GetConnectionString("Default");
             services.AddDbContext<TomasosContext>(options => options.UseSqlServer(connection));

@@ -1,4 +1,4 @@
-﻿/* All */
+﻿/* Layout */
 *{
     margin: 0;
     padding: 0;
@@ -29,6 +29,7 @@ body {
     text-align: center;
     padding: 2rem 2rem 1rem 2rem;
     color: #1551a0;
+    margin-bottom: 2rem;
 }
 
 .branding {
@@ -68,7 +69,6 @@ a:hover {
     border-bottom: 1px solid #1551a0;
 }
 
-
 /* Footer */
 #footer, .push {
     height: 75px;
@@ -84,17 +84,15 @@ a:hover {
     line-height: 40px;
 }
 
-#adress {
+/* Home */
+.adress {
+    margin-top: 10rem;
     text-transform: uppercase;
     text-align: center;
     color: #b43c0a;
     padding-bottom: 2rem;
     line-height: 2rem;
     font-weight: 600;
-}
-
-.section {
-    margin-top: 15rem;
 }
 
 /* Media Queries */
@@ -110,7 +108,7 @@ a:hover {
         border-bottom: 1px solid #1551a0;
     }
 
-    .section {
-        margin-top: 10rem;
+    .adress {
+        margin-top: 7rem;
     }
 }

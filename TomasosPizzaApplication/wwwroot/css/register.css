@@ -1,0 +1,49 @@
+﻿/* Register Form */
+.wrapper {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 540px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.header{
+    margin-bottom: 0.5rem;
+}
+
+.form-group{
+    margin: 0.7rem 0 0.7rem 0;
+}
+
+.button {
+    border: none;
+    background-color: #1551a0;
+    color: #fff;
+    padding: 0.7rem 0.8rem 0.7rem 0.8rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    margin-top: 0.4rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    padding: 0.3rem;
+}
+
+@media (max-width: 720px){
+    .wrapper {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        width: 340px;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+}
