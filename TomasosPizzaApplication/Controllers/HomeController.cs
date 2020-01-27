@@ -8,5 +8,20 @@ namespace TomasosPizzaApplication.Controllers
         {
             return View();
         }
+
+        public IActionResult Order()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
