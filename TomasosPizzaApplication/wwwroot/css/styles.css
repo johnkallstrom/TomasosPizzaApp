@@ -43,6 +43,10 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.logo-link:hover {
+    border-bottom: none;
+}
+
 .fa-pizza-slice {
     padding-left: 0.5rem;
     padding-right: 0.7rem;

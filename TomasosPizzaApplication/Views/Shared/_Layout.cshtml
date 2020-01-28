@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <script src="https://kit.fontawesome.com/761b98f367.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link href="~/css/styles.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
         <header id="header">
-            <h1 id="logo"><i class="fas fa-pizza-slice"></i>Tomasos<span class="branding"> Pizzeria</span></h1>
+            <h1 id="logo"><a asp-action="Index" class="logo-link"><i class="fas fa-pizza-slice"></i>Tomasos<span class="branding"> Pizzeria</span></a></h1>
             <nav>
                 <ul>
                     <li class="nav-item"><a asp-action="Index">Hem</a></li>

@@ -4,13 +4,6 @@ using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.Repositories
 {
-    // All entity framework and database communication happends here in the repository.
-
-    public interface IKundRepository
-    {
-        void RegisterCustomer(Kund kund);
-    }
-
     public class KundRepository : IKundRepository
     {
         private TomasosContext context;
@@ -24,6 +17,20 @@ namespace TomasosPizzaApplication.Repositories
         {
             context.Kund.Add(kund);
             context.SaveChanges();
+        }
+
+        public Kund SignIn(Kund kund)
+        {
+            var user = context.Kund
+                .FirstOrDefault(c => c.AnvandarNamn == kund.AnvandarNamn && c.Losenord == kund.Losenord);
+
+            return user;
+        }
+
+        public bool UsernameAlreadyExists(Kund kund)
+        {
+            var usernameAlreadyExists = context.Kund.Any(k => k.AnvandarNamn == kund.AnvandarNamn);
+            return usernameAlreadyExists ? true : false;
         }
     }
 }

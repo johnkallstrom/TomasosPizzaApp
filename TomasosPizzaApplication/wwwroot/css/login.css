@@ -6,14 +6,13 @@
     width: 540px;
     margin: 0 auto;
     border-radius: 5px;
-    margin-bottom: 2rem;
 }
 
-.header{
+.header {
     margin-bottom: 0.5rem;
 }
 
-.form-group{
+.form-group {
     margin: 0.7rem 0 0.7rem 0;
 }
 
@@ -26,11 +25,11 @@
     font-size: 16px;
 }
 
-.button:hover{
+.button:hover {
     cursor: pointer;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="password"] {
     margin-top: 0.4rem;
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
@@ -61,7 +60,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     display: none;
 }
 
-@media (max-width: 720px){
+@media (max-width: 720px) {
     .wrapper {
         border-radius: 5px;
         background-color: #f2f2f2;
