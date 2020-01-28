@@ -36,8 +36,15 @@ namespace TomasosPizzaApplication.Controllers
         [HttpPost]
         public IActionResult Register(Kund kund)
         {
-            repository.RegisterCustomer(kund);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                repository.RegisterCustomer(kund);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

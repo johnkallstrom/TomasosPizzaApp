@@ -29,7 +29,7 @@ body {
     text-align: center;
     padding: 2rem 2rem 1rem 2rem;
     color: #1551a0;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .branding {
@@ -86,7 +86,7 @@ a:hover {
 
 /* Home */
 .adress {
-    margin-top: 10rem;
+    margin-top: 3rem;
     text-transform: uppercase;
     text-align: center;
     color: #b43c0a;
