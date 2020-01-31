@@ -22,7 +22,7 @@ namespace TomasosPizzaApplication
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
             // Set up customer repository
-            services.AddTransient<IKundRepository, KundRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
 
             var connection = configuration.GetConnectionString("Default");
             services.AddDbContext<TomasosContext>(options => options.UseSqlServer(connection));

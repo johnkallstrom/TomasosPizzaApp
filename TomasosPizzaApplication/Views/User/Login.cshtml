@@ -1,4 +1,4 @@
-﻿@model TomasosPizzaApplication.Models.Kund
+﻿@model TomasosPizzaApplication.ViewModels.UserViewModel
 
 @{
     ViewData["Title"] = "Login";
@@ -7,19 +7,19 @@
 
 <link href="~/css/login.css" rel="stylesheet" />
 <div class="wrapper">
-    <form asp-controller="Home" asp-action="Login" method="post">
+    <form asp-controller="User" asp-action="Login" method="post">
         <div class="header">
             <h1>Logga in</h1>
         </div>
 
         <div class="form-group">
-            <span asp-validation-for="AnvandarNamn"></span>
-            <input type="text" asp-for="AnvandarNamn" maxlength="20" placeholder="Användarnamn" />
+            <span asp-validation-for="@Model.Username"></span>
+            <input type="text" asp-for="@Model.Username" maxlength="20" placeholder="Användarnamn" />
         </div>
 
         <div class="form-group">
-            <span asp-validation-for="Losenord"></span>
-            <input type="password" asp-for="Losenord" maxlength="20" placeholder="Lösenord" />
+            <span asp-validation-for="@Model.Password"></span>
+            <input type="password" asp-for="@Model.Password" maxlength="20" placeholder="Lösenord" />
         </div>
 
         <div class="form-group">

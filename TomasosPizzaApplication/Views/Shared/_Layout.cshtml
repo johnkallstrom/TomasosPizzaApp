@@ -14,13 +14,13 @@
 <body>
     <div class="container">
         <header id="header">
-            <h1 id="logo"><a asp-action="Index" class="logo-link"><i class="fas fa-pizza-slice"></i>Tomasos<span class="branding"> Pizzeria</span></a></h1>
+            <h1 id="logo"><a asp-controller="Home" asp-action="Index" class="logo-link"><i class="fas fa-pizza-slice"></i>Tomasos<span class="branding"> Pizzeria</span></a></h1>
             <nav>
                 <ul>
-                    <li class="nav-item"><a asp-action="Index">Hem</a></li>
-                    <li class="nav-item"><a asp-action="Order">Beställa</a></li>
-                    <li class="nav-item"><a asp-action="Login">Logga in</a></li>
-                    <li class="nav-item"><a asp-action="Register">Registrera</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Index">Hem</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Order">Beställa</a></li>
+                    <li class="nav-item"><a asp-controller="User" asp-action="Login">Logga in</a></li>
+                    <li class="nav-item"><a asp-controller="User" asp-action="Register">Registrera</a></li>
                 </ul>
             </nav>
         </header>
