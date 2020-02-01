@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TomasosPizzaApplication.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using TomasosPizzaApplication.Repositories;
 using TomasosPizzaApplication.ViewModels;
 
@@ -12,9 +6,9 @@ namespace TomasosPizzaApplication.Controllers
 {
     public class UserController : Controller
     {
-        private ICustomerRepository repository;
+        private readonly IUserRepository repository;
 
-        public UserController(ICustomerRepository repository)
+        public UserController(IUserRepository repository)
         {
             this.repository = repository;
         }
@@ -26,21 +20,11 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(UserViewModel user)
+        public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                bool isValidUser = repository.IsValidUser(user.Username, user.Password);
 
-                if (isValidUser == true)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("Password", "Felaktigt lösenord");
-                    return View();
-                }
             }
 
             return View();
@@ -48,7 +32,7 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult Logout()
         {
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
         public IActionResult Register()
@@ -58,23 +42,18 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Kund kund)
+        public IActionResult Register(RegisterViewModel model)
         {
+            model.Kund.AnvandarNamn = model.Username;
+            model.Kund.Losenord = model.Password;
+
             if (ModelState.IsValid)
             {
-                if (repository.UsernameAlreadyExists(kund) == true)
-                {
-                    ModelState.AddModelError("AnvandarNamn", "Användarnamnet är upptaget");
-                    return View();
-                }
-
-                repository.RegisterNewCustomer(kund);
+                repository.AddCustomer(model.Kund);
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                return View();
-            }
+
+            return View();
         }
     }
 }
