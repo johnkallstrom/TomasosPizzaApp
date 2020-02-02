@@ -21,14 +21,15 @@ namespace TomasosPizzaApplication
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
-            var connection = configuration.GetConnectionString("Default");
-            services.AddDbContext<TomasosContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<TomasosContext>(
+                options => options.UseSqlServer(configuration.GetConnectionString("Tomasos")));
 
             services.AddTransient<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -36,8 +37,6 @@ namespace TomasosPizzaApplication
                 template: "{controller=Home}/{action=Index}/{id?}"
                     );
             });
-
-            app.UseStaticFiles();
         }
     }
 }
