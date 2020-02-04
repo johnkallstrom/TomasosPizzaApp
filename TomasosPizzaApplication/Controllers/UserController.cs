@@ -22,11 +22,6 @@ namespace TomasosPizzaApplication.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
-
             return View();
         }
 
