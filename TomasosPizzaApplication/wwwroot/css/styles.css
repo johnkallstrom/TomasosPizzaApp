@@ -10,7 +10,7 @@ html, body{
 }
 
 body {
-    background-color: #f6f6f6;
+    background-color: #fcfcfc;
     color: #1551a0;
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
@@ -18,18 +18,34 @@ body {
 
 .container {
     min-height: 100%;
-    width: 70%;
+    width: 960px;
     overflow: hidden;
     margin: 0 auto;
     margin-bottom: -75px;
 }
 
+.info-wrapper {
+    text-align: center;
+    padding: 1.3rem;
+    width: 480px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 5px;
+    color: #b43c0a;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.info-list{
+    text-transform: uppercase;
+}
+
 /* Header & Navbar */
 #header {
     text-align: center;
-    padding: 2rem 2rem 1rem 2rem;
+    padding: 2rem;
     color: #1551a0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .branding {
@@ -37,9 +53,8 @@ body {
 }
 
 #logo{
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    padding-right: 2rem;
     margin-bottom: 1.5rem;
 }
 
@@ -55,10 +70,11 @@ body {
 .nav-item {
     display: inline;
     text-transform: uppercase;
-    padding: 0 1rem 0 0;
+    padding-right: 1rem;
 }
 
 li{
+    margin: 0 0 2rem 0;
     list-style: none;
 }
 
@@ -80,39 +96,10 @@ a:hover {
 
 #footer {
     border-top: 1px solid #1551a0;
-    text-align: center;
     padding-top: 1rem;
+    text-align: center;
     margin: auto;
-    width: 70%;
+    width: 50%;
     vertical-align: middle;
     line-height: 40px;
-}
-
-/* Home */
-.adress {
-    margin-top: 12rem;
-    text-transform: uppercase;
-    text-align: center;
-    color: #b43c0a;
-    padding-bottom: 2rem;
-    line-height: 2rem;
-    font-weight: 600;
-}
-
-/* Media Queries */
-@media (max-width: 720px){
-    .nav-item{
-        display: block;
-        line-height: 2.3em;
-    }
-
-    a:hover {
-        cursor: pointer;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #1551a0;
-    }
-
-    .adress {
-        margin-top: 7rem;
-    }
 }

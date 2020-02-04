@@ -4,7 +4,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <script src="https://kit.fontawesome.com/761b98f367.js" crossorigin="anonymous"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
@@ -14,13 +13,11 @@
 <body>
     <div class="container">
         <header id="header">
-            <h1 id="logo"><a asp-controller="Home" asp-action="Index" class="logo-link"><i class="fas fa-pizza-slice"></i>Tomasos<span class="branding"> Pizzeria</span></a></h1>
+            <h1 id="logo"><a asp-controller="Home" asp-action="Index" class="logo-link">Tomasos<span class="branding"> Pizzeria</span></a></h1>
             <nav>
                 <ul>
-                    <li class="nav-item"><a asp-controller="Home" asp-action="Index">Hem</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="Order">Beställa</a></li>
                     <li class="nav-item"><a asp-controller="User" asp-action="Login">Logga in</a></li>
-                    <li class="nav-item"><a asp-controller="User" asp-action="Register">Registrera</a></li>
                 </ul>
             </nav>
         </header>

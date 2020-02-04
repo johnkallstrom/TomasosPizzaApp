@@ -1,19 +1,23 @@
-﻿/* Register Form */
-.wrapper {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    width: 540px;
+﻿.wrapper {
+    background-color: #f6f6f6;
+    width: 480px;
+    overflow: hidden;
     margin: 0 auto;
+    padding: 1.3rem;
     border-radius: 5px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
-.header{
+#register-link:hover{
+    cursor: pointer;
+    border: none;
+}
+
+.header {
     margin-bottom: 0.5rem;
 }
 
-.form-group{
+.form-group {
     margin: 0.7rem 0 0.7rem 0;
 }
 
@@ -21,9 +25,10 @@
     border: none;
     background-color: #1551a0;
     color: #fff;
-    padding: 0.7rem 0.8rem 0.7rem 0.8rem;
+    padding: 0.9rem 0.8rem 0.9rem 0.8rem;
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
+    width: 100%;
 }
 
 .button:hover{
@@ -35,7 +40,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.6rem;
 }
 
 /* Validation Styles */
@@ -59,15 +64,4 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .validation-summary-valid {
     display: none;
-}
-
-@media (max-width: 720px){
-    .wrapper {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px;
-        width: 340px;
-        margin: 0 auto;
-        border-radius: 5px;
-    }
 }
