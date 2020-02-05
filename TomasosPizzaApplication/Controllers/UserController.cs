@@ -59,7 +59,7 @@ namespace TomasosPizzaApplication.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "User");
         }
 
         [AllowAnonymous]

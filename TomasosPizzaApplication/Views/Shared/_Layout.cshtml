@@ -1,27 +1,29 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <script src="https://kit.fontawesome.com/761b98f367.js" crossorigin="anonymous"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://kit.fontawesome.com/761b98f367.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link href="~/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <header id="header">
-            <h1 id="logo"><a asp-controller="Home" asp-action="Index" class="logo-link">Tomasos<span class="branding"> Pizzeria</span></a></h1>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a asp-controller="Home" asp-action="Index" id="logo"><span class="highlight">Tomasos</span> Pizzeria</a></h1>
+            </div>
             <partial name="_NavbarPartial" />
-        </header>
-        <div>
-            @RenderBody()
         </div>
-        <div class="push"></div>
+    </header>
+
+    <div>
+        @RenderBody()
     </div>
+
     <footer id="footer">
         <p>&copy; Tomasos Pizzeria @DateTime.Now.Year</p>
     </footer>
