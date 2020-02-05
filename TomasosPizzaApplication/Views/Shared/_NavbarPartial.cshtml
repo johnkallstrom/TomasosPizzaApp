@@ -1,8 +1,24 @@
-﻿<nav>
-    <ul>
-        <li class="nav-item"><a asp-controller="User" asp-action="Login">Logga in</a></li>
-        <li class="nav-item"><a asp-controller="Home" asp-action="Index">Beställa</a></li>
-    </ul>
-</nav>
+﻿@using Microsoft.AspNetCore.Identity
+@using TomasosPizzaApplication.IdentityData
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
-@* If signed in display "Logga ut" and "Mina sidor"  *@
+@if (SignInManager.IsSignedIn(User))
+{
+    <nav>
+        <ul>
+            <li class="nav-item"><a asp-controller="Account" asp-action="Settings">Konto (@UserManager.GetUserName(User))</a></li>
+            <li class="nav-item"><a asp-controller="User" asp-action="Logout">Logga ut</a></li>
+            <li class="nav-item"><a asp-controller="Home" asp-action="Index">Beställa</a></li>
+        </ul>
+    </nav>
+}
+else
+{
+    <nav>
+        <ul>
+            <li class="nav-item"><a asp-controller="User" asp-action="Login">Logga in</a></li>
+            <li class="nav-item"><a asp-controller="Home" asp-action="Index">Beställa</a></li>
+        </ul>
+    </nav>
+}

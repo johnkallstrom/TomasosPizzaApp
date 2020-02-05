@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
 
@@ -21,14 +23,29 @@ namespace TomasosPizzaApplication
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
+            services.AddTransient<IUserRepository, UserRepository>();
+
             services.AddDbContext<TomasosContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Tomasos")));
 
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddDbContext<ApplicationDbContext>(
+              options => options.UseSqlServer(configuration.GetConnectionString("Tomasos")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {

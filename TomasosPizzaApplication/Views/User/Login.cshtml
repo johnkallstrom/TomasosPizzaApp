@@ -1,5 +1,4 @@
-﻿@model TomasosPizzaApplication.ViewModels.LoginViewModel
-
+﻿
 @{
     ViewData["Title"] = "Logga in";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,25 +6,7 @@
 
 <link href="~/css/login.css" rel="stylesheet" />
 <div class="wrapper">
-    <form asp-controller="User" asp-action="Login" method="post">
-        <div class="header">
-            <h1>Logga in</h1>
-        </div>
-
-        <div class="form-group">
-            <span asp-validation-for="Username"></span>
-            <input type="text" asp-for="Username" maxlength="20" placeholder="Användarnamn" />
-        </div>
-
-        <div class="form-group">
-            <span asp-validation-for="Password"></span>
-            <input type="password" asp-for="Password" maxlength="20" placeholder="Lösenord" />
-        </div>
-
-        <div class="form-group">
-            <input type="submit" value="Logga in" class="button" />
-        </div>
-    </form>
+    <partial name="_LoginFormPartial" />
     <div class="register-wrapper">
         <p>Är du inte medlem? <a asp-controller="User" asp-action="Register" id="register-link">Skapa ett konto</a></p>
     </div>

@@ -1,0 +1,11 @@
+﻿.wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 1.3rem;
+    border-radius: 5px;
+}
+
+li {
+    list-style: square;
+}

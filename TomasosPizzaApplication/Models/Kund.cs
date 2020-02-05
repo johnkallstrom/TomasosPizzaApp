@@ -23,9 +23,7 @@ namespace TomasosPizzaApplication.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "Ange ditt telefonnummer")]
         public string Telefon { get; set; }
-        [Required(ErrorMessage = "Ange ditt användarnamn")]
         public string AnvandarNamn { get; set; }
-        [Required(ErrorMessage = "Ange ditt lösenord")]
         public string Losenord { get; set; }
 
         public virtual ICollection<Bestallning> Bestallning { get; set; }

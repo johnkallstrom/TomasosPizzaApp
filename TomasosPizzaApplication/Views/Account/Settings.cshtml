@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TomasosPizzaApplication.IdentityData
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Konto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/account.css" rel="stylesheet" />
+<div class="wrapper">
+    <div>
+        <ul class="settings-list">
+            <li><a>Uppdatera information</a></li>
+            <li><a>Ändra lösenord</a></li>
+            <li><a>Ta bort konto</a></li>
+        </ul>
+    </div>
+</div>
