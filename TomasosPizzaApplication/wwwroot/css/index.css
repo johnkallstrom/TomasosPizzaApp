@@ -1,0 +1,22 @@
+﻿.wrapper {
+    padding: 1.3rem;
+    width: 480px;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+}
+
+li {
+    text-transform: uppercase;
+    color: #b43c0a;
+}
+
+/* Media Queries */
+@media (min-height: 800px) {
+    .wrapper {
+        padding: 1.3rem;
+        width: 480px;
+        overflow: hidden;
+        margin: 90px auto;
+    }
+}

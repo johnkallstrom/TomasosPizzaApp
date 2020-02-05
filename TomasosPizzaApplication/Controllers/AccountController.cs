@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Repositories;
 
@@ -20,7 +18,7 @@ namespace TomasosPizzaApplication.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Settings()
+        public IActionResult EditDetails()
         {
             return View();
         }

@@ -18,7 +18,7 @@ body {
 
 .container {
     min-height: 100%;
-    width: 960px;
+    width: 60%;
     overflow: hidden;
     margin: 0 auto;
     margin-bottom: -75px;
@@ -45,11 +45,6 @@ body {
     border-bottom: none;
 }
 
-.fa-pizza-slice {
-    padding-left: 0.5rem;
-    padding-right: 0.7rem;
-}
-
 .nav-item {
     display: inline;
     text-transform: uppercase;
@@ -72,23 +67,6 @@ a:hover {
     border-bottom: 1px solid #1551a0;
 }
 
-/* Contact Information */
-.info-wrapper {
-    text-align: center;
-    padding: 1.3rem;
-    width: 480px;
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 5px;
-    color: #b43c0a;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.info-list {
-    text-transform: uppercase;
-}
-
 /* Footer */
 #footer, .push {
     height: 75px;
@@ -99,7 +77,7 @@ a:hover {
     padding-top: 1rem;
     text-align: center;
     margin: auto;
-    width: 50%;
+    width: 60%;
     vertical-align: middle;
     line-height: 40px;
 }
