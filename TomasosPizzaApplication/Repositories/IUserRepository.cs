@@ -6,5 +6,6 @@ namespace TomasosPizzaApplication.Repositories
     {
         void AddCustomer(Kund kund);
         Kund GetCustomerByID(string id);
+        void UpdateCustomer(Kund kund);
     }
 }

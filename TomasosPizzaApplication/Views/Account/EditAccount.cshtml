@@ -1,0 +1,44 @@
+﻿@model EditAccountViewModel
+
+@{
+    ViewData["Title"] = "Konto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="edit">
+    <div class="container">
+        <form asp-controller="Account" asp-action="EditAccount" method="post">
+            <div class="header">
+                <h1>Uppdatera konto</h1>
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Username"></span>
+                <input type="text" asp-for="Username" maxlength="20" placeholder="Användarnamn" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="CurrentPassword"></span>
+                <input type="password" asp-for="CurrentPassword" maxlength="20" placeholder="Nuvarande lösenord" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="NewPassword"></span>
+                <input type="password" asp-for="NewPassword" maxlength="20" placeholder="Nytt lösenord" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="ConfirmNewPassword"></span>
+                <input type="password" asp-for="ConfirmNewPassword" maxlength="20" placeholder="Bekräfta nytt lösenord" />
+            </div>
+
+            <!-- Hidden ID -->
+            <input type="hidden" asp-for="Kund.KundId" />
+
+            <div class="form-group">
+                <input type="submit" value="Spara" class="button" />
+            </div>
+            <span class="message">@ViewBag.UpdateMessage</span>
+        </form>
+    </div>
+</section>

@@ -46,8 +46,7 @@ namespace TomasosPizzaApplication.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Username", "Användarnamn eller lösenord är inkorrekt");
-                    ModelState.AddModelError("Password", "Användarnamn eller lösenord är inkorrekt");
+                    ViewBag.LoginError = "Användarnamn eller lösenord är inkorrekt";
                     return View();
                 }
             }

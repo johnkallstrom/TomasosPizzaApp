@@ -7,6 +7,7 @@
                 <h1>Logga in</h1>
             </div>
 
+            <span class="login-message">@ViewBag.LoginError</span>
             <div class="form-group">
                 <span asp-validation-for="Username"></span>
                 <input type="text" asp-for="Username" maxlength="20" placeholder="Användarnamn" />

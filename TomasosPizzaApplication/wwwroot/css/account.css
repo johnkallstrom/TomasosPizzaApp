@@ -25,3 +25,47 @@
 }
 
 /* Edit Details */
+#edit {
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+#edit h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#edit input[type="text"], input[type="password"] {
+    width: 350px;
+    padding: 6px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#edit .button {
+    margin-top: 5px;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 120px;
+}
+
+#edit .button:hover {
+    cursor: pointer;
+}
+
+#edit .label{
+    font-size: 12px;
+    display: block;
+}
+
+#edit .message {
+    margin-top: 20px;
+    display: block;
+    color: #FF6C37;
+}

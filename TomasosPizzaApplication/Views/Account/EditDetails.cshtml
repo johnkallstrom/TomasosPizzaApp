@@ -1,7 +1,54 @@
 ﻿@model EditDetailsViewModel
 
 @{
-    ViewData["Title"] = "Uppdatera information";
+    ViewData["Title"] = "Profil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section id="edit">
+    <div class="container">
+        <form asp-controller="Account" asp-action="EditDetails" method="post">
+            <div class="header">
+                <h1>Uppdatera profil</h1>
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Kund.Namn"></span>
+                <input type="text" asp-for="Kund.Namn" maxlength="100" placeholder="Namn" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Kund.Email"></span>
+                <input type="text" asp-for="Kund.Email" maxlength="50" placeholder="Email" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Kund.Gatuadress"></span>
+                <input type="text" asp-for="Kund.Gatuadress" maxlength="50" placeholder="Adress" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Kund.Postnr"></span>
+                <input type="text" asp-for="Kund.Postnr" maxlength="20" placeholder="Postnummer" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Kund.Postort"></span>
+                <input type="text" asp-for="Kund.Postort" maxlength="100" placeholder="Postort" />
+            </div>
+
+            <div class="form-group">
+                <span asp-validation-for="Kund.Telefon"></span>
+                <input type="text" asp-for="Kund.Telefon" maxlength="50" placeholder="Telefon" />
+            </div>
+
+            <!-- Hidden ID -->
+            <input type="hidden" asp-for="Kund.KundId" />
+
+            <div class="form-group">
+                <input type="submit" value="Uppdatera" class="button" />
+            </div>
+            <span class="message">@ViewBag.UpdateMessage</span>
+        </form>
+    </div>
+</section>
