@@ -10,18 +10,18 @@ namespace TomasosPizzaApplication.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserRepository _repository;
+        private readonly IUserRepository _userRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
         public UserController(
-            IUserRepository repository,
+            IUserRepository userRepository,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _repository = repository;
+            _userRepository = userRepository;
         }
 
         [AllowAnonymous]
@@ -80,7 +80,7 @@ namespace TomasosPizzaApplication.Controllers
                 if (result.Succeeded)
                 {
                     model.Kund.UserId = user.Id;
-                    _repository.AddCustomer(model.Kund);
+                    _userRepository.AddUser(model.Kund);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

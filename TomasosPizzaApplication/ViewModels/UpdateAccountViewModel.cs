@@ -2,7 +2,7 @@
 
 namespace TomasosPizzaApplication.ViewModels
 {
-    public class EditDetailsViewModel
+    public class UpdateAccountViewModel
     {
         public Kund Kund { get; set; }
     }

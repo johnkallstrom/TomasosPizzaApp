@@ -8,10 +8,13 @@
     <div class="container">
         <h1>Inställningar</h1>
         <div>
-            <input type="button" class="button" value="Uppdatera information" onclick="location.href='@Url.Action("EditDetails", "Account")'" />
+            <input type="button" class="button" value="Uppdatera information" onclick="location.href='@Url.Action("UpdateDetails", "Account")'" />
         </div>
         <div>
             <input type="button" class="button" value="Ändra lösenord" onclick="location.href='@Url.Action("ChangePassword", "Account")'" />
+        </div>
+        <div>
+            <input type="button" class="button" value="Byt användarnamn" onclick="location.href='@Url.Action("ChangeUsername", "Account")'" />
         </div>
     </div>
 </section>

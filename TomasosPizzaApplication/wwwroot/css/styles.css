@@ -134,6 +134,7 @@ footer {
 #login h1 {
     font-size: 32px;
     color: #FF6C37;
+    margin-bottom: 17px;
 }
 
 #login input[type="text"], input[type="password"]{

@@ -1,0 +1,50 @@
+﻿@model MenuViewModel
+
+<section id="menu">
+    <div class="container">
+        <div id="pizza">
+            <h1>Pizza</h1>
+            <ul>
+                @foreach (var pizza in Model.PizzaDishes)
+                {
+                    <li>@pizza.MatrattNamn @pizza.Pris SEK</li>
+
+                    @foreach (var ingredient in @pizza.MatrattProdukt)
+                    {
+                        <li>@ingredient.Produkt.ProduktNamn</li>
+                    }
+                }
+            </ul>
+        </div>
+
+        <div id="pasta">
+            <h1>Pasta</h1>
+            <ul>
+                @foreach (var pasta in Model.PastaDishes)
+                {
+                    <li>@pasta.MatrattNamn @pasta.Pris SEK</li>
+
+                    @foreach (var ingredient in pasta.MatrattProdukt)
+                    {
+                        <li>@ingredient.Produkt.ProduktNamn</li>
+                    }
+                }
+            </ul>
+        </div>
+
+        <div id="salad">
+            <h1>Sallad</h1>
+            <ul>
+                @foreach (var salad in Model.SaladDishes)
+                {
+                    <li>@salad.MatrattNamn @salad.Pris SEK</li>
+
+                    @foreach (var ingredient in salad.MatrattProdukt)
+                    {
+                        <li>@ingredient.Produkt.ProduktNamn</li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</section>
