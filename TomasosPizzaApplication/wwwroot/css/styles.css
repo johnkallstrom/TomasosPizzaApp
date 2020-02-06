@@ -95,7 +95,8 @@ header a:hover {
 
 /* Boxes */
 #boxes {
-    margin-top: 20px;
+    margin-top: 35px;
+    margin-bottom: 10px;
 }
 
 #boxes .box{
@@ -105,13 +106,19 @@ header a:hover {
     padding: 10px;
 }
 
-i {
+#boxes .box img {
     color: #1C272B;
+    width: 90px;
+    padding-bottom: 10px;
+}
+
+.fill {
+    filter: invert(12%) sepia(17%) saturate(732%) hue-rotate(150deg) brightness(93%) contrast(93%);
 }
 
 /* Footer */
 footer {
-    padding: 20px;
+    padding: 32px;
     margin-top: 20px;
     color: #fff;
     background-color: #FF6C37;
