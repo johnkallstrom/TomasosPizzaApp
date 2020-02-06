@@ -3,10 +3,8 @@ using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.ViewModels
 {
-    public class EditAccountViewModel
+    public class ChangePasswordViewModel
     {
-        [Required(ErrorMessage = "Ange ditt användarnamn")]
-        public string Username { get; set; }
         [Required(ErrorMessage = "Ange ditt nuvarande lösenord")]
         public string CurrentPassword { get; set; }
         [Required(ErrorMessage = "Ange nytt lösenord")]

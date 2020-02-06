@@ -59,13 +59,12 @@ namespace TomasosPizzaApplication.Controllers
             return View();
         }
 
-        public async Task<IActionResult> EditAccount()
+        public async Task<IActionResult> ChangePassword()
         {
             var user = await _userManager.GetUserAsync(User);
             var currentCustomer = _repository.GetCustomerByID(user.Id);
 
-            var model = new EditAccountViewModel();
-            model.Username = user.UserName;
+            var model = new ChangePasswordViewModel();
             model.Kund = currentCustomer;
 
             return View(model);
@@ -74,7 +73,7 @@ namespace TomasosPizzaApplication.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditAccount(EditAccountViewModel model)
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
             model.Kund.UserId = user.Id;
@@ -96,7 +95,6 @@ namespace TomasosPizzaApplication.Controllers
                 }
             }
 
-            user.UserName = model.Username;
             return View(model);
         }
     }
