@@ -80,6 +80,7 @@ namespace TomasosPizzaApplication.Controllers
 
                 if (result.Succeeded)
                 {
+                    model.Kund.UserId = user.Id;
                     _repository.AddCustomer(model.Kund);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

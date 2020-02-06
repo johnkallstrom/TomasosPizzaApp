@@ -1,0 +1,27 @@
+﻿/* Settings */
+#settings {
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+#settings h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#settings .button {
+    margin-top: 10px;
+    height: 60px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 200px;
+}
+
+#settings .button:hover {
+    cursor: pointer;
+}
+
+/* Edit Details */

@@ -18,6 +18,11 @@ namespace TomasosPizzaApplication.Controllers
             _userManager = userManager;
         }
 
+        public IActionResult Settings()
+        {
+            return View();
+        }
+
         public IActionResult EditDetails()
         {
             return View();

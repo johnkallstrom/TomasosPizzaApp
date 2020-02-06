@@ -25,6 +25,7 @@ namespace TomasosPizzaApplication.Models
         public string Telefon { get; set; }
         public string AnvandarNamn { get; set; }
         public string Losenord { get; set; }
+        public string UserId { get; set; }
 
         public virtual ICollection<Bestallning> Bestallning { get; set; }
     }
