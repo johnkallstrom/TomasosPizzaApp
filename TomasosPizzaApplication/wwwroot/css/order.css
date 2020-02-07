@@ -65,3 +65,8 @@
 #menu-list .add:hover {
     filter: invert(27%) sepia(32%) saturate(4467%) hue-rotate(358deg) brightness(105%) contrast(92%);
 }
+
+#menu a {
+    text-decoration: none;
+    color: #1C272B;
+}
