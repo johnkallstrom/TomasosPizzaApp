@@ -22,39 +22,39 @@
 }
 
 /* Pizza */
-#pizza {
+#pizza, #pasta, #salad {
     width: 60%;
 }
 
-#pizza-list .wrapper {
+#menu-list .wrapper {
     position: relative;
     cursor: pointer;
     list-style: none;
     padding: 20px 0 20px 20px;
 }
 
-#pizza-list .wrapper:hover {
+#menu-list .wrapper:hover {
     background: #fff;
 }
 
-#pizza-list .name {
+#menu-list .name {
     font-size: 20px;
 }
 
-#pizza-list .price {
+#menu-list .price {
     position: absolute;
     right: 45px;
     top: 0;
     padding: 30px 16px 12px 16px;
 }
 
-#pizza-list img{
+#menu-list img {
     width: 25px;
     float: right;
     padding-left: 25px;
 }
 
-#pizza-list .add {
+#menu-list .add {
     position: absolute;
     right: 0;
     top: 0;
@@ -62,6 +62,6 @@
     filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
 }
 
-#pizza-list .add:hover {
+#menu-list .add:hover {
     filter: invert(27%) sepia(32%) saturate(4467%) hue-rotate(358deg) brightness(105%) contrast(92%);
 }

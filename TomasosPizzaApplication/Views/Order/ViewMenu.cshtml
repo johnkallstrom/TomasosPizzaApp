@@ -4,7 +4,7 @@
     <div class="container">
         <div id="pizza">
             <h1>Pizza</h1>
-            <ul id="pizza-list">
+            <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
                 <div class="wrapper">
@@ -21,35 +21,35 @@
 
         <div id="pasta">
             <h1>Pasta</h1>
-            <ul id="pasta-list">
+            <ul id="menu-list">
+                @foreach (var pasta in Model.PastaDishes)
+                {
                 <div class="wrapper">
-                    @foreach (var pasta in Model.PastaDishes)
-                    {
-                        <li class="name">@pasta.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@pasta.Pris kr</span></li>
+                    <li class="name">@pasta.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@pasta.Pris kr</span></li>
 
-                        @foreach (var ingredient in @pasta.MatrattProdukt)
-                        {
-                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                        }
+                    @foreach (var ingredient in @pasta.MatrattProdukt)
+                    {
+                        <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
                     }
                 </div>
+                }
             </ul>
         </div>
 
         <div id="salad">
             <h1>Sallad</h1>
-            <ul id="salad-list">
+            <ul id="menu-list">
+                @foreach (var salad in Model.SaladDishes)
+                {
                 <div class="wrapper">
-                    @foreach (var salad in Model.SaladDishes)
-                    {
-                        <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@salad.Pris kr</span></li>
+                    <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@salad.Pris kr</span></li>
 
-                        @foreach (var ingredient in @salad.MatrattProdukt)
-                        {
-                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                        }
+                    @foreach (var ingredient in @salad.MatrattProdukt)
+                    {
+                        <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
                     }
                 </div>
+                }
             </ul>
         </div>
     </div>
