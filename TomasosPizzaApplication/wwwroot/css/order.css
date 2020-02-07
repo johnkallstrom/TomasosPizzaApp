@@ -1,0 +1,67 @@
+﻿/* Order */
+#menu {
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+#menu h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#menu .ingredients {
+    display: inline;
+}
+
+#menu img{
+    width: 30px;
+}
+
+#pizza, #pasta, #salad {
+    color: #1C272B;
+}
+
+/* Pizza */
+#pizza {
+    width: 60%;
+}
+
+#pizza-list .wrapper {
+    position: relative;
+    cursor: pointer;
+    list-style: none;
+    padding: 20px 0 20px 20px;
+}
+
+#pizza-list .wrapper:hover {
+    background: #fff;
+}
+
+#pizza-list .name {
+    font-size: 20px;
+}
+
+#pizza-list .price {
+    position: absolute;
+    right: 45px;
+    top: 0;
+    padding: 30px 16px 12px 16px;
+}
+
+#pizza-list img{
+    width: 25px;
+    float: right;
+    padding-left: 25px;
+}
+
+#pizza-list .add {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 30px 16px 12px 16px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}
+
+#pizza-list .add:hover {
+    filter: invert(27%) sepia(32%) saturate(4467%) hue-rotate(358deg) brightness(105%) contrast(92%);
+}

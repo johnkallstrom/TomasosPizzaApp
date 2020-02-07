@@ -4,46 +4,52 @@
     <div class="container">
         <div id="pizza">
             <h1>Pizza</h1>
-            <ul>
+            <ul id="pizza-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                    <li>@pizza.MatrattNamn @pizza.Pris SEK</li>
+                <div class="wrapper">
+                    <li class="name">@pizza.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@pizza.Pris kr</span></li>
 
                     @foreach (var ingredient in @pizza.MatrattProdukt)
                     {
-                        <li>@ingredient.Produkt.ProduktNamn</li>
+                        <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
                     }
+                </div>
                 }
             </ul>
         </div>
 
         <div id="pasta">
             <h1>Pasta</h1>
-            <ul>
-                @foreach (var pasta in Model.PastaDishes)
-                {
-                    <li>@pasta.MatrattNamn @pasta.Pris SEK</li>
-
-                    @foreach (var ingredient in pasta.MatrattProdukt)
+            <ul id="pasta-list">
+                <div class="wrapper">
+                    @foreach (var pasta in Model.PastaDishes)
                     {
-                        <li>@ingredient.Produkt.ProduktNamn</li>
+                        <li class="name">@pasta.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@pasta.Pris kr</span></li>
+
+                        @foreach (var ingredient in @pasta.MatrattProdukt)
+                        {
+                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                        }
                     }
-                }
+                </div>
             </ul>
         </div>
 
         <div id="salad">
             <h1>Sallad</h1>
-            <ul>
-                @foreach (var salad in Model.SaladDishes)
-                {
-                    <li>@salad.MatrattNamn @salad.Pris SEK</li>
-
-                    @foreach (var ingredient in salad.MatrattProdukt)
+            <ul id="salad-list">
+                <div class="wrapper">
+                    @foreach (var salad in Model.SaladDishes)
                     {
-                        <li>@ingredient.Produkt.ProduktNamn</li>
+                        <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@salad.Pris kr</span></li>
+
+                        @foreach (var ingredient in @salad.MatrattProdukt)
+                        {
+                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                        }
                     }
-                }
+                </div>
             </ul>
         </div>
     </div>
