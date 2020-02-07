@@ -1,4 +1,4 @@
-﻿/* Order */
+﻿/* Menu */
 #menu {
     padding-bottom: 40px;
     padding-top: 10px;
@@ -19,11 +19,7 @@
 
 #pizza, #pasta, #salad {
     color: #1C272B;
-}
-
-/* Pizza */
-#pizza, #pasta, #salad {
-    width: 60%;
+    width: 50%;
 }
 
 #menu-list .wrapper {
@@ -70,3 +66,5 @@
     text-decoration: none;
     color: #1C272B;
 }
+
+/* Cart */

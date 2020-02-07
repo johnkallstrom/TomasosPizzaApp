@@ -1,5 +1,10 @@
 ﻿@model MenuViewModel
 
+@{
+    ViewData["Title"] = "Beställa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <section id="menu">
     <div class="container">
         <div id="pizza">
@@ -7,16 +12,16 @@
             <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                <a asp-controller="Cart" asp-action="AddItem" asp-route-id="@pizza.MatrattId">
-                    <div class="wrapper">
-                        <li class="name">@pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pizza.Pris kr</span></li>
+                    <a asp-controller="Cart" asp-action="AddItem" asp-route-id="@pizza.MatrattId">
+                        <div class="wrapper">
+                            <li class="name">@pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pizza.Pris kr</span></li>
 
-                        @foreach (var ingredient in @pizza.MatrattProdukt)
-                        {
-                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                        }
-                    </div>
-                </a>
+                            @foreach (var ingredient in @pizza.MatrattProdukt)
+                            {
+                                <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                            }
+                        </div>
+                    </a>
                 }
             </ul>
         </div>
@@ -26,16 +31,16 @@
             <ul id="menu-list">
                 @foreach (var pasta in Model.PastaDishes)
                 {
-                <a asp-controller="Cart" asp-action="AddItem" asp-route-id="@pasta.MatrattId">
-                    <div class="wrapper">
-                        <li class="name">@pasta.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pasta.Pris kr</span></li>
+                    <a asp-controller="Cart" asp-action="AddItem" asp-route-id="@pasta.MatrattId">
+                        <div class="wrapper">
+                            <li class="name">@pasta.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pasta.Pris kr</span></li>
 
-                        @foreach (var ingredient in @pasta.MatrattProdukt)
-                        {
-                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                        }
-                    </div>
-                </a>
+                            @foreach (var ingredient in @pasta.MatrattProdukt)
+                            {
+                                <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                            }
+                        </div>
+                    </a>
                 }
             </ul>
         </div>
@@ -45,16 +50,16 @@
             <ul id="menu-list">
                 @foreach (var salad in Model.SaladDishes)
                 {
-                <a asp-controller="Cart" asp-action="AddItem" asp-route-id="@salad.MatrattId">
-                    <div class="wrapper">
-                        <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@salad.Pris kr</span></li>
+                    <a asp-controller="Cart" asp-action="AddItem" asp-route-id="@salad.MatrattId">
+                        <div class="wrapper">
+                            <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@salad.Pris kr</span></li>
 
-                        @foreach (var ingredient in @salad.MatrattProdukt)
-                        {
-                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                        }
-                    </div>
-                </a>
+                            @foreach (var ingredient in @salad.MatrattProdukt)
+                            {
+                                <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                            }
+                        </div>
+                    </a>
                 }
             </ul>
         </div>
