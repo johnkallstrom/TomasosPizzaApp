@@ -1,0 +1,15 @@
+﻿/* Cart */
+#cart {
+    color: #1C272B;
+    width: 40%;
+    float: right;
+}
+
+#cart h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#cart hr {
+    background-color: #1C272B;
+}

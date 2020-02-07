@@ -7,19 +7,24 @@
 
 <section id="menu">
     <div class="container">
+        <!-- CART -->
+        <div id="cart">
+            <h1>Din beställning</h1>
+            <hr />
+        </div>
         <!-- MENU -->
         <div id="pizza">
             <h1>Pizza</h1>
             <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                    <a  asp-controller="Cart" 
-                        asp-action="AddItem" 
-                        asp-route-id="@pizza.MatrattId" 
-                        data-ajax="true"
-                        data-ajax-method="GET"
-                        data-ajax-mode="replace"
-                        data-ajax-update="#cart">
+                    <a asp-controller="Cart"
+                       asp-action="AddItem"
+                       asp-route-id="@pizza.MatrattId"
+                       data-ajax="true"
+                       data-ajax-method="GET"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#cart">
                         <div class="wrapper">
                             <li class="name">@pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pizza.Pris kr</span></li>
 
@@ -38,9 +43,9 @@
             <ul id="menu-list">
                 @foreach (var pasta in Model.PastaDishes)
                 {
-                    <a asp-controller="Cart" 
-                       asp-action="AddItem" 
-                       asp-route-id="@pasta.MatrattId"   
+                    <a asp-controller="Cart"
+                       asp-action="AddItem"
+                       asp-route-id="@pasta.MatrattId"
                        data-ajax="true"
                        data-ajax-method="GET"
                        data-ajax-mode="replace"
@@ -63,8 +68,8 @@
             <ul id="menu-list">
                 @foreach (var salad in Model.SaladDishes)
                 {
-                    <a asp-controller="Cart" 
-                       asp-action="AddItem" 
+                    <a asp-controller="Cart"
+                       asp-action="AddItem"
                        asp-route-id="@salad.MatrattId"
                        data-ajax="true"
                        data-ajax-method="GET"
@@ -81,10 +86,6 @@
                     </a>
                 }
             </ul>
-        </div>
-        <!-- CART -->
-        <div id="cart">
-
         </div>
     </div>
 </section>
