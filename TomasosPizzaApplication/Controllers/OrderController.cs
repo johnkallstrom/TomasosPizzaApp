@@ -45,6 +45,7 @@ namespace TomasosPizzaApplication.Controllers
                 shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(JSONshoppingCart);
             }
 
+
             shoppingCart.Add(selectedItem);
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
 

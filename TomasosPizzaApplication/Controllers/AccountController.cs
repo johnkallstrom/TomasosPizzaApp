@@ -90,7 +90,7 @@ namespace TomasosPizzaApplication.Controllers
                 ViewBag.UpdateMessage = "Ditt konto har uppdaterats.";
             }
 
-            return View(model);
+            return RedirectToAction("Logout", "User");
         }
 
         public async Task<IActionResult> ChangeUsername()
@@ -125,7 +125,7 @@ namespace TomasosPizzaApplication.Controllers
                 ViewBag.UpdateMessage = "Ditt konto har uppdaterats.";
             }
 
-            return View(model);
+            return RedirectToAction("Logout", "User");
         }
     }
 }
