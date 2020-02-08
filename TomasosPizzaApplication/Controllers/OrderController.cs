@@ -20,11 +20,24 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult ViewMenu()
         {
+            List<Matratt> shoppingCart;
+
+            if (HttpContext.Session.GetString("Cart") == null)
+            {
+                shoppingCart = new List<Matratt>();
+            }
+            else
+            {
+                var dataJSON = HttpContext.Session.GetString("Cart");
+                shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+            }
+
             var model = new MenuViewModel();
 
             model.PizzaDishes = _dishRepository.FetchPizzaDishes();
             model.PastaDishes = _dishRepository.FetchPastaDishes();
             model.SaladDishes = _dishRepository.FetchSaladDishes();
+            model.ShoppingCart = shoppingCart;
 
             return View(model);
         }
@@ -41,8 +54,8 @@ namespace TomasosPizzaApplication.Controllers
             }
             else
             {
-                var JSONshoppingCart = HttpContext.Session.GetString("Cart");
-                shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(JSONshoppingCart);
+                var dataJSON = HttpContext.Session.GetString("Cart");
+                shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
 
@@ -55,8 +68,8 @@ namespace TomasosPizzaApplication.Controllers
         [HttpGet]
         public IActionResult DeleteItem(int id)
         {
-            var JSONshoppingCart = HttpContext.Session.GetString("Cart");
-            var shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(JSONshoppingCart);
+            var dataJSON = HttpContext.Session.GetString("Cart");
+            var shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
 
             var selectedItem = shoppingCart.FirstOrDefault(i => i.MatrattId == id);
             shoppingCart.Remove(selectedItem);
