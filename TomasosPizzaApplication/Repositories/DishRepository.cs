@@ -44,5 +44,10 @@ namespace TomasosPizzaApplication.Repositories
                  .ThenInclude(p => p.Produkt)
                  .ToList();
         }
+
+        public Matratt FetchDishByID(int id)
+        {
+            return _context.Matratt.FirstOrDefault(m => m.MatrattId == id);
+        }
     }
 }

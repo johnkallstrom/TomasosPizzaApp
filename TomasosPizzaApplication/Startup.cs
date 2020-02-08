@@ -23,6 +23,9 @@ namespace TomasosPizzaApplication
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
+            services.AddSession();
+            services.AddDistributedMemoryCache();
+
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IDishRepository, DishRepository>();
 
@@ -46,6 +49,7 @@ namespace TomasosPizzaApplication
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvc(routes =>

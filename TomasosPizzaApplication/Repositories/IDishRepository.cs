@@ -8,5 +8,6 @@ namespace TomasosPizzaApplication.Repositories
         List<Matratt> FetchPizzaDishes();
         List<Matratt> FetchPastaDishes();
         List<Matratt> FetchSaladDishes();
+        Matratt FetchDishByID(int id);
     }
 }

@@ -11,6 +11,7 @@
         <div id="cart">
             <h1>Din beställning</h1>
             <hr />
+            <h3>Total: 0 kr</h3>
         </div>
         <!-- MENU -->
         <div id="pizza">
@@ -18,7 +19,7 @@
             <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                    <a asp-controller="Cart"
+                    <a asp-controller="Order"
                        asp-action="AddItem"
                        asp-route-id="@pizza.MatrattId"
                        data-ajax="true"
@@ -43,7 +44,7 @@
             <ul id="menu-list">
                 @foreach (var pasta in Model.PastaDishes)
                 {
-                    <a asp-controller="Cart"
+                    <a asp-controller="Order"
                        asp-action="AddItem"
                        asp-route-id="@pasta.MatrattId"
                        data-ajax="true"
@@ -68,7 +69,7 @@
             <ul id="menu-list">
                 @foreach (var salad in Model.SaladDishes)
                 {
-                    <a asp-controller="Cart"
+                    <a asp-controller="Order"
                        asp-action="AddItem"
                        asp-route-id="@salad.MatrattId"
                        data-ajax="true"
