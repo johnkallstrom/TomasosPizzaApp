@@ -119,3 +119,23 @@
 #cart .remove:hover {
     filter: invert(24%) sepia(9%) saturate(3%) hue-rotate(16deg) brightness(101%) contrast(82%);
 }
+
+#cart .button {
+    margin-top: 10px;
+    height: 60px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 80%;
+    text-transform: uppercase;
+}
+
+#cart .button:hover{
+    cursor: pointer;
+}
+
+#cart .button-wrapper{
+    text-align: center;
+}

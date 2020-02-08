@@ -5,9 +5,12 @@
 <ul>
     @foreach (var item in Model)
     {
-    <div class="wrapper">
-        <li class="name"><img src="~/img/minus-square.svg" class="remove" />@item.MatrattNamn <span class="price">@item.Pris kr</span></li>
-    </div>
+        <div class="wrapper">
+            <li class="name"><img src="~/img/minus-square.svg" class="remove" />@item.MatrattNamn <span class="price">@item.Pris kr</span></li>
+        </div>
     }
 </ul>
 <h3>Total: @Model.Sum(i => i.Pris) kr</h3>
+<div class="button-wrapper">
+    <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Order")'" />
+</div>
