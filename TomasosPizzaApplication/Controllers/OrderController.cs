@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
 using TomasosPizzaApplication.ViewModels;
+using System.Linq;
 
 namespace TomasosPizzaApplication.Controllers
 {
@@ -45,6 +46,19 @@ namespace TomasosPizzaApplication.Controllers
             }
 
             shoppingCart.Add(selectedItem);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
+
+            return ViewComponent("ShoppingCart", shoppingCart);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteItem(int id)
+        {
+            var JSONshoppingCart = HttpContext.Session.GetString("Cart");
+            var shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(JSONshoppingCart);
+
+            var selectedItem = shoppingCart.FirstOrDefault(i => i.MatrattId == id);
+            shoppingCart.Remove(selectedItem);
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
 
             return ViewComponent("ShoppingCart", shoppingCart);

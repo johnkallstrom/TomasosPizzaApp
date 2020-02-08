@@ -6,7 +6,18 @@
     @foreach (var item in Model)
     {
         <div class="wrapper">
-            <li class="name"><img src="~/img/minus-square.svg" class="remove" />@item.MatrattNamn <span class="price">@item.Pris kr</span></li>
+            <li class="name">
+                <a asp-controller="Order" 
+                   asp-action="DeleteItem"
+                   asp-route-id="@item.MatrattId"
+                   data-ajax="true"
+                   data-ajax-method="GET"
+                   data-ajax-mode="replace"
+                   data-ajax-update="#cart">
+                <img src="~/img/minus-square.svg" class="remove" />
+                </a>
+                @item.MatrattNamn <span class="price">@item.Pris kr</span>
+            </li>
         </div>
     }
 </ul>

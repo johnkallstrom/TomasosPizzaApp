@@ -112,7 +112,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    padding: 18px 16px 16px 16px;
+    padding: 18px 16px 16px 18px;
     filter: invert(42%) sepia(3%) saturate(33%) hue-rotate(16deg) brightness(98%) contrast(83%);
 }
 
