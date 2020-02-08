@@ -27,10 +27,11 @@
     cursor: pointer;
     list-style: none;
     padding: 20px 0 20px 20px;
+    margin-left: 10px;
 }
 
 #menu-list .wrapper:hover {
-    background: #fff;
+    box-shadow: 0px 0px 6px 2px rgba(219,219,219,1);
 }
 
 #menu-list .name {
@@ -41,7 +42,7 @@
     position: absolute;
     right: 45px;
     top: 0;
-    padding: 30px 16px 12px 16px;
+    padding: 30px 20px 12px 16px;
 }
 
 #menu-list img {
@@ -54,7 +55,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    padding: 30px 16px 12px 16px;
+    padding: 30px 20px 12px 16px;
     filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
 }
 
@@ -98,14 +99,17 @@
 }
 
 #cart .wrapper {
+    margin-top: 20px;
     position: relative;
     cursor: pointer;
     list-style: none;
     padding: 20px 0 20px 20px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #cart .wrapper:hover {
-    background: #fff;
+    box-shadow: 0px 0px 6px 2px rgba(219,219,219,1);
 }
 
 #cart .remove {

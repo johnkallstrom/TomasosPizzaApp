@@ -87,10 +87,11 @@ namespace TomasosPizzaApplication.Controllers
 
             if (result.Succeeded)
             {
-                ViewBag.UpdateMessage = "Ditt konto har uppdaterats.";
+                // If password change succeeded force user to login again
+                return RedirectToAction("Logout", "User");
             }
 
-            return RedirectToAction("Logout", "User");
+            return View(model);
         }
 
         public async Task<IActionResult> ChangeUsername()
@@ -122,10 +123,11 @@ namespace TomasosPizzaApplication.Controllers
 
             if (result.Succeeded)
             {
-                ViewBag.UpdateMessage = "Ditt konto har uppdaterats.";
+                // If username change succeeded force user to login again
+                return RedirectToAction("Logout", "User");
             }
 
-            return RedirectToAction("Logout", "User");
+            return View(model);
         }
     }
 }
