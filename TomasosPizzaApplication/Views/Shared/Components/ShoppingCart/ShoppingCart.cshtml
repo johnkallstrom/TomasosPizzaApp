@@ -5,9 +5,9 @@
 <ul>
     @foreach (var item in Model)
     {
-        <div class="wrapper">
+       <div class="wrapper">
             <li class="name">
-                <a asp-controller="Order" 
+                <a asp-controller="Cart" 
                    asp-action="DeleteItem"
                    asp-route-id="@item.MatrattId"
                    data-ajax="true"
@@ -16,7 +16,8 @@
                    data-ajax-update="#cart">
                 <img src="~/img/minus-square.svg" class="remove" />
                 </a>
-                @item.MatrattNamn <span class="price">@item.Pris kr</span>
+                @item.MatrattNamn 
+                <span class="price">@item.Pris kr</span>
             </li>
         </div>
     }

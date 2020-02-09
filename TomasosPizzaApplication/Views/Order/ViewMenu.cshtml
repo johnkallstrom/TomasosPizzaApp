@@ -16,7 +16,7 @@
                 {
                     <div class="wrapper">
                         <li class="name">
-                            <a asp-controller="Order"
+                            <a asp-controller="ShoppingCart"
                                asp-action="DeleteItem"
                                asp-route-id="@item.MatrattId"
                                data-ajax="true"
@@ -42,7 +42,7 @@
             <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                    <a asp-controller="Order"
+                    <a asp-controller="Cart"
                        asp-action="AddItem"
                        asp-route-id="@pizza.MatrattId"
                        data-ajax="true"
@@ -67,7 +67,7 @@
             <ul id="menu-list">
                 @foreach (var pasta in Model.PastaDishes)
                 {
-                    <a asp-controller="Order"
+                    <a asp-controller="Cart"
                        asp-action="AddItem"
                        asp-route-id="@pasta.MatrattId"
                        data-ajax="true"
@@ -92,7 +92,7 @@
             <ul id="menu-list">
                 @foreach (var salad in Model.SaladDishes)
                 {
-                    <a asp-controller="Order"
+                    <a asp-controller="Cart"
                        asp-action="AddItem"
                        asp-route-id="@salad.MatrattId"
                        data-ajax="true"

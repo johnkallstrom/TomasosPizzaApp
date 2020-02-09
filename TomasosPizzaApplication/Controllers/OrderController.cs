@@ -41,41 +41,5 @@ namespace TomasosPizzaApplication.Controllers
 
             return View(model);
         }
-
-        public IActionResult AddItem(int id)
-        {
-            List<Matratt> shoppingCart;
-
-            var selectedItem = _dishRepository.FetchDishByID(id);
-
-            if (HttpContext.Session.GetString("Cart") == null)
-            {
-                shoppingCart = new List<Matratt>();
-            }
-            else
-            {
-                var dataJSON = HttpContext.Session.GetString("Cart");
-                shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
-            }
-
-
-            shoppingCart.Add(selectedItem);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
-
-            return ViewComponent("ShoppingCart", shoppingCart);
-        }
-
-        [HttpGet]
-        public IActionResult DeleteItem(int id)
-        {
-            var dataJSON = HttpContext.Session.GetString("Cart");
-            var shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
-
-            var selectedItem = shoppingCart.FirstOrDefault(i => i.MatrattId == id);
-            shoppingCart.Remove(selectedItem);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
-
-            return ViewComponent("ShoppingCart", shoppingCart);
-        }
     }
 }
