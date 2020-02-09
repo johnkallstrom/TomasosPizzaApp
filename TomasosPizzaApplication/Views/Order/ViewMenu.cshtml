@@ -25,7 +25,8 @@
                                data-ajax-update="#cart">
                                 <img src="~/img/minus-square.svg" class="remove" />
                             </a>
-                            @item.MatrattNamn <span class="price">@item.Pris kr</span>
+                            @item.MatrattNamn 
+                            <span class="price">@item.Pris kr</span>
                         </li>
                     </div>
                 }
@@ -42,7 +43,7 @@
             <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                    <a asp-controller="Cart"
+                    <a asp-controller="ShoppingCart"
                        asp-action="AddItem"
                        asp-route-id="@pizza.MatrattId"
                        data-ajax="true"
@@ -67,7 +68,7 @@
             <ul id="menu-list">
                 @foreach (var pasta in Model.PastaDishes)
                 {
-                    <a asp-controller="Cart"
+                    <a asp-controller="ShoppingCart"
                        asp-action="AddItem"
                        asp-route-id="@pasta.MatrattId"
                        data-ajax="true"
@@ -92,7 +93,7 @@
             <ul id="menu-list">
                 @foreach (var salad in Model.SaladDishes)
                 {
-                    <a asp-controller="Cart"
+                    <a asp-controller="ShoppingCart"
                        asp-action="AddItem"
                        asp-route-id="@salad.MatrattId"
                        data-ajax="true"

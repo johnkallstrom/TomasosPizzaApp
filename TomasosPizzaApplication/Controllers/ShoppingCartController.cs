@@ -8,11 +8,11 @@ using TomasosPizzaApplication.Repositories;
 
 namespace TomasosPizzaApplication.Controllers
 {
-    public class CartController : Controller
+    public class ShoppingCartController : Controller
     {
         private readonly IDishRepository _dishRepository;
 
-        public CartController(IDishRepository dishRepository)
+        public ShoppingCartController(IDishRepository dishRepository)
         {
             _dishRepository = dishRepository;
         }
@@ -34,6 +34,7 @@ namespace TomasosPizzaApplication.Controllers
             }
 
             shoppingCart.Add(selectedItem);
+
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
 
             return ViewComponent("ShoppingCart", shoppingCart);
@@ -51,6 +52,11 @@ namespace TomasosPizzaApplication.Controllers
             HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
 
             return ViewComponent("ShoppingCart", shoppingCart);
+        }
+
+        public IActionResult Checkout()
+        {
+            return View();
         }
     }
 }
