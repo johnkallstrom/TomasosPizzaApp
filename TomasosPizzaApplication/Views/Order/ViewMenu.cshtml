@@ -33,7 +33,7 @@
             </ul>
             <h3>Total: @Model.ShoppingCart.Sum(i => i.Pris) kr</h3>
             <div class="button-wrapper">
-                <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Order")'" />
+                <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "ShoppingCart")'" />
             </div>
         </div>
 
