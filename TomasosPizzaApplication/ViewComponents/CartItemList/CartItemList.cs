@@ -4,7 +4,7 @@ using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.ViewComponents.CartItemList
 {
-    public class CartItemListViewComponent : ViewComponent
+    public class CartItemList : ViewComponent
     {
         public IViewComponentResult Invoke(List<Matratt> model)
         {

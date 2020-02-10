@@ -10,7 +10,6 @@ namespace TomasosPizzaApplication.Controllers
 {
     public class CartController : Controller
     {
-
         private readonly IDishRepository _dishRepository;
 
         public CartController(IDishRepository dishRepository)
