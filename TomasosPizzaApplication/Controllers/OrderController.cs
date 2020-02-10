@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
 using TomasosPizzaApplication.ViewModels;
-using System.Linq;
 
 namespace TomasosPizzaApplication.Controllers
 {
@@ -20,16 +19,16 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult ViewMenu()
         {
-            List<Matratt> items;
+            var cart = new Cart();
 
             if (HttpContext.Session.GetString("Cart") == null)
             {
-                items = new List<Matratt>();
+                cart.Items = new List<Matratt>();
             }
             else
             {
                 var dataJSON = HttpContext.Session.GetString("Cart");
-                items = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+                cart.Items = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
             var model = new MenuViewModel();
@@ -37,15 +36,7 @@ namespace TomasosPizzaApplication.Controllers
             model.PizzaDishes = _dishRepository.FetchPizzaDishes();
             model.PastaDishes = _dishRepository.FetchPastaDishes();
             model.SaladDishes = _dishRepository.FetchSaladDishes();
-            model.CartItems = items
-                                    .GroupBy(i => i.MatrattId)
-                                    .Select(x => new CartItemViewModel
-                                    {
-                                        ItemID = x.Key,
-                                        ItemName = x.First().MatrattNamn,
-                                        ItemCount = x.Count(),
-                                        ItemTotal = x.Sum(i => i.Pris)
-                                    }).ToList();
+            model.Items = cart.GroupCartItems();
 
             return View(model);
         }

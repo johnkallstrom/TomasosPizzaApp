@@ -8,6 +8,6 @@ namespace TomasosPizzaApplication.ViewModels
         public List<Matratt> PizzaDishes { get; set; }
         public List<Matratt> PastaDishes { get; set; }
         public List<Matratt> SaladDishes { get; set; }
-        public List<CartItemViewModel> CartItems { get; set; }
+        public List<CartItemViewModel> Items { get; set; }
     }
 }
