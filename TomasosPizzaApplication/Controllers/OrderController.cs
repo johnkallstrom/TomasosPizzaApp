@@ -20,16 +20,16 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult ViewMenu()
         {
-            List<Matratt> shoppingCart;
+            List<Matratt> items;
 
             if (HttpContext.Session.GetString("Cart") == null)
             {
-                shoppingCart = new List<Matratt>();
+                items = new List<Matratt>();
             }
             else
             {
                 var dataJSON = HttpContext.Session.GetString("Cart");
-                shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+                items = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
             var model = new MenuViewModel();
@@ -37,7 +37,15 @@ namespace TomasosPizzaApplication.Controllers
             model.PizzaDishes = _dishRepository.FetchPizzaDishes();
             model.PastaDishes = _dishRepository.FetchPastaDishes();
             model.SaladDishes = _dishRepository.FetchSaladDishes();
-            model.ShoppingCart = shoppingCart;
+            model.CartItems = items
+                                    .GroupBy(i => i.MatrattId)
+                                    .Select(x => new CartItemViewModel
+                                    {
+                                        ItemID = x.Key,
+                                        ItemName = x.First().MatrattNamn,
+                                        ItemCount = x.Count(),
+                                        ItemTotal = x.Sum(i => i.Pris)
+                                    }).ToList();
 
             return View(model);
         }
