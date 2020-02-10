@@ -16,25 +16,27 @@
                 {
                     <div class="wrapper">
                         <li class="name">
-                            <a asp-controller="Cart"
-                               asp-action="DeleteItem"
-                               asp-route-id="@item.ItemID"
-                               data-ajax="true"
-                               data-ajax-method="GET"
-                               data-ajax-mode="replace"
-                               data-ajax-update="#cart">
-                                <img src="~/img/minus.svg" class="remove" />
-                            </a>
-                            <span class="counter">@item.ItemCount</span>
-                            <a asp-controller="Cart"
-                               asp-action="AddItem"
-                               asp-route-id="@item.ItemID"
-                               data-ajax="true"
-                               data-ajax-method="GET"
-                               data-ajax-mode="replace"
-                               data-ajax-update="#cart">
-                                <img src="~/img/plus.svg" class="add" />
-                            </a>
+                            <div id="counter">
+                                <a asp-controller="Cart"
+                                   asp-action="DeleteItem"
+                                   asp-route-id="@item.ItemID"
+                                   data-ajax="true"
+                                   data-ajax-method="GET"
+                                   data-ajax-mode="replace"
+                                   data-ajax-update="#cart">
+                                    <img src="~/img/minus.svg" class="delete" />
+                                </a>
+                                <span class="counter-value">@item.ItemCount</span>
+                                <a asp-controller="Cart"
+                                   asp-action="AddItem"
+                                   asp-route-id="@item.ItemID"
+                                   data-ajax="true"
+                                   data-ajax-method="GET"
+                                   data-ajax-mode="replace"
+                                   data-ajax-update="#cart">
+                                    <img src="~/img/plus.svg" class="add" />
+                                </a>
+                            </div>
                             @item.ItemName
                             <span class="price">@item.ItemTotal kr</span>
                         </li>
