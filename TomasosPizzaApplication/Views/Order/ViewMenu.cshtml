@@ -16,7 +16,7 @@
                 {
                     <div class="wrapper">
                         <li class="name">
-                            <a asp-controller="ShoppingCart"
+                            <a asp-controller="Cart"
                                asp-action="DeleteItem"
                                asp-route-id="@item.MatrattId"
                                data-ajax="true"
@@ -33,7 +33,7 @@
             </ul>
             <h3>Total: @Model.ShoppingCart.Sum(i => i.Pris) kr</h3>
             <div class="button-wrapper">
-                <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "ShoppingCart")'" />
+                <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Cart")'" />
             </div>
         </div>
 
@@ -43,7 +43,7 @@
             <ul id="menu-list">
                 @foreach (var pizza in Model.PizzaDishes)
                 {
-                    <a asp-controller="ShoppingCart"
+                    <a asp-controller="Cart"
                        asp-action="AddItem"
                        asp-route-id="@pizza.MatrattId"
                        data-ajax="true"
@@ -68,7 +68,7 @@
             <ul id="menu-list">
                 @foreach (var pasta in Model.PastaDishes)
                 {
-                    <a asp-controller="ShoppingCart"
+                    <a asp-controller="Cart"
                        asp-action="AddItem"
                        asp-route-id="@pasta.MatrattId"
                        data-ajax="true"
@@ -93,7 +93,7 @@
             <ul id="menu-list">
                 @foreach (var salad in Model.SaladDishes)
                 {
-                    <a asp-controller="ShoppingCart"
+                    <a asp-controller="Cart"
                        asp-action="AddItem"
                        asp-route-id="@salad.MatrattId"
                        data-ajax="true"

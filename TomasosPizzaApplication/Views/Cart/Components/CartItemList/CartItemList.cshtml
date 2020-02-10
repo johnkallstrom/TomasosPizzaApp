@@ -7,7 +7,7 @@
     {
         <div class="wrapper">
             <li class="name">
-                <a asp-controller="ShoppingCart"
+                <a asp-controller="Cart"
                    asp-action="DeleteItem"
                    asp-route-id="@item.MatrattId"
                    data-ajax="true"
@@ -24,5 +24,5 @@
 </ul>
 <h3>Total: @Model.Sum(i => i.Pris) kr</h3>
 <div class="button-wrapper">
-    <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "ShoppingCart")'" />
+    <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Cart")'" />
 </div>

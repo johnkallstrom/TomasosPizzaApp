@@ -8,50 +8,51 @@ using TomasosPizzaApplication.Repositories;
 
 namespace TomasosPizzaApplication.Controllers
 {
-    public class ShoppingCartController : Controller
+    public class CartController : Controller
     {
+
         private readonly IDishRepository _dishRepository;
 
-        public ShoppingCartController(IDishRepository dishRepository)
+        public CartController(IDishRepository dishRepository)
         {
             _dishRepository = dishRepository;
         }
 
         public IActionResult AddItem(int id)
         {
-            List<Matratt> shoppingCart;
+            List<Matratt> model;
 
             var selectedItem = _dishRepository.FetchDishByID(id);
 
             if (HttpContext.Session.GetString("Cart") == null)
             {
-                shoppingCart = new List<Matratt>();
+                model = new List<Matratt>();
             }
             else
             {
                 var dataJSON = HttpContext.Session.GetString("Cart");
-                shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+                model = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
-            shoppingCart.Add(selectedItem);
+            model.Add(selectedItem);
 
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(model));
 
-            return ViewComponent("ShoppingCart", shoppingCart);
+            return ViewComponent("CartItemList", model);
         }
 
         public IActionResult DeleteItem(int id)
         {
-            List<Matratt> shoppingCart;
+            List<Matratt> model;
 
             var dataJSON = HttpContext.Session.GetString("Cart");
-            shoppingCart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+            model = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
 
-            var selectedItem = shoppingCart.FirstOrDefault(i => i.MatrattId == id);
-            shoppingCart.Remove(selectedItem);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(shoppingCart));
+            var selectedItem = model.FirstOrDefault(i => i.MatrattId == id);
+            model.Remove(selectedItem);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(model));
 
-            return ViewComponent("ShoppingCart", shoppingCart);
+            return ViewComponent("CartItemList", model);
         }
 
         public IActionResult Checkout()
