@@ -23,10 +23,19 @@
                                data-ajax-method="GET"
                                data-ajax-mode="replace"
                                data-ajax-update="#cart">
-                                <img src="~/img/minus-square.svg" class="remove" />
+                                <img src="~/img/minus.svg" class="remove" />
                             </a>
-                            <span>@item.ItemCount</span>
-                            @item.ItemName 
+                            <span class="counter">@item.ItemCount</span>
+                            <a asp-controller="Cart"
+                               asp-action="AddItem"
+                               asp-route-id="@item.ItemID"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#cart">
+                                <img src="~/img/plus.svg" class="add" />
+                            </a>
+                            @item.ItemName
                             <span class="price">@item.ItemTotal kr</span>
                         </li>
                     </div>
