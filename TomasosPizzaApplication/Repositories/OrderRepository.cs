@@ -19,22 +19,5 @@ namespace TomasosPizzaApplication.Repositories
             _context.Bestallning.Add(order);
             _context.SaveChanges();
         }
-
-        public List<Bestallning> FetchAllOrders()
-        {
-            return _context.Bestallning
-                .Include(b => b.BestallningMatratt)
-                .ThenInclude(m => m.Matratt)
-                .ToList();
-        }
-
-        public List<Bestallning> FetchOrdersByCustomerID(int id)
-        {
-            return _context.Bestallning
-                .Where(b => b.KundId == id)
-                .Include(b => b.BestallningMatratt)
-                .ThenInclude(m => m.Matratt)
-                .ToList();
-        }
     }
 }

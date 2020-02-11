@@ -22,17 +22,19 @@ namespace TomasosPizzaApplication.Controllers
         [Authorize]
         public IActionResult ViewMenu()
         {
+            var items = _cartService.FetchCartItems();
+
             var model = new MenuViewModel();
 
             model.PizzaDishes = _dishService.FetchPizzaDishes();
             model.PastaDishes = _dishService.FetchPastaDishes();
             model.SaladDishes = _dishService.FetchSaladDishes();
-            model.Items = _cartService.FetchCartItems();
+            model.Items = _cartService.GroupCartItems(items);
 
             return View(model);
         }
 
-        public IActionResult AddOrder(Bestallning order)
+        public IActionResult AddOrder()
         {
             return View();
         }

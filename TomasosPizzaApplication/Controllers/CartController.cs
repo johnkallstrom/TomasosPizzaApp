@@ -18,7 +18,8 @@ namespace TomasosPizzaApplication.Controllers
         {
             _cartService.AddItemToCart(id);
 
-            var model = _cartService.FetchCartItems();
+            var items = _cartService.FetchCartItems();
+            var model = _cartService.GroupCartItems(items);
 
             return ViewComponent("CartItemList", model);
         }
@@ -28,7 +29,8 @@ namespace TomasosPizzaApplication.Controllers
         {
             _cartService.DeleteItemFromCart(id);
 
-            var model = _cartService.FetchCartItems();
+            var items = _cartService.FetchCartItems();
+            var model = _cartService.GroupCartItems(items);
 
             return ViewComponent("CartItemList", model);
         }
@@ -36,7 +38,8 @@ namespace TomasosPizzaApplication.Controllers
         [Authorize]
         public IActionResult Checkout()
         {
-            var model = _cartService.FetchCartItems();
+            var items = _cartService.FetchCartItems();
+            var model = _cartService.GroupCartItems(items);
 
             return View(model);
         }

@@ -5,10 +5,7 @@ namespace TomasosPizzaApplication.Repositories
 {
     public interface IDishRepository
     {
-        List<Matratt> FetchAllDishes();
-        List<Matratt> FetchPizzaDishes();
-        List<Matratt> FetchPastaDishes();
-        List<Matratt> FetchSaladDishes();
+        List<Matratt> FetchAll();
         Matratt FetchDishByID(int id);
     }
 }

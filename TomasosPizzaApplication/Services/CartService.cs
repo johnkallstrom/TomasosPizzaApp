@@ -63,7 +63,7 @@ namespace TomasosPizzaApplication.Services
             _httpContextAccessor.HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(items));
         }
 
-        public List<CartItemViewModel> FetchCartItems()
+        public List<Matratt> FetchCartItems()
         {
             List<Matratt> items;
 
@@ -77,12 +77,10 @@ namespace TomasosPizzaApplication.Services
                 items = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
-            var result = GroupCartItems(items);
-
-            return result;
+            return items;
         }
 
-        private List<CartItemViewModel> GroupCartItems(List<Matratt> items)
+        public List<CartItemViewModel> GroupCartItems(List<Matratt> items)
         {
             var result = items
                         .GroupBy(i => i.MatrattId)
@@ -95,6 +93,7 @@ namespace TomasosPizzaApplication.Services
                         }).ToList();
 
             return result;
+
         }
     }
 }

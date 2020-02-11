@@ -16,7 +16,7 @@ namespace TomasosPizzaApplication.Services
 
         public List<Matratt> FetchPizzaDishes()
         {
-            var dishes = _dishRepository.FetchAllDishes();
+            var dishes = _dishRepository.FetchAll();
 
             return dishes
                 .Where(d => d.MatrattTyp == 1)
@@ -25,7 +25,7 @@ namespace TomasosPizzaApplication.Services
 
         public List<Matratt> FetchPastaDishes()
         {
-            var dishes = _dishRepository.FetchAllDishes();
+            var dishes = _dishRepository.FetchAll();
 
             return dishes
                 .Where(d => d.MatrattTyp == 2)
@@ -34,7 +34,7 @@ namespace TomasosPizzaApplication.Services
 
         public List<Matratt> FetchSaladDishes()
         {
-            var dishes = _dishRepository.FetchAllDishes();
+            var dishes = _dishRepository.FetchAll();
 
             return dishes
                 .Where(d => d.MatrattTyp == 3)
