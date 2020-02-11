@@ -12,18 +12,23 @@ namespace TomasosPizzaApplication.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IUserRepository _repository;
+        private readonly IUserRepository _userRepository;
 
         public UserService(
             IHttpContextAccessor httpContextAccessor,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
-            IUserRepository repository)
+            IUserRepository userRepository)
         {
             _httpContextAccessor = httpContextAccessor;
             _signInManager = signInManager;
             _userManager = userManager;
-            _repository = repository;
+            _userRepository = userRepository;
+        }
+
+        public async Task<bool> CheckPassword(ApplicationUser user, string currentPassword)
+        {
+            return await _userManager.CheckPasswordAsync(user, currentPassword);
         }
 
         public async Task<IdentityResult> CreateUser(Kund customer, string username, string password)
@@ -34,15 +39,20 @@ namespace TomasosPizzaApplication.Services
             if (result.Succeeded)
             {
                 customer.UserId = user.Id;
-                _repository.AddUser(customer);
+                _userRepository.Add(customer);
             }
 
             return result;
         }
 
-        public async Task<ApplicationUser> FetchUser()
+        public Kund FetchCurrentCustomer(string id)
         {
-            var user = await _userManager.GetUserAsync(User);
+            return _userRepository.Fetch(id);
+        }
+
+        public async Task<ApplicationUser> FetchCurrentUser()
+        {
+            return await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
         }
 
         public async Task<SignInResult> SignInUser(string username, string password)
@@ -56,6 +66,44 @@ namespace TomasosPizzaApplication.Services
             await _signInManager.SignOutAsync();
             _httpContextAccessor.HttpContext.Session.Clear();
             return true;
+        }
+
+        public void UpdateUserDetails(ApplicationUser user, Kund kund)
+        {
+            kund.UserId = user.Id;
+            _userRepository.Update(kund);
+        }
+
+        public async Task<bool> UpdateUsername(ApplicationUser user, string currentPassword, string updatedUsername)
+        {
+            var isPassValid = await CheckPassword(user, currentPassword);
+
+            if (isPassValid == true)
+            {
+                user.UserName = updatedUsername;
+                await _userManager.UpdateAsync(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdatePassword(ApplicationUser user, Kund customer, string currentPassword, string newPassword)
+        {
+            var isPassValid = await CheckPassword(user, currentPassword);
+
+            if (isPassValid == true)
+            {
+                customer.UserId = user.Id;
+                await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -5,9 +5,9 @@ namespace TomasosPizzaApplication.Repositories
 {
     public interface IUserRepository
     {
-        void AddUser(Kund kund);
-        Kund FetchUserByID(string id);
-        void UpdateUser(Kund kund);
-        List<Kund> FetchAllUsers();
+        void Add(Kund kund);
+        Kund Fetch(string id);
+        void Update(Kund kund);
+        List<Kund> FetchAll();
     }
 }

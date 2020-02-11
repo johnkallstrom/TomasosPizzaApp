@@ -13,23 +13,23 @@ namespace TomasosPizzaApplication.Repositories
             _context = context;
         }
 
-        public void AddUser(Kund customer)
+        public void Add(Kund customer)
         {
             _context.Kund.Add(customer);
             _context.SaveChanges();
         }
 
-        public List<Kund> FetchAllUsers()
+        public List<Kund> FetchAll()
         {
             return _context.Kund.ToList();
         }
 
-        public Kund FetchUserByID(string id)
+        public Kund Fetch(string id)
         {
             return _context.Kund.FirstOrDefault(k => k.UserId == id);
         }
 
-        public void UpdateUser(Kund updatedCustomer)
+        public void Update(Kund updatedCustomer)
         {
             var currentCustomer = _context.Kund.FirstOrDefault(k => k.UserId == updatedCustomer.UserId);
 

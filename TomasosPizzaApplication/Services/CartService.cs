@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using TomasosPizzaApplication.Models;
+using TomasosPizzaApplication.Repositories;
 using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Services
@@ -10,15 +11,21 @@ namespace TomasosPizzaApplication.Services
     public class CartService : ICartService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IDishRepository _dishRepository;
 
-        public CartService(IHttpContextAccessor httpContextAccessor)
+        public CartService(
+            IHttpContextAccessor httpContextAccessor,
+            IDishRepository dishRepository)
         {
             _httpContextAccessor = httpContextAccessor;
+            _dishRepository = dishRepository;
         }
 
-        public void AddItemToCart(Matratt selectedItem)
+        public void AddItemToCart(int id)
         {
             List<Matratt> items;
+
+            var selectedItem = _dishRepository.FetchDishByID(id);
 
             if (_httpContextAccessor.HttpContext.Session.GetString("Cart") == null)
             {

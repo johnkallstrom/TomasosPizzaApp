@@ -1,29 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TomasosPizzaApplication.Repositories;
 using TomasosPizzaApplication.Services;
 
 namespace TomasosPizzaApplication.Controllers
 {
     public class CartController : Controller
     {
-        private readonly IDishRepository _dishRepository;
         private readonly ICartService _cartService;
 
-        public CartController(
-            IDishRepository dishRepository,
-            ICartService cartService)
+        public CartController(ICartService cartService)
         {
-            _dishRepository = dishRepository;
             _cartService = cartService;
         }
 
         [Authorize]
         public IActionResult AddItem(int id)
         {
-            var selectedItem = _dishRepository.FetchDishByID(id);
-
-            _cartService.AddItemToCart(selectedItem);
+            _cartService.AddItemToCart(id);
 
             var model = _cartService.FetchCartItems();
 

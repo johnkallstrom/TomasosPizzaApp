@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Repositories;
+using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
@@ -11,15 +12,11 @@ namespace TomasosPizzaApplication.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IUserRepository _repository;
-        private readonly UserManager<ApplicationUser> _userManager;
+        IUserService _userService;
 
-        public AccountController(
-            IUserRepository repository,
-            UserManager<ApplicationUser> userManager)
+        public AccountController(IUserService userService)
         {
-            _repository = repository;
-            _userManager = userManager;
+            _userService = userService;
         }
 
         public IActionResult Settings()
@@ -29,29 +26,23 @@ namespace TomasosPizzaApplication.Controllers
 
         public async Task<IActionResult> UpdateDetails()
         {
-            var user = await _userManager.GetUserAsync(User);
-            var currentCustomer = _repository.FetchUserByID(user.Id);
+            var user = await _userService.FetchCurrentUser();
 
-            if (currentCustomer != null)
-            {
-                var model = new UpdateAccountViewModel();
-                model.Kund = currentCustomer;
-                return View(model);
-            }
+            var model = new UpdateAccountViewModel();
+            model.Kund = _userService.FetchCurrentCustomer(user.Id);
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateDetails(UpdateAccountViewModel model)
         {
-            var user = await _userManager.GetUserAsync(User);
-            model.Kund.UserId = user.Id;
+            var user = await _userService.FetchCurrentUser();
 
             if (ModelState.IsValid)
             {
-                _repository.UpdateUser(model.Kund);
+                _userService.UpdateUserDetails(user, model.Kund);
                 ViewBag.UpdateMessage = "Ditt konto har uppdaterats.";
                 return View(model);
             }
@@ -61,11 +52,10 @@ namespace TomasosPizzaApplication.Controllers
 
         public async Task<IActionResult> ChangePassword()
         {
-            var user = await _userManager.GetUserAsync(User);
-            var currentCustomer = _repository.FetchUserByID(user.Id);
+            var user = await _userService.FetchCurrentUser();
 
             var model = new ChangePasswordViewModel();
-            model.Kund = currentCustomer;
+            model.Kund = _userService.FetchCurrentCustomer(user.Id);
 
             return View(model);
         }
@@ -74,29 +64,24 @@ namespace TomasosPizzaApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            var user = await _userManager.GetUserAsync(User);
-            model.Kund.UserId = user.Id;
+            var user = await _userService.FetchCurrentUser();
 
-            var isPassValid = await _userManager.CheckPasswordAsync(user, model.CurrentPassword);
-            if (isPassValid == false)
+            var result = await _userService.UpdatePassword(user, model.Kund, model.CurrentPassword, model.NewPassword);
+
+            if (result == false)
             {
                 ModelState.AddModelError("CurrentPassword", "Nuvarande lösenord är inkorrekt");
                 return View(model);
             }
-
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-
-            if (result.Succeeded)
+            else
             {
                 return RedirectToAction("Logout", "User");
             }
-
-            return View(model);
         }
 
         public async Task<IActionResult> ChangeUsername()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userService.FetchCurrentUser();
 
             var model = new ChangeUsernameViewModel();
             model.Username = user.UserName;
@@ -108,25 +93,19 @@ namespace TomasosPizzaApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUsername(ChangeUsernameViewModel model)
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userService.FetchCurrentUser();
 
-            user.UserName = model.Username;
+            var result = await _userService.UpdateUsername(user, model.Password, model.Username);
 
-            var isPassValid = await _userManager.CheckPasswordAsync(user, model.Password);
-            if (isPassValid == false)
+            if (result == false)
             {
                 ModelState.AddModelError("Password", "Lösenord är inkorrekt");
                 return View(model);
             }
-
-            var result = await _userManager.UpdateAsync(user);
-
-            if (result.Succeeded)
+            else
             {
                 return RedirectToAction("Logout", "User");
             }
-
-            return View(model);
         }
     }
 }
