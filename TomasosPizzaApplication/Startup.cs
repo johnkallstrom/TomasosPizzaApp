@@ -34,6 +34,7 @@ namespace TomasosPizzaApplication
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IDishService, DishService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddDbContext<TomasosContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Tomasos")));

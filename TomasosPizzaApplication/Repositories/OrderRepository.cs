@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using TomasosPizzaApplication.Models;
+﻿using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.Repositories
 {
@@ -14,7 +11,7 @@ namespace TomasosPizzaApplication.Repositories
             _context = context;
         }
 
-        public void AddOrder(Bestallning order)
+        public void Add(Bestallning order)
         {
             _context.Bestallning.Add(order);
             _context.SaveChanges();

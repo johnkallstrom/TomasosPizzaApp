@@ -10,13 +10,16 @@ namespace TomasosPizzaApplication.Controllers
     {
         private readonly IDishService _dishService;
         private readonly ICartService _cartService;
+        private readonly IOrderService _orderService;
 
         public OrderController(
             ICartService cartService,
-            IDishService dishService)
+            IDishService dishService,
+            IOrderService orderService)
         {
             _cartService = cartService;
             _dishService = dishService;
+            _orderService = orderService;
         }
 
         [Authorize]
@@ -36,7 +39,9 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult AddOrder()
         {
-            return View();
+            var order = _orderService.CreateOrder();
+
+            return View(order);
         }
     }
 }
