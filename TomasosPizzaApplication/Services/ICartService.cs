@@ -6,6 +6,8 @@ namespace TomasosPizzaApplication.Services
 {
     public interface ICartService
     {
-        List<CartItemViewModel> GroupCartItems(List<Matratt> items);
+        List<CartItemViewModel> FetchCartItems();
+        void AddItemToCart(Matratt selectedItem);
+        void DeleteItemFromCart(int id);
     }
 }

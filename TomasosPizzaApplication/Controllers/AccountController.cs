@@ -88,7 +88,6 @@ namespace TomasosPizzaApplication.Controllers
 
             if (result.Succeeded)
             {
-                // If password change succeeded force user to login again
                 return RedirectToAction("Logout", "User");
             }
 
@@ -124,7 +123,6 @@ namespace TomasosPizzaApplication.Controllers
 
             if (result.Succeeded)
             {
-                // If username change succeeded force user to login again
                 return RedirectToAction("Logout", "User");
             }
 

@@ -24,6 +24,7 @@ namespace TomasosPizzaApplication
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
+            services.AddHttpContextAccessor();
             services.AddSession();
             services.AddDistributedMemoryCache();
 
