@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -27,31 +28,30 @@ namespace TomasosPizzaApplication.Controllers
             _userManager = userManager;
         }
 
+        [Authorize]
         public async Task<IActionResult> AddItem(int id)
         {
-            var cart = new Cart();
-
-            cart.User = await _userManager.GetUserAsync(User);
-            cart.Customer = _userRepository.FetchUserByID(cart.User.Id);
+            List<Matratt> model;
 
             var selectedItem = _dishRepository.FetchDishByID(id);
 
             if (HttpContext.Session.GetString("Cart") == null)
             {
-                cart.Items = new List<Matratt>();
+                model = new List<Matratt>();
             }
             else
             {
                 var dataJSON = HttpContext.Session.GetString("Cart");
-                cart.Items = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+                model = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
-            cart.Items.Add(selectedItem);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart.Items));
+            model.Add(selectedItem);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(model));
 
-            return ViewComponent("CartItemList", cart);
+            return ViewComponent("CartItemList", model);
         }
 
+        [Authorize]
         public IActionResult DeleteItem(int id)
         {
             List<Matratt> model;
@@ -66,6 +66,7 @@ namespace TomasosPizzaApplication.Controllers
             return ViewComponent("CartItemList", model);
         }
 
+        [Authorize]
         public IActionResult Checkout()
         {
             // TODO: Display cart, total etc

@@ -8,6 +8,7 @@ using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly IUserRepository _repository;

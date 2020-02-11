@@ -24,7 +24,7 @@
                                    data-ajax-method="GET"
                                    data-ajax-mode="replace"
                                    data-ajax-update="#cart">
-                                    <img src="~/img/minus.svg" class="delete" />
+                                   <img src="~/img/minus.svg" class="delete" />
                                 </a>
                                 <span class="counter-value">@item.ItemCount</span>
                                 <a asp-controller="Cart"
@@ -34,7 +34,7 @@
                                    data-ajax-method="GET"
                                    data-ajax-mode="replace"
                                    data-ajax-update="#cart">
-                                    <img src="~/img/plus.svg" class="add" />
+                                   <img src="~/img/plus.svg" class="add" />
                                 </a>
                             </div>
                             @item.ItemName
@@ -63,8 +63,8 @@
                        data-ajax-mode="replace"
                        data-ajax-update="#cart">
                         <div class="wrapper">
-                            <li class="name">@pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pizza.Pris kr</span></li>
-
+                            <li class="name">@pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" />
+                            <span class="price">@pizza.Pris kr</span></li>
                             @foreach (var ingredient in @pizza.MatrattProdukt)
                             {
                                 <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
@@ -88,8 +88,8 @@
                        data-ajax-mode="replace"
                        data-ajax-update="#cart">
                         <div class="wrapper">
-                            <li class="name">@pasta.MatrattNamn <img src="~/img/plus-square.svg" class="add" /><span class="price">@pasta.Pris kr</span></li>
-
+                            <li class="name">@pasta.MatrattNamn <img src="~/img/plus-square.svg" class="add" />
+                            <span class="price">@pasta.Pris kr</span></li>
                             @foreach (var ingredient in @pasta.MatrattProdukt)
                             {
                                 <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
@@ -113,8 +113,8 @@
                        data-ajax-mode="replace"
                        data-ajax-update="#cart">
                         <div class="wrapper">
-                            <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span><span class="price">@salad.Pris kr</span></li>
-
+                            <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span>
+                            <span class="price">@salad.Pris kr</span></li>
                             @foreach (var ingredient in @salad.MatrattProdukt)
                             {
                                 <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
