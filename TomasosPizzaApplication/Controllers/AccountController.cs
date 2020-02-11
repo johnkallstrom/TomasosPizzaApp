@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TomasosPizzaApplication.IdentityData;
-using TomasosPizzaApplication.Repositories;
 using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
@@ -65,7 +62,6 @@ namespace TomasosPizzaApplication.Controllers
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
-
             var result = await _userService.UpdatePassword(user, model.Kund, model.CurrentPassword, model.NewPassword);
 
             if (result == false)
@@ -94,7 +90,6 @@ namespace TomasosPizzaApplication.Controllers
         public async Task<IActionResult> ChangeUsername(ChangeUsernameViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
-
             var result = await _userService.UpdateUsername(user, model.Password, model.Username);
 
             if (result == false)

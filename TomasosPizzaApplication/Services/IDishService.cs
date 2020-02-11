@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using TomasosPizzaApplication.Models;
 
-namespace TomasosPizzaApplication.Repositories
+namespace TomasosPizzaApplication.Services
 {
-    public interface IDishRepository
+    public interface IDishService
     {
-        List<Matratt> FetchAllDishes();
         List<Matratt> FetchPizzaDishes();
         List<Matratt> FetchPastaDishes();
         List<Matratt> FetchSaladDishes();
-        Matratt FetchDishByID(int id);
     }
 }

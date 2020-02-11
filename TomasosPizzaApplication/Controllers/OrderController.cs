@@ -8,15 +8,15 @@ namespace TomasosPizzaApplication.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IDishRepository _dishRepository;
+        private readonly IDishService _dishService;
         private readonly ICartService _cartService;
 
         public OrderController(
-            IDishRepository dishRepository,
-            ICartService cartService)
+            ICartService cartService,
+            IDishService dishService)
         {
-            _dishRepository = dishRepository;
             _cartService = cartService;
+            _dishService = dishService;
         }
 
         [Authorize]
@@ -24,9 +24,9 @@ namespace TomasosPizzaApplication.Controllers
         {
             var model = new MenuViewModel();
 
-            model.PizzaDishes = _dishRepository.FetchPizzaDishes();
-            model.PastaDishes = _dishRepository.FetchPastaDishes();
-            model.SaladDishes = _dishRepository.FetchSaladDishes();
+            model.PizzaDishes = _dishService.FetchPizzaDishes();
+            model.PastaDishes = _dishService.FetchPastaDishes();
+            model.SaladDishes = _dishService.FetchSaladDishes();
             model.Items = _cartService.FetchCartItems();
 
             return View(model);
