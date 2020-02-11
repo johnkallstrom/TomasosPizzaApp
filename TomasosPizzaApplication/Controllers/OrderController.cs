@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TomasosPizzaApplication.Repositories;
+using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
@@ -30,6 +30,11 @@ namespace TomasosPizzaApplication.Controllers
             model.Items = _cartService.FetchCartItems();
 
             return View(model);
+        }
+
+        public IActionResult AddOrder(Bestallning order)
+        {
+            return View();
         }
     }
 }
