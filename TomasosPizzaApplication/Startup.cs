@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
+using TomasosPizzaApplication.Services;
 
 namespace TomasosPizzaApplication
 {
@@ -28,6 +29,8 @@ namespace TomasosPizzaApplication
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IDishRepository, DishRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<ICartService, CartService>();
 
             services.AddDbContext<TomasosContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Tomasos")));

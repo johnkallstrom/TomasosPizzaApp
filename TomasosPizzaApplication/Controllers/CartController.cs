@@ -9,44 +9,45 @@ using System.Threading.Tasks;
 using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
+using TomasosPizzaApplication.Services;
+using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
 {
     public class CartController : Controller
     {
         private readonly IDishRepository _dishRepository;
-        private readonly IUserRepository _userRepository;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ICartService _cartService;
 
         public CartController(
             IDishRepository dishRepository,
-            IUserRepository userRepository,
-            UserManager<ApplicationUser> userManager)
+            ICartService cartService)
         {
             _dishRepository = dishRepository;
-            _userRepository = userRepository;
-            _userManager = userManager;
+            _cartService = cartService;
         }
 
         [Authorize]
         public async Task<IActionResult> AddItem(int id)
         {
-            List<Matratt> model;
+            List<Matratt> cart;
 
             var selectedItem = _dishRepository.FetchDishByID(id);
 
             if (HttpContext.Session.GetString("Cart") == null)
             {
-                model = new List<Matratt>();
+                cart = new List<Matratt>();
             }
             else
             {
                 var dataJSON = HttpContext.Session.GetString("Cart");
-                model = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+                cart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
             }
 
-            model.Add(selectedItem);
-            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(model));
+            cart.Add(selectedItem);
+            HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+
+            var model = _cartService.GroupCartItems(cart);
 
             return ViewComponent("CartItemList", model);
         }
@@ -69,9 +70,21 @@ namespace TomasosPizzaApplication.Controllers
         [Authorize]
         public IActionResult Checkout()
         {
-            // TODO: Display cart, total etc
+            List<Matratt> cart;
 
-            return View();
+            if (HttpContext.Session.GetString("Cart") == null)
+            {
+                cart = new List<Matratt>();
+            }
+            else
+            {
+                var dataJSON = HttpContext.Session.GetString("Cart");
+                cart = JsonConvert.DeserializeObject<List<Matratt>>(dataJSON);
+            }
+
+            var model = _cartService.GroupCartItems(cart);
+
+            return View(model);
         }
     }
 }

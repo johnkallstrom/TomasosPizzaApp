@@ -8,18 +8,8 @@ namespace TomasosPizzaApplication.ViewComponents.CartItemList
 {
     public class CartItemList : ViewComponent
     {
-        public IViewComponentResult Invoke(List<Matratt> items)
+        public IViewComponentResult Invoke(List<CartItemViewModel> model)
         {
-            var model = items
-                            .GroupBy(i => i.MatrattId)
-                            .Select(x => new CartItemViewModel
-                            {
-                                ItemID = x.Key,
-                                ItemName = x.First().MatrattNamn,
-                                ItemCount = x.Count(),
-                                ItemTotal = x.Sum(i => i.Pris)
-                            }).ToList();
-
             return View("CartItemList", model);
         }
     }

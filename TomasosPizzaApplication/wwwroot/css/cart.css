@@ -69,7 +69,6 @@
     filter: invert(27%) sepia(32%) saturate(4467%) hue-rotate(358deg) brightness(105%) contrast(92%);
 }
 
-/* Checkout */
 #cart .button {
     margin-top: 10px;
     height: 60px;

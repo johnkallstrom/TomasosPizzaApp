@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
+using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
@@ -13,10 +14,14 @@ namespace TomasosPizzaApplication.Controllers
     public class OrderController : Controller
     {
         private readonly IDishRepository _dishRepository;
+        private readonly ICartService _cartService;
 
-        public OrderController(IDishRepository dishRepository)
+        public OrderController(
+            IDishRepository dishRepository,
+            ICartService cartService)
         {
             _dishRepository = dishRepository;
+            _cartService = cartService;
         }
 
         [Authorize]
@@ -39,15 +44,7 @@ namespace TomasosPizzaApplication.Controllers
             model.PizzaDishes = _dishRepository.FetchPizzaDishes();
             model.PastaDishes = _dishRepository.FetchPastaDishes();
             model.SaladDishes = _dishRepository.FetchSaladDishes();
-            model.Items = cart
-                            .GroupBy(i => i.MatrattId)
-                            .Select(x => new CartItemViewModel
-                            {
-                                ItemID = x.Key,
-                                ItemName = x.First().MatrattNamn,
-                                ItemCount = x.Count(),
-                                ItemTotal = x.Sum(i => i.Pris)
-                            }).ToList();
+            model.Items = _cartService.GroupCartItems(cart);
 
             return View(model);
         }

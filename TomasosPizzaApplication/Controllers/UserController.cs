@@ -58,6 +58,8 @@ namespace TomasosPizzaApplication.Controllers
         {
             await _signInManager.SignOutAsync();
 
+            HttpContext.Session.Clear();
+
             return RedirectToAction("Login", "User");
         }
 
