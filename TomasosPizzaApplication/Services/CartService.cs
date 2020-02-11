@@ -9,7 +9,7 @@ namespace TomasosPizzaApplication.Services
 {
     public class CartService : ICartService
     {
-        IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public CartService(IHttpContextAccessor httpContextAccessor)
         {

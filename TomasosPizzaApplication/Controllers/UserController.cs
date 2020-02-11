@@ -1,27 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TomasosPizzaApplication.IdentityData;
-using TomasosPizzaApplication.Repositories;
+using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserRepository _userRepository;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserService _userService;
 
-        public UserController(
-            IUserRepository userRepository,
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+        public UserController(IUserService userService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         [AllowAnonymous]
@@ -37,8 +28,7 @@ namespace TomasosPizzaApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager
-                    .PasswordSignInAsync(model.Username, model.Password, isPersistent: false, lockoutOnFailure: false);
+                var result = await _userService.SignInUser(model.Username, model.Password);
 
                 if (result.Succeeded)
                 {
@@ -56,10 +46,7 @@ namespace TomasosPizzaApplication.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-
-            HttpContext.Session.Clear();
-
+            await _userService.SignOutUser();
             return RedirectToAction("Login", "User");
         }
 
@@ -76,14 +63,11 @@ namespace TomasosPizzaApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Kund.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userService.CreateUser(model.Kund, model.Username, model.Password);
 
                 if (result.Succeeded)
                 {
-                    model.Kund.UserId = user.Id;
-                    _userRepository.AddUser(model.Kund);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _userService.SignInUser(model.Username, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
             }
