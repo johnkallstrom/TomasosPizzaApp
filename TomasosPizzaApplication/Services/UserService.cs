@@ -9,17 +9,20 @@ namespace TomasosPizzaApplication.Services
 {
     public class UserService : IUserService
     {
+        private readonly ISessionService _sessionService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserRepository _userRepository;
 
         public UserService(
+            ISessionService sessionService,
             IHttpContextAccessor httpContextAccessor,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             IUserRepository userRepository)
         {
+            _sessionService = sessionService;
             _httpContextAccessor = httpContextAccessor;
             _signInManager = signInManager;
             _userManager = userManager;
@@ -64,7 +67,7 @@ namespace TomasosPizzaApplication.Services
         public async Task<bool> SignOutUser()
         {
             await _signInManager.SignOutAsync();
-            _httpContextAccessor.HttpContext.Session.Clear();
+            _sessionService.Clear();
             return true;
         }
 

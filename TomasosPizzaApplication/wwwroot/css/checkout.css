@@ -12,6 +12,7 @@
 /* Items */
 #items {
     width: 50%;
+    float: left;
 }
 
 #items hr {
@@ -47,13 +48,20 @@
 
 /* Details */
 #details {
-    padding-bottom: 40px;
-    padding-top: 10px;
-    width: 50%
+    width: 40%;
+    float: right;
+}
+
+#details .header{
+    margin-bottom: 20px;
+}
+
+#details .header hr{
+
 }
 
 #details input[type="text"] {
-    width: 80%;
+    width: 350px;
     padding: 6px;
     height: 30px;
     margin-bottom: 10px;
@@ -62,14 +70,14 @@
 }
 
 #details .button {
-    margin-top: 5px;
+    margin-top: 20px;
     height: 50px;
     font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     border: none;
     background-color: #FF6C37;
     color: #fff;
-    width: 35%;
+    width: 180px;
 }
 
 #details .button:hover {

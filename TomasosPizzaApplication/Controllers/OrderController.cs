@@ -33,7 +33,7 @@ namespace TomasosPizzaApplication.Controllers
             model.PizzaDishes = _dishService.FetchPizzaDishes();
             model.PastaDishes = _dishService.FetchPastaDishes();
             model.SaladDishes = _dishService.FetchSaladDishes();
-            model.Items = _cartService.FetchCartItems();
+            model.Items = _cartService.FetchGroupedCartItems();
 
             return View(model);
         }
@@ -44,7 +44,7 @@ namespace TomasosPizzaApplication.Controllers
 
             var model = new CheckoutViewModel()
             {
-                Items = _cartService.FetchCartItems(),
+                Items = _cartService.FetchGroupedCartItems(),
                 Kund = _userService.FetchCurrentCustomer(user.Id),
             };
 
@@ -56,14 +56,20 @@ namespace TomasosPizzaApplication.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Checkout(CheckoutViewModel model)
         {
-            model.Items = _cartService.FetchCartItems();
+            model.Items = _cartService.FetchGroupedCartItems();
             model.Total = _cartService.FetchCartTotal();
 
             if (ModelState.IsValid)
             {
+                _orderService.CreateOrder(model.Kund, model.Items, model.Total);
 
             }
 
+            return RedirectToAction("Confirmation", "Order");
+        }
+
+        public IActionResult Confirmation()
+        {
             return View();
         }
     }
