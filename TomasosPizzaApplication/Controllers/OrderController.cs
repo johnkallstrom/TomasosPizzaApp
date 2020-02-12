@@ -70,6 +70,8 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult Confirmation()
         {
+
+
             return View();
         }
     }
