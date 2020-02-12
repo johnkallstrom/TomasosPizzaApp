@@ -157,3 +157,23 @@
 #cart .button-wrapper {
     text-align: center;
 }
+
+/* Order Confirmation */
+#confirmation {
+    margin: 0 auto;
+    width: 70%;
+    color: #1C272B;
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+#confirmation .header h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#confirmation h3 {
+    font-size: 24px;
+    color: #FF6C37;
+}
