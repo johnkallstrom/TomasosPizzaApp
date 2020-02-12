@@ -2,7 +2,7 @@
 
 namespace TomasosPizzaApplication.ViewModels
 {
-    public class ChangeUsernameViewModel
+    public class UpdateUsernameViewModel
     {
         [Required(ErrorMessage = "Ange ditt användarnamn")]
         public string Username { get; set; }

@@ -25,7 +25,7 @@ namespace TomasosPizzaApplication.Controllers
         {
             var user = await _userService.FetchCurrentUser();
 
-            var model = new UpdateAccountViewModel();
+            var model = new UpdateDetailsViewModel();
             model.Kund = _userService.FetchCurrentCustomer(user.Id);
 
             return View(model);
@@ -33,7 +33,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateDetails(UpdateAccountViewModel model)
+        public async Task<IActionResult> UpdateDetails(UpdateDetailsViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
 
@@ -51,7 +51,7 @@ namespace TomasosPizzaApplication.Controllers
         {
             var user = await _userService.FetchCurrentUser();
 
-            var model = new ChangePasswordViewModel();
+            var model = new UpdatePasswordViewModel();
             model.Kund = _userService.FetchCurrentCustomer(user.Id);
 
             return View(model);
@@ -59,7 +59,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(UpdatePasswordViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
             var result = await _userService.UpdatePassword(user, model.Kund, model.CurrentPassword, model.NewPassword);
@@ -79,7 +79,7 @@ namespace TomasosPizzaApplication.Controllers
         {
             var user = await _userService.FetchCurrentUser();
 
-            var model = new ChangeUsernameViewModel();
+            var model = new UpdateUsernameViewModel();
             model.Username = user.UserName;
 
             return View(model);
@@ -87,7 +87,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangeUsername(ChangeUsernameViewModel model)
+        public async Task<IActionResult> ChangeUsername(UpdateUsernameViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
             var result = await _userService.UpdateUsername(user, model.Password, model.Username);

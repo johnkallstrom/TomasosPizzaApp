@@ -1,0 +1,78 @@
+﻿@model CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Kassa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="checkout">
+    <div class="container">
+        <!-- CART -->
+        <div id="items">
+            <h1>Din beställning</h1>
+            <hr />
+            <ul>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="wrapper">
+                        <li class="name">
+                            <div id="counter">
+                                <span class="counter-value">Antal: @item.ItemCount</span>
+                            </div>
+                            @item.ItemName
+                            <span class="price">@item.ItemTotal kr</span>
+                        </li>
+                    </div>
+                }
+            </ul>
+            <h3>Total: @Model.Items.Sum(i => i.ItemTotal) kr</h3>
+        </div>
+
+        <!-- FORM -->
+        <div id="details">
+            <form asp-controller="Order" asp-action="Checkout" method="post">
+                <div class="header">
+                    <h1>Dina uppgifter</h1>
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="Kund.Namn"></span>
+                    <input type="text" asp-for="Kund.Namn" maxlength="100" placeholder="Namn" />
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="Kund.Email"></span>
+                    <input type="text" asp-for="Kund.Email" maxlength="50" placeholder="Email" />
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="Kund.Gatuadress"></span>
+                    <input type="text" asp-for="Kund.Gatuadress" maxlength="50" placeholder="Adress" />
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="Kund.Postnr"></span>
+                    <input type="text" asp-for="Kund.Postnr" maxlength="20" placeholder="Postnummer" />
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="Kund.Postort"></span>
+                    <input type="text" asp-for="Kund.Postort" maxlength="100" placeholder="Postort" />
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="Kund.Telefon"></span>
+                    <input type="text" asp-for="Kund.Telefon" maxlength="50" placeholder="Telefon" />
+                </div>
+
+                <!-- Hidden ID -->
+                <input type="hidden" asp-for="Kund.KundId" />
+
+                <div class="button-group">
+                    <input type="submit" value="Slutför köp" class="button" />
+                </div>
+                <span class="message">@ViewBag.UpdateMessage</span>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TomasosPizzaApplication.Models;
+using System.Threading.Tasks;
 using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
@@ -8,15 +8,18 @@ namespace TomasosPizzaApplication.Controllers
 {
     public class OrderController : Controller
     {
+        private readonly IUserService _userService;
         private readonly IDishService _dishService;
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
 
         public OrderController(
+            IUserService userService,
             ICartService cartService,
             IDishService dishService,
             IOrderService orderService)
         {
+            _userService = userService;
             _cartService = cartService;
             _dishService = dishService;
             _orderService = orderService;
@@ -25,23 +28,43 @@ namespace TomasosPizzaApplication.Controllers
         [Authorize]
         public IActionResult ViewMenu()
         {
-            var items = _cartService.FetchCartItems();
-
             var model = new MenuViewModel();
 
             model.PizzaDishes = _dishService.FetchPizzaDishes();
             model.PastaDishes = _dishService.FetchPastaDishes();
             model.SaladDishes = _dishService.FetchSaladDishes();
-            model.Items = _cartService.GroupCartItems(items);
+            model.Items = _cartService.FetchCartItems();
 
             return View(model);
         }
 
-        public IActionResult AddOrder()
+        public async Task<IActionResult> Checkout()
         {
-            var order = _orderService.CreateOrder();
+            var user = await _userService.FetchCurrentUser();
 
-            return View(order);
+            var model = new CheckoutViewModel()
+            {
+                Items = _cartService.FetchCartItems(),
+                Kund = _userService.FetchCurrentCustomer(user.Id),
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult Checkout(CheckoutViewModel model)
+        {
+            model.Items = _cartService.FetchCartItems();
+            model.Total = _cartService.FetchCartTotal();
+
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            return View();
         }
     }
 }

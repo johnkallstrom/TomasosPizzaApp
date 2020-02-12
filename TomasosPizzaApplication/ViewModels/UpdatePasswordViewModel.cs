@@ -3,7 +3,7 @@ using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.ViewModels
 {
-    public class ChangePasswordViewModel
+    public class UpdatePasswordViewModel
     {
         [Required(ErrorMessage = "Ange ditt nuvarande lösenord")]
         public string CurrentPassword { get; set; }

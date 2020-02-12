@@ -1,32 +1,38 @@
 ﻿/* Checkout */
 #checkout {
-    margin: 0 auto;
-    color: #1C272B;
-    width: 50%;
-    padding-bottom: 40px;
     padding-top: 10px;
+    padding-bottom: 40px;
 }
 
 #checkout h1 {
-    text-align: center;
     font-size: 32px;
     color: #FF6C37;
 }
 
-#checkout hr {
+/* Items */
+#items {
+    width: 50%;
+}
+
+#items hr {
     background-color: #1C272B;
 }
 
-#checkout .price {
+#items #counter {
+    display: inline;
+    float: left;
+}
+
+#items .price {
     padding-right: 20px;
     float: right;
 }
 
-#checkout .name {
+#items .name {
     text-align: center;
 }
 
-#checkout .wrapper {
+#items .wrapper {
     margin-top: 20px;
     position: relative;
     list-style: none;
@@ -35,31 +41,37 @@
     margin-left: 10px;
 }
 
-#checkout .wrapper:hover {
+#items .wrapper:hover {
     box-shadow: 0px 0px 6px 2px rgba(219,219,219,1);
 }
 
-#checkout #counter {
-    display: inline;
-    float: left;
+/* Details */
+#details {
+    padding-bottom: 40px;
+    padding-top: 10px;
+    width: 50%
 }
 
-#checkout .button {
-    margin-top: 10px;
-    height: 60px;
+#details input[type="text"] {
+    width: 80%;
+    padding: 6px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#details .button {
+    margin-top: 5px;
+    height: 50px;
     font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     border: none;
     background-color: #FF6C37;
     color: #fff;
-    width: 80%;
-    text-transform: uppercase;
+    width: 35%;
 }
 
-#checkout .button:hover {
+#details .button:hover {
     cursor: pointer;
-}
-
-#checkout .button-wrapper {
-    text-align: center;
 }

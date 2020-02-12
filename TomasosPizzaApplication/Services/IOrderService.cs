@@ -5,6 +5,6 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IOrderService
     {
-        Task<Bestallning> CreateOrder();
+
     }
 }
