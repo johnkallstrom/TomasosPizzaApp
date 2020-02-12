@@ -6,5 +6,6 @@ namespace TomasosPizzaApplication.Repositories
     public interface IOrderRepository
     {
         void Add(Bestallning order);
+        List<Bestallning> FetchAll();
     }
 }

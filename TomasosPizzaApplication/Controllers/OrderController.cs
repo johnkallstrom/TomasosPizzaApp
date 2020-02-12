@@ -62,17 +62,23 @@ namespace TomasosPizzaApplication.Controllers
             if (ModelState.IsValid)
             {
                 _orderService.CreateOrder(model.Kund, model.Items, model.Total);
-
+                return RedirectToAction("Confirmation", "Order");
             }
 
-            return RedirectToAction("Confirmation", "Order");
+            return View();
         }
 
-        public IActionResult Confirmation()
+        public async Task<IActionResult> Confirmation()
         {
+            var user = await _userService.FetchCurrentUser();
 
+            var model = new OrderViewModel()
+            {
+                Order = _orderService.FetchLatestOrder(),
+                Customer = _userService.FetchCurrentCustomer(user.Id),
+            };
 
-            return View();
+            return View(model);
         }
     }
 }

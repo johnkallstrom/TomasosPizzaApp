@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <span asp-validation-for="Kund.Email"></span>
-                <input type="text" asp-for="Kund.Email" maxlength="50" placeholder="Email" />
+                <input type="email" asp-for="Kund.Email" maxlength="50" placeholder="Email" required oninvalid="this.setCustomValidity('Ange en giltig email adress')" />
             </div>
 
             <div class="form-group">

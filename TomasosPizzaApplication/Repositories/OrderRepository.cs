@@ -1,4 +1,7 @@
-﻿using TomasosPizzaApplication.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.Repositories
 {
@@ -15,6 +18,13 @@ namespace TomasosPizzaApplication.Repositories
         {
             _context.Bestallning.Add(order);
             _context.SaveChanges();
+        }
+
+        public List<Bestallning> FetchAll()
+        {
+            return _context.Bestallning
+                .Include(o => o.BestallningMatratt)
+                .ToList();
         }
     }
 }

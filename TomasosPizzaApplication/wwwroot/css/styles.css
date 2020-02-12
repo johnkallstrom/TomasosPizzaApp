@@ -180,7 +180,7 @@ footer {
     color: #FF6C37;
 }
 
-#register input[type="text"], input[type="password"] {
+#register input[type="text"], input[type="password"], input[type="email"] {
     width: 350px;
     padding: 6px;
     height: 30px;

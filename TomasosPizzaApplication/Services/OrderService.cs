@@ -20,7 +20,7 @@ namespace TomasosPizzaApplication.Services
             _orderRepository = orderRepository;
         }
 
-        public Bestallning CreateOrder(Kund customer, List<CartItemViewModel> items, int total)
+        public void CreateOrder(Kund customer, List<CartItemViewModel> items, int total)
         {
             var orderItems = new List<BestallningMatratt>();
 
@@ -41,7 +41,12 @@ namespace TomasosPizzaApplication.Services
 
             _orderRepository.Add(order);
             _sessionService.Clear();
-            return order;
+        }
+
+        public Bestallning FetchLatestOrder()
+        {
+            var orders = _orderRepository.FetchAll();
+            return orders.OrderByDescending(o => o.BestallningDatum).First();
         }
     }
 }

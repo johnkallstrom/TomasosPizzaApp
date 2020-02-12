@@ -5,3 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section id="confirmation">
+    <div class="container">
+        <h1>Tack för din beställning!</h1>
+        <hr />
+        <!-- TODO: LOOP OUT ALL ORDER ITEMS -->
+        <ul>
+            <li>Datum: @Model.Order.BestallningDatum</li>
+            <li>Namn: @Model.Customer.Namn</li>
+            <li>Adress: @Model.Customer.Postnr @Model.Customer.Postort</li>
+            <li>Total: @Model.Order.Totalbelopp kr</li>
+        </ul>
+    </div>
+</section>
