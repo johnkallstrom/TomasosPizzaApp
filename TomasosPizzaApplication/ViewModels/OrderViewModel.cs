@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TomasosPizzaApplication.Models;
+﻿using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.ViewModels
 {

@@ -24,6 +24,7 @@ namespace TomasosPizzaApplication.Repositories
         {
             return _context.Bestallning
                 .Include(o => o.BestallningMatratt)
+                .ThenInclude(m => m.Matratt)
                 .ToList();
         }
     }

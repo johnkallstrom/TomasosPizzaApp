@@ -8,16 +8,33 @@
 <section id="confirmation">
     <div class="container">
         <div class="header">
-            <h1>Orderbekräftelse</h1>
+            <h1>Tack för din beställning!</h1>
             <hr />
         </div>
-        <h3>Tack för din beställning!</h3>
-        <!-- TODO: LOOP OUT ALL ORDER ITEMS -->
-        <ul>
-            <li>Datum: @Model.Order.BestallningDatum</li>
-            <li>Namn: @Model.Customer.Namn</li>
-            <li>Adress: @Model.Customer.Postnr @Model.Customer.Postort</li>
-            <li>Total: @Model.Order.Totalbelopp kr</li>
-        </ul>
+        <div>
+            <ul>
+                @foreach (var order in @Model.Order.BestallningMatratt)
+                {
+                <div class="wrapper">
+                    <li class="name">
+                        <span class="counter">Antal: @order.Antal</span>
+                        @order.Matratt.MatrattNamn
+                        <span class="price">@order.Matratt.Pris kr</span>
+                    </li>
+                </div>
+                }
+            </ul>
+            <h3>Total: @Model.Order.Totalbelopp kr</h3>
+        </div>
+        <div class="information">
+            <h2>Uppgifter</h2>
+            <ul>
+                <li>@Model.Order.BestallningDatum</li>
+                <li>@Model.Customer.Namn</li>
+                <li>@Model.Customer.Postnr @Model.Customer.Postort</li>
+                <li>@Model.Customer.Telefon</li>
+                <li>@Model.Customer.Email</li>
+            </ul>
+        </div>
     </div>
 </section>

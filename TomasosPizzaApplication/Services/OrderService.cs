@@ -46,7 +46,12 @@ namespace TomasosPizzaApplication.Services
         public Bestallning FetchLatestOrder()
         {
             var orders = _orderRepository.FetchAll();
-            return orders.OrderByDescending(o => o.BestallningDatum).First();
+
+            var latestOrder = orders
+                .OrderByDescending(o => o.BestallningDatum)
+                .First();
+
+            return latestOrder;
         }
     }
 }
