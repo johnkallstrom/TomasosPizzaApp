@@ -9,29 +9,32 @@
     <div class="container">
         <div class="header">
             <h1>Tack för din beställning!</h1>
-            <hr />
         </div>
         <div>
+            <h2>Beställning</h2>
+            <hr />
             <ul>
                 @foreach (var order in @Model.Order.BestallningMatratt)
                 {
-                <div class="wrapper">
-                    <li class="name">
-                        <span class="counter">Antal: @order.Antal</span>
-                        @order.Matratt.MatrattNamn
-                        <span class="price">@order.Matratt.Pris kr</span>
-                    </li>
-                </div>
+                    <div class="wrapper">
+                        <li class="name">
+                            <span class="counter">Antal: @order.Antal</span>
+                            @order.Matratt.MatrattNamn
+                            <span class="price">@order.Matratt.Pris kr</span>
+                        </li>
+                    </div>
                 }
             </ul>
             <h3>Total: @Model.Order.Totalbelopp kr</h3>
         </div>
         <div class="information">
             <h2>Uppgifter</h2>
+            <hr />
             <ul>
                 <li>@Model.Order.BestallningDatum</li>
                 <li>@Model.Customer.Namn</li>
-                <li>@Model.Customer.Postnr @Model.Customer.Postort</li>
+                <li>@Model.Customer.Postnr</li>
+                <li>@Model.Customer.Postort</li>
                 <li>@Model.Customer.Telefon</li>
                 <li>@Model.Customer.Email</li>
             </ul>

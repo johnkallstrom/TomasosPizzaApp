@@ -168,6 +168,7 @@
 }
 
 #confirmation .header h1 {
+    padding-bottom: 30px;
     text-align: center;
     font-size: 32px;
     color: #FF6C37;
