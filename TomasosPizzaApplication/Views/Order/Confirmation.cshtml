@@ -1,5 +1,4 @@
-﻿@model  OrderViewModel
-
+﻿
 @{
     ViewData["Title"] = "Orderbekräftelse";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,37 +6,34 @@
 
 <section id="confirmation">
     <div class="container">
-        <div class="header">
-            <h1>Tack för din beställning!</h1>
-        </div>
-        <div>
-            <h2>Beställning</h2>
-            <hr />
-            <ul>
-                @foreach (var order in @Model.Order.BestallningMatratt)
-                {
-                    <div class="wrapper">
-                        <li class="name">
-                            <span class="counter">Antal: @order.Antal</span>
-                            @order.Matratt.MatrattNamn
-                            <span class="price">@order.Matratt.Pris kr</span>
-                        </li>
-                    </div>
-                }
-            </ul>
-            <h3>Total: @Model.Order.Totalbelopp kr</h3>
-        </div>
-        <div class="information">
-            <h2>Uppgifter</h2>
-            <hr />
-            <ul>
-                <li>@Model.Order.BestallningDatum</li>
-                <li>@Model.Customer.Namn</li>
-                <li>@Model.Customer.Postnr</li>
-                <li>@Model.Customer.Postort</li>
-                <li>@Model.Customer.Telefon</li>
-                <li>@Model.Customer.Email</li>
-            </ul>
-        </div>
+        <h1>Tack för din beställning!</h1>
+        <p>
+            Din order kommer att levereras inom <span id="time">60:00</span> minuter.
+        </p>
     </div>
 </section>
+
+<script>
+    function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+    window.onload = function () {
+        var fiveMinutes = 60 * 60,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
+</script>

@@ -15,8 +15,8 @@
     float: left;
 }
 
-#items hr {
-    background-color: #1C272B;
+#items h1 {
+    margin-left: 10px;
 }
 
 #items #counter {
@@ -56,12 +56,8 @@
     margin-bottom: 20px;
 }
 
-#details .header hr{
-
-}
-
 #details input[type="text"] {
-    width: 380px;
+    width: 70%;
     padding: 6px;
     height: 30px;
     margin-bottom: 10px;
@@ -71,13 +67,14 @@
 
 #details .button {
     margin-top: 20px;
-    height: 50px;
+    height: 60px;
     font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     border: none;
     background-color: #FF6C37;
     color: #fff;
-    width: 230px;
+    width: 40%;
+    text-transform: uppercase;
 }
 
 #details .button:hover {

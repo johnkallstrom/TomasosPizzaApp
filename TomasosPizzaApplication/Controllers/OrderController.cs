@@ -68,17 +68,9 @@ namespace TomasosPizzaApplication.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Confirmation()
+        public IActionResult Confirmation()
         {
-            var user = await _userService.FetchCurrentUser();
-
-            var model = new OrderViewModel()
-            {
-                Order = _orderService.FetchLatestOrder(),
-                Customer = _userService.FetchCurrentCustomer(user.Id),
-            };
-
-            return View(model);
+            return View();
         }
     }
 }

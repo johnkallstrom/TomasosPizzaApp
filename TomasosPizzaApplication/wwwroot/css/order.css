@@ -160,56 +160,28 @@
 
 /* Order Confirmation */
 #confirmation {
-    margin: 0 auto;
-    width: 70%;
-    color: #1C272B;
-    padding-bottom: 40px;
-    padding-top: 10px;
-}
-
-#confirmation .header h1 {
-    padding-bottom: 30px;
+    min-height: 400px;
+    background-color: #1C272B;
     text-align: center;
-    font-size: 32px;
-    color: #FF6C37;
+    color: #fff;
 }
 
-#confirmation h3 {
-    font-size: 20px;
-    color: #1C272B;
+#confirmation h1 {
+    margin-top: 100px;
+    font-size: 55px;
+    margin-bottom: 55px;
 }
 
-#confirmation .price {
-    padding-right: 20px;
-    float: right;
+#confirmation p{
+    font-size: 55px;
+    padding-top: 25px;
 }
 
-#confirmation .name {
-    text-align: center;
-}
-
-#confirmation .counter{
-    padding-left: 20px;
-    float: left;
-}
-
-#confirmation .wrapper {
-    margin-top: 10px;
-    list-style: none;
-    padding: 10px;
-}
-
-#confirmation h2 {
-    font-size: 24px;
-    color: #FF6C37;
-}
-
-#confirmation .information{
-    padding-top: 3px;
-    padding-bottom: 20px;
-}
-
-#confirmation .information li {
-    font-size: 18px;
-    color: #1C272B;
+/* Media Queries */
+@media(max-width: 960px) {
+    #confirmation p {
+        padding-top: 0;
+        font-size: 55px;
+        line-height: 5rem;
+    }
 }
