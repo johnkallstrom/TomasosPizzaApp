@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Threading.Tasks;
 using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
@@ -57,7 +59,7 @@ namespace TomasosPizzaApplication
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseSession();
             app.UseAuthentication();
@@ -69,6 +71,44 @@ namespace TomasosPizzaApplication
                 template: "{controller=Home}/{action=Index}/{id?}"
                     );
             });
+
+            // Creating identity roles and admin account
+            // CreateRoles(serviceProvider).Wait();
+        }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            if (await roleManager.RoleExistsAsync("Admin") == false)
+            {
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+
+                var admin = new ApplicationUser
+                {
+                    UserName = "Admin",
+                    Email = "admin@mail.com"
+                };
+
+                const string adminPassword = "password";
+                var result = await userManager.CreateAsync(admin, adminPassword);
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin, "Admin");
+                }
+            }
+
+            if (await roleManager.RoleExistsAsync("PremiumUser") == false)
+            {
+                await roleManager.CreateAsync(new IdentityRole("PremiumUser"));
+            }
+
+            if (await roleManager.RoleExistsAsync("RegularUser") == false)
+            {
+                await roleManager.CreateAsync(new IdentityRole("RegularUser"));
+            }
         }
     }
 }
