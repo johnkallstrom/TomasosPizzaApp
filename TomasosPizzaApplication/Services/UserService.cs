@@ -41,6 +41,7 @@ namespace TomasosPizzaApplication.Services
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "RegularUser");
                 customer.UserId = user.Id;
                 _userRepository.Add(customer);
             }
