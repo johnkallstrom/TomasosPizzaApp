@@ -1,0 +1,72 @@
+﻿/* Index */
+#admin {
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+#admin h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#admin .button {
+    margin-top: 10px;
+    height: 60px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 200px;
+}
+
+#admin .button:hover {
+    cursor: pointer;
+}
+
+/* Roles */
+#roles h1{
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#users {
+    margin-top: 25px;
+    border-collapse: collapse;
+    width: 100%;
+    color: #1C272B;
+}
+
+#users td, #users th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#users th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1C272B;
+    color: #fff;
+}
+
+.select {
+    background-color: #fcfcfc;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    border: 1px solid #ddd;
+}
+
+.select:hover{
+    cursor: pointer;
+}
+
+.select:focus{
+    outline: 1px solid #ddd;
+}
+
+
+

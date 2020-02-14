@@ -4,3 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section id="admin">
+    <div class="container">
+        <h1>Admin</h1>
+        <div>
+            <input type="button" class="button" value="Uppdatera roller" onclick="location.href='@Url.Action("UpdateRoles", "Admin")'" />
+        </div>
+        <div>
+            <input type="button" class="button" value="Ändra menyn" onclick="location.href='@Url.Action("EditMenu", "Admin")'" />
+        </div>
+        <div>
+            <input type="button" class="button" value="Redigera beställningar" onclick="location.href='@Url.Action("EditOrders", "Admin")'" />
+        </div>
+    </div>
+</section>

@@ -1,4 +1,7 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using TomasosPizzaApplication.IdentityData
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Inställningar";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,15 +9,16 @@
 
 <section id="settings">
     <div class="container">
-        <h1>Inställningar</h1>
+        <h1>Välkommen, @UserManager.GetUserName(User)</h1>
+        <p>Här kan du ändra dina inställningar.</p>
         <div>
             <input type="button" class="button" value="Uppdatera information" onclick="location.href='@Url.Action("UpdateDetails", "Account")'" />
         </div>
         <div>
-            <input type="button" class="button" value="Ändra lösenord" onclick="location.href='@Url.Action("ChangePassword", "Account")'" />
+            <input type="button" class="button" value="Ändra lösenord" onclick="location.href='@Url.Action("UpdatePassword", "Account")'" />
         </div>
         <div>
-            <input type="button" class="button" value="Byt användarnamn" onclick="location.href='@Url.Action("ChangeUsername", "Account")'" />
+            <input type="button" class="button" value="Byt användarnamn" onclick="location.href='@Url.Action("UpdateUsername", "Account")'" />
         </div>
     </div>
 </section>

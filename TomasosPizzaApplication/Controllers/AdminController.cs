@@ -1,19 +1,30 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TomasosPizzaApplication.Services;
 
 namespace TomasosPizzaApplication.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        [Authorize(Roles = "Admin")]
+        private readonly IUserService _userService;
+
+        public AdminController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult EditUsers()
+        [HttpGet]
+        public IActionResult UpdateRoles()
         {
+            var model = _userService.FetchAllUsers();
 
+            return View(model);
         }
     }
 }

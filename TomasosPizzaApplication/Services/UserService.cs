@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Models;
@@ -108,6 +110,12 @@ namespace TomasosPizzaApplication.Services
             {
                 return false;
             }
+        }
+
+        public List<ApplicationUser> FetchAllUsers()
+        {
+            return _userManager.Users
+                .OrderByDescending(x => x.UserName).ToList();
         }
     }
 }

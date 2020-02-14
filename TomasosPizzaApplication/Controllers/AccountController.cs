@@ -53,7 +53,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> ChangePassword()
+        public async Task<IActionResult> UpdatePassword()
         {
             var user = await _userService.FetchCurrentUser();
 
@@ -66,7 +66,7 @@ namespace TomasosPizzaApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> ChangePassword(UpdatePasswordViewModel model)
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
             var result = await _userService.UpdatePassword(user, model.Kund, model.CurrentPassword, model.NewPassword);
@@ -84,7 +84,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> ChangeUsername()
+        public async Task<IActionResult> UpdateUsername()
         {
             var user = await _userService.FetchCurrentUser();
 
@@ -97,7 +97,7 @@ namespace TomasosPizzaApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> ChangeUsername(UpdateUsernameViewModel model)
+        public async Task<IActionResult> UpdateUsername(UpdateUsernameViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
             var result = await _userService.UpdateUsername(user, model.Password, model.Username);
