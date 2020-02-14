@@ -160,7 +160,7 @@
 
 /* Order Confirmation */
 #confirmation {
-    min-height: 400px;
+    min-height: 450px;
     background-color: #1C272B;
     text-align: center;
     color: #fff;
@@ -173,12 +173,21 @@
 }
 
 #confirmation p{
+    line-height: 5rem;
     font-size: 55px;
-    padding-top: 25px;
+    padding-top: 15px;
+    padding-bottom: 10px;
 }
 
 /* Media Queries */
 @media(max-width: 960px) {
+    #confirmation h1 {
+        margin-top: 60px;
+        font-size: 55px;
+        margin-bottom: 25px;
+        line-height: 5rem;
+    }
+
     #confirmation p {
         padding-top: 0;
         font-size: 55px;
