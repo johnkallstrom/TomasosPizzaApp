@@ -38,6 +38,8 @@ namespace TomasosPizzaApplication.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Checkout()
         {
             var user = await _userService.FetchCurrentUser();
@@ -68,6 +70,7 @@ namespace TomasosPizzaApplication.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Confirmation()
         {
             return View();

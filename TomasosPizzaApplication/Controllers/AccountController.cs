@@ -6,7 +6,6 @@ using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         IUserService _userService;
@@ -16,11 +15,15 @@ namespace TomasosPizzaApplication.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        [Authorize]
         public IActionResult Settings()
         {
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> UpdateDetails()
         {
             var user = await _userService.FetchCurrentUser();
@@ -33,6 +36,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> UpdateDetails(UpdateDetailsViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
@@ -47,6 +51,8 @@ namespace TomasosPizzaApplication.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ChangePassword()
         {
             var user = await _userService.FetchCurrentUser();
@@ -59,6 +65,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> ChangePassword(UpdatePasswordViewModel model)
         {
             var user = await _userService.FetchCurrentUser();
@@ -75,6 +82,8 @@ namespace TomasosPizzaApplication.Controllers
             }
         }
 
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ChangeUsername()
         {
             var user = await _userService.FetchCurrentUser();
@@ -87,6 +96,7 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> ChangeUsername(UpdateUsernameViewModel model)
         {
             var user = await _userService.FetchCurrentUser();

@@ -15,6 +15,7 @@ namespace TomasosPizzaApplication.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()
         {
@@ -50,6 +51,7 @@ namespace TomasosPizzaApplication.Controllers
             return RedirectToAction("Login", "User");
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
         {
