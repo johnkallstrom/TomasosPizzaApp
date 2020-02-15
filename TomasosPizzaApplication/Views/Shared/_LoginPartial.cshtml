@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using TomasosPizzaApplication.IdentityData
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
