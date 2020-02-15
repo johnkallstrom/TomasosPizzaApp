@@ -16,14 +16,17 @@ namespace TomasosPizzaApplication.Services
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserRepository _userRepository;
+        private readonly ICartService _cartService;
 
         public UserService(
+            ICartService cartService,
             ISessionService sessionService,
             IHttpContextAccessor httpContextAccessor,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             IUserRepository userRepository)
         {
+            _cartService = cartService;
             _sessionService = sessionService;
             _httpContextAccessor = httpContextAccessor;
             _signInManager = signInManager;

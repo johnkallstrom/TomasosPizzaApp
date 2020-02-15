@@ -35,6 +35,7 @@ namespace TomasosPizzaApplication.Controllers
         public async Task<IActionResult> UpdateUserRole(string id)
         {
             var user = await _userService.FetchUserByID(id);
+            var currentCustomer = _userService.FetchCurrentCustomer(user.Id);
 
             var isRegular = await _userService.IsUserRegular(user);
             if (isRegular == true)
@@ -43,6 +44,9 @@ namespace TomasosPizzaApplication.Controllers
 
                 if (result.Succeeded)
                 {
+                    currentCustomer.BonusPoints = 0;
+                    _userService.UpdateUserDetails(user, currentCustomer);
+
                     var model = _userService.FetchAllUsers();
                     return ViewComponent("UserRoleTable", model);
                 }
@@ -55,6 +59,9 @@ namespace TomasosPizzaApplication.Controllers
 
                 if (result.Succeeded)
                 {
+                    currentCustomer.BonusPoints = null;
+                    _userService.UpdateUserDetails(user, currentCustomer);
+
                     var model = _userService.FetchAllUsers();
                     return ViewComponent("UserRoleTable", model);
                 }

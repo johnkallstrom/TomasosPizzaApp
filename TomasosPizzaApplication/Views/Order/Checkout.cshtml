@@ -1,4 +1,5 @@
-﻿@model CheckoutViewModel
+﻿@inject IUserService UserService
+@model CheckoutViewModel
 
 @{
     ViewData["Title"] = "Kassa";
@@ -24,6 +25,14 @@
                     </div>
                 }
             </ul>
+
+            <!-- PREMIUM USER -->
+            @if (await UserService.IsUserPremium(Model.User) == true)
+            {
+                <h3>Bonus för detta köp: @Model.BonusPoints poäng</h3>
+                <h3>Din nuvarande bonus: @Model.Kund.BonusPoints poäng</h3>
+            }
+
             <h3>Total: @Model.Items.Sum(i => i.ItemTotal) kr</h3>
         </div>
 

@@ -131,5 +131,11 @@ namespace TomasosPizzaApplication.Services
             return result;
 
         }
+
+        public int CalculateBonusPoints()
+        {
+            var items = FetchCartItems();
+            return items.Count() * 10;
+        }
     }
 }

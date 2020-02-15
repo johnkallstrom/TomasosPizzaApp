@@ -1,5 +1,4 @@
-﻿@inject IUserService UserService
-@model MenuViewModel
+﻿@model MenuViewModel
 
 @{
     ViewData["Title"] = "Beställa";
@@ -44,12 +43,6 @@
                     </div>
                 }
             </ul>
-
-            @if (await UserService.IsUserPremium(Model.User) == true)
-            {
-                <h4>Bonuspoäng: @Model.Customer.BonusPoints</h4>
-            }
-
             <h3>Total: @Model.Items.Sum(i => i.ItemTotal) kr</h3>
             <div class="button-wrapper">
                 <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Order")'" />

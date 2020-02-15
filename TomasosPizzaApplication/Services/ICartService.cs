@@ -6,6 +6,7 @@ namespace TomasosPizzaApplication.Services
 {
     public interface ICartService
     {
+        int CalculateBonusPoints();
         int FetchCartTotal();
         List<CartItemViewModel> FetchGroupedCartItems();
         List<Matratt> FetchCartItems();
