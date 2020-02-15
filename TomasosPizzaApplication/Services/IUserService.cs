@@ -8,6 +8,9 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IUserService
     {
+        Task<bool> IsUserPremium(ApplicationUser user);
+        Task<bool> IsUserRegular(ApplicationUser user);
+        Task<ApplicationUser> FetchUserByID(string id);
         List<ApplicationUser> FetchAllUsers();
         Task<bool> UpdateUsername(ApplicationUser user, string currentPassword, string updatedUsername);
         Task<bool> CheckPassword(ApplicationUser user, string currentPassword);

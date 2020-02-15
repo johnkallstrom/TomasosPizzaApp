@@ -30,19 +30,20 @@
     color: #FF6C37;
 }
 
-#users {
+#user-table {
     margin-top: 25px;
     border-collapse: collapse;
     width: 100%;
     color: #1C272B;
+    margin-bottom: 20px;
 }
 
-#users td, #users th {
+#user-table td, #users th {
     padding: 10px;
     border: 1px solid #ddd;
 }
 
-#users th {
+#user-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -50,23 +51,24 @@
     color: #fff;
 }
 
-.select {
-    background-color: #fcfcfc;
+#user-table .update-row{
+    text-align: center;
+    width: 120px;
+}
+
+#user-table .update-row .update {
+    text-decoration: none;
+    color: #fff;
     padding: 10px;
-    width: 100%;
-    position: relative;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 16px;
-    border: 1px solid #ddd;
+    padding: 10px;
 }
 
-.select:hover{
-    cursor: pointer;
+#user-table .update-img {
+    margin-top: 5px;
+    width: 30px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
 }
 
-.select:focus{
-    outline: 1px solid #ddd;
-}
 
 
 

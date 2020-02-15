@@ -1,0 +1,58 @@
+﻿@inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
+@model List<ApplicationUser>
+
+<table id="user-table">
+    <thead>
+        <tr>
+            <th>Användarnamn</th>
+            <th>Roll</th>
+            <th>Uppdatera</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            @if (user.UserName == "Admin")
+                continue;
+        <tr>
+            <td>@user.UserName</td>
+            @foreach (var userRole in await UserManager.GetRolesAsync(user))
+            {
+                <td>@userRole</td>
+            }
+
+            @if (await UserService.IsUserRegular(user) == true)
+            {
+                <td class="update-row">
+                    <a asp-controller="Admin"
+                       asp-action="UpdateUserRole"
+                       asp-route-id="@user.Id"
+                       data-ajax="true"
+                       data-ajax-method="GET"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#users"
+                       class="update">
+                        <img src="~/img/arrow-alt-circle-up.svg" class="update-img" />
+                    </a>
+                </td>
+            }
+            @if (await UserService.IsUserPremium(user) == true)
+            {
+                <td class="update-row">
+                    <a asp-controller="Admin"
+                       asp-action="UpdateUserRole"
+                       asp-route-id="@user.Id"
+                       data-ajax="true"
+                       data-ajax-method="GET"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#users"
+                       class="update">
+                        <img src="~/img/arrow-alt-circle-down.svg" class="update-img" />
+                    </a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

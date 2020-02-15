@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Services;
 
 namespace TomasosPizzaApplication.Controllers
@@ -8,10 +10,14 @@ namespace TomasosPizzaApplication.Controllers
     public class AdminController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IAdminService _adminService;
 
-        public AdminController(IUserService userService)
+        public AdminController(
+            IUserService userService,
+            IAdminService adminService)
         {
             _userService = userService;
+            _adminService = adminService;
         }
 
         public IActionResult Index()
@@ -19,12 +25,42 @@ namespace TomasosPizzaApplication.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult UpdateRoles()
+        public IActionResult ViewUsers()
         {
             var model = _userService.FetchAllUsers();
 
             return View(model);
+        }
+
+        public async Task<IActionResult> UpdateUserRole(string id)
+        {
+            var user = await _userService.FetchUserByID(id);
+
+            var isRegular = await _userService.IsUserRegular(user);
+            if (isRegular == true)
+            {
+                var result = await _adminService.AddToPremiumRole(user);
+
+                if (result.Succeeded)
+                {
+                    var model = _userService.FetchAllUsers();
+                    return ViewComponent("UserRoleTable", model);
+                }
+            }
+
+            var isPremium = await _userService.IsUserPremium(user);
+            if (isPremium == true)
+            {
+                var result = await _adminService.AddToRegularRole(user);
+
+                if (result.Succeeded)
+                {
+                    var model = _userService.FetchAllUsers();
+                    return ViewComponent("UserRoleTable", model);
+                }
+            }
+
+            return View();
         }
     }
 }

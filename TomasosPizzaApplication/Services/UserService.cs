@@ -117,5 +117,20 @@ namespace TomasosPizzaApplication.Services
             return _userManager.Users
                 .OrderByDescending(x => x.UserName).ToList();
         }
+
+        public async Task<ApplicationUser> FetchUserByID(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
+
+        public async Task<bool> IsUserRegular(ApplicationUser user)
+        {
+            return await _userManager.IsInRoleAsync(user, "RegularUser");
+        }
+
+        public async Task<bool> IsUserPremium(ApplicationUser user)
+        {
+            return await _userManager.IsInRoleAsync(user, "PremiumUser");
+        }
     }
 }
