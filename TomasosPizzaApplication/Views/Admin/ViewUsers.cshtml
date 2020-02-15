@@ -28,10 +28,10 @@
                         @if (user.UserName == "Admin")
                             continue;
                         <tr>
-                            <td>@user.UserName</td>
+                            <td class="username">@user.UserName</td>
                             @foreach (var userRole in await UserManager.GetRolesAsync(user))
                             {
-                                <td>@userRole</td>
+                                <td class="role">@userRole</td>
                             }
 
                             @if (await UserService.IsUserRegular(user) == true)

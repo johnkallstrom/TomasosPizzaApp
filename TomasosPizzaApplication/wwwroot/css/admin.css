@@ -31,6 +31,7 @@
 }
 
 #user-table {
+    table-layout: fixed;
     margin-top: 25px;
     border-collapse: collapse;
     width: 100%;
@@ -38,7 +39,7 @@
     margin-bottom: 20px;
 }
 
-#user-table td, #users th {
+#user-table td, th {
     padding: 10px;
     border: 1px solid #ddd;
 }
@@ -53,7 +54,6 @@
 
 #user-table .update-row{
     text-align: center;
-    width: 120px;
 }
 
 #user-table .update-row .update {
@@ -65,7 +65,7 @@
 
 #user-table .update-img {
     margin-top: 5px;
-    width: 30px;
+    width: 35px;
     filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
 }
 
