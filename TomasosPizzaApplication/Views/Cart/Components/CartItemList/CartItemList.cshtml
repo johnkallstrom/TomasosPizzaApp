@@ -1,9 +1,10 @@
-﻿@model List<CartItemViewModel>
+﻿@inject IUserService UserService
+@model CartListViewModel
 
 <h1>Din beställning</h1>
 <hr />
 <ul>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Items)
     {
         <div class="wrapper">
             <li class="name">
@@ -34,7 +35,13 @@
         </div>
     }
 </ul>
-<h3>Total: @Model.Sum(i => i.ItemTotal) kr</h3>
+
+@if (await UserService.IsUserPremium(Model.User) == true)
+{
+    <h4>Bonuspoäng: @Model.Customer.BonusPoints</h4>
+}
+
+<h3>Total: @Model.Items.Sum(i => i.ItemTotal) kr</h3>
 <div class="button-wrapper">
     <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Order")'" />
 </div>

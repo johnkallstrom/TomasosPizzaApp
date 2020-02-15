@@ -1,4 +1,5 @@
-﻿@model MenuViewModel
+﻿@inject IUserService UserService
+@model MenuViewModel
 
 @{
     ViewData["Title"] = "Beställa";
@@ -24,7 +25,7 @@
                                    data-ajax-method="GET"
                                    data-ajax-mode="replace"
                                    data-ajax-update="#cart">
-                                   <img src="~/img/minus.svg" class="delete" />
+                                    <img src="~/img/minus.svg" class="delete" />
                                 </a>
                                 <span class="counter-value">@item.ItemCount</span>
                                 <a asp-controller="Cart"
@@ -34,7 +35,7 @@
                                    data-ajax-method="GET"
                                    data-ajax-mode="replace"
                                    data-ajax-update="#cart">
-                                   <img src="~/img/plus.svg" class="add" />
+                                    <img src="~/img/plus.svg" class="add" />
                                 </a>
                             </div>
                             @item.ItemName
@@ -43,6 +44,12 @@
                     </div>
                 }
             </ul>
+
+            @if (await UserService.IsUserPremium(Model.User) == true)
+            {
+                <h4>Bonuspoäng: @Model.Customer.BonusPoints</h4>
+            }
+
             <h3>Total: @Model.Items.Sum(i => i.ItemTotal) kr</h3>
             <div class="button-wrapper">
                 <input type="button" class="button" value="Fortsätt till kassan" onclick="location.href='@Url.Action("Checkout", "Order")'" />
@@ -63,15 +70,17 @@
                        data-ajax-mode="replace"
                        data-ajax-update="#cart">
                         <div class="wrapper">
-                            <li class="name">@pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" />
-                            <span class="price">@pizza.Pris kr</span></li>
-                            @foreach (var ingredient in @pizza.MatrattProdukt)
-                            {
-                                <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                            }
-                        </div>
-                    </a>
-                }
+                            <li class="name">
+                                @pizza.MatrattNamn <img src="~/img/plus-square.svg" class="add" />
+                            <span class="price">@pizza.Pris kr</span>
+                        </li>
+                        @foreach (var ingredient in @pizza.MatrattProdukt)
+                        {
+                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                        }
+                    </div>
+                </a>
+            }
             </ul>
         </div>
 
@@ -88,15 +97,17 @@
                        data-ajax-mode="replace"
                        data-ajax-update="#cart">
                         <div class="wrapper">
-                            <li class="name">@pasta.MatrattNamn <img src="~/img/plus-square.svg" class="add" />
-                            <span class="price">@pasta.Pris kr</span></li>
-                            @foreach (var ingredient in @pasta.MatrattProdukt)
-                            {
-                                <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                            }
-                        </div>
-                    </a>
-                }
+                            <li class="name">
+                                @pasta.MatrattNamn <img src="~/img/plus-square.svg" class="add" />
+                            <span class="price">@pasta.Pris kr</span>
+                        </li>
+                        @foreach (var ingredient in @pasta.MatrattProdukt)
+                        {
+                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                        }
+                    </div>
+                </a>
+            }
             </ul>
         </div>
 
@@ -113,15 +124,17 @@
                        data-ajax-mode="replace"
                        data-ajax-update="#cart">
                         <div class="wrapper">
-                            <li class="name">@salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span>
-                            <span class="price">@salad.Pris kr</span></li>
-                            @foreach (var ingredient in @salad.MatrattProdukt)
-                            {
-                                <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
-                            }
-                        </div>
-                    </a>
-                }
+                            <li class="name">
+                                @salad.MatrattNamn <span><img src="~/img/plus-square.svg" class="add" /></span>
+                            <span class="price">@salad.Pris kr</span>
+                        </li>
+                        @foreach (var ingredient in @salad.MatrattProdukt)
+                        {
+                            <li class="ingredients">@ingredient.Produkt.ProduktNamn</li>
+                        }
+                    </div>
+                </a>
+            }
             </ul>
             <div class="push"></div>
         </div>

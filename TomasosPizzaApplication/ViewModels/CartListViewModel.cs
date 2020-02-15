@@ -4,13 +4,10 @@ using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.ViewModels
 {
-    public class MenuViewModel
+    public class CartListViewModel
     {
-        public List<Matratt> PizzaDishes { get; set; }
-        public List<Matratt> PastaDishes { get; set; }
-        public List<Matratt> SaladDishes { get; set; }
-        public List<CartItemViewModel> Items { get; set; }
         public ApplicationUser User { get; set; }
         public Kund Customer { get; set; }
+        public List<CartItemViewModel> Items { get; set; }
     }
 }

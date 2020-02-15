@@ -26,14 +26,19 @@ namespace TomasosPizzaApplication.Controllers
         }
 
         [Authorize]
-        public IActionResult ViewMenu()
+        public async Task<IActionResult> ViewMenu()
         {
-            var model = new MenuViewModel();
+            var user = await _userService.FetchCurrentUser();
 
-            model.PizzaDishes = _dishService.FetchPizzaDishes();
-            model.PastaDishes = _dishService.FetchPastaDishes();
-            model.SaladDishes = _dishService.FetchSaladDishes();
-            model.Items = _cartService.FetchGroupedCartItems();
+            var model = new MenuViewModel()
+            {
+                PizzaDishes = _dishService.FetchPizzaDishes(),
+                PastaDishes = _dishService.FetchPastaDishes(),
+                SaladDishes = _dishService.FetchSaladDishes(),
+                Items = _cartService.FetchGroupedCartItems(),
+                User = user,
+                Customer = _userService.FetchCurrentCustomer(user.Id)
+            };
 
             return View(model);
         }

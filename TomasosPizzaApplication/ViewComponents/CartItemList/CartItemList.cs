@@ -8,7 +8,7 @@ namespace TomasosPizzaApplication.ViewComponents.CartItemList
 {
     public class CartItemList : ViewComponent
     {
-        public IViewComponentResult Invoke(List<CartItemViewModel> model)
+        public IViewComponentResult Invoke(CartListViewModel model)
         {
             return View("CartItemList", model);
         }
