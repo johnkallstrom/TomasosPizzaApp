@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TomasosPizzaApplication.Models
@@ -26,6 +27,7 @@ namespace TomasosPizzaApplication.Models
         public string AnvandarNamn { get; set; }
         public string Losenord { get; set; }
         public string UserId { get; set; }
+        public int? BonusPoints { get; set; }
 
         public virtual ICollection<Bestallning> Bestallning { get; set; }
     }
