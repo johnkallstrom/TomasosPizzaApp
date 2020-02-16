@@ -179,7 +179,7 @@ namespace TomasosPizzaApplication.Services
 
             if (items.Count >= 3)
             {
-                GetBonusDiscount(kund);
+                total -= GetBonusDiscount(kund);
                 return (int)Math.Round(total * 0.20);
             }
 

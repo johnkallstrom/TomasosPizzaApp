@@ -1,5 +1,7 @@
 ﻿/* Checkout */
 #checkout {
+    margin: 0 auto;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 40px;
 }
@@ -11,7 +13,7 @@
 
 /* Items */
 #items {
-    width: 40%;
+    width: 47%;
     float: left;
 }
 
@@ -44,7 +46,7 @@
 
 /* Details */
 #details {
-    width: 45%;
+    width: 47%;
     float: right;
 }
 
