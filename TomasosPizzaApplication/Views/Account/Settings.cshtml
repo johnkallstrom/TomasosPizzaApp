@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using TomasosPizzaApplication.IdentityData
 @inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
 
 @{
     ViewData["Title"] = "Inställningar";
@@ -9,8 +10,16 @@
 
 <section id="settings">
     <div class="container">
-        <h1>Välkommen, @UserManager.GetUserName(User)</h1>
-        <p>Här kan du ändra dina inställningar.</p>
+        @if (await UserService.IsUserPremium(await UserService.FetchCurrentUser()) == true)
+        {
+            <h1>Välkommen, @UserManager.GetUserName(User) <img src="~/img/user-astronaut.svg" class="user" /></h1>
+            <p>Här kan du ändra dina inställningar.</p>
+        }
+        @if (await UserService.IsUserRegular(await UserService.FetchCurrentUser()) == true)
+        {
+            <h1>Välkommen, @UserManager.GetUserName(User) <img src="~/img/user.svg" class="user" /></h1>
+            <p>Här kan du ändra dina inställningar.</p>
+        }
         <div>
             <input type="button" class="button" value="Uppdatera information" onclick="location.href='@Url.Action("UpdateDetails", "Account")'" />
         </div>

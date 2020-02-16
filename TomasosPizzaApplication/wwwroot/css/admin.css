@@ -24,6 +24,17 @@
     cursor: pointer;
 }
 
+#admin p {
+    font-size: 22px;
+    color: #1C272B
+}
+
+#admin img {
+    width: 30px;
+    padding-left: 10px;
+    color: #1C272B
+}
+
 /* Roles */
 #roles h1{
     font-size: 32px;

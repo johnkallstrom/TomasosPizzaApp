@@ -135,5 +135,27 @@ namespace TomasosPizzaApplication.Services
         {
             return await _userManager.IsInRoleAsync(user, "PremiumUser");
         }
+
+        public async Task<bool> IsUserAdmin(ApplicationUser user)
+        {
+            return await _userManager.IsInRoleAsync(user, "Admin");
+        }
+
+        public async Task<bool> AddBonusPointsToUser(Kund kund, int bonusPoints)
+        {
+            var succeeded = false;
+            var user = await FetchCurrentUser();
+
+            if (await IsUserPremium(user) == true)
+            {
+                kund.BonusPoints = bonusPoints;
+                kund.UserId = user.Id;
+                _userRepository.Update(kund);
+                succeeded = true;
+                return succeeded;
+            }
+
+            return succeeded;
+        }
     }
 }

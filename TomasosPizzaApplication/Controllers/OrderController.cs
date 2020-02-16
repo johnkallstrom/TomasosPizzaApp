@@ -59,13 +59,20 @@ namespace TomasosPizzaApplication.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public IActionResult Checkout(CheckoutViewModel model)
+        public async Task<IActionResult> Checkout(CheckoutViewModel model)
         {
             model.Items = _cartService.FetchGroupedCartItems();
             model.Total = _cartService.FetchCartTotal();
+            model.User = await _userService.FetchCurrentUser();
+            model.BonusPoints = _cartService.CalculateBonusPoints();
 
             if (ModelState.IsValid)
             {
+                if (await _userService.IsUserPremium(model.User) == true)
+                {
+                    await _userService.AddBonusPointsToUser(model.Kund, model.BonusPoints);
+                }
+
                 _orderService.CreateOrder(model.Kund, model.Items, model.Total);
                 return RedirectToAction("Confirmation", "Order");
             }

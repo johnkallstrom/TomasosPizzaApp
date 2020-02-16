@@ -29,6 +29,12 @@
     color: #1C272B
 }
 
+#settings img {
+    width: 30px;
+    padding-left: 10px;
+    color: #1C272B
+}
+
 /* Edit Details */
 #edit {
     padding-bottom: 40px;
