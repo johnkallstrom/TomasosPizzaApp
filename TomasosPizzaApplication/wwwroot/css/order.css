@@ -91,7 +91,7 @@
 }
 
 #cart hr {
-    background-color: #1C272B;
+    border-top: 1px solid #ddd;
 }
 
 #cart .price {
