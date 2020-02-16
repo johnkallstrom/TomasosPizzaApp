@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TomasosPizzaApplication.Models;
@@ -136,6 +137,52 @@ namespace TomasosPizzaApplication.Services
         {
             var items = FetchCartItems();
             return items.Count() * 10;
+        }
+
+        public bool HasPointsForFreeDish(Kund kund)
+        {
+            var result = false;
+
+            var items = FetchCartItems();
+
+            if (kund.BonusPoints >= 100 && items.Count() >= 1)
+            {
+                result = true;
+                return result;
+            }
+
+            return result;
+        }
+
+        public int FetchDiscountCartTotal(Kund kund)
+        {
+            var items = FetchCartItems();
+            var total = FetchCartTotal();
+
+            if (HasPointsForFreeDish(kund) == true)
+            {
+                total -= items.First().Pris;
+            }
+
+            if (items.Count >= 3)
+            {
+                total -= (int)Math.Round(total * 0.20);
+            }
+
+            return total;
+        }
+
+        public int GetPremiumDiscount()
+        {
+            var total = FetchCartTotal();
+            total -= GetBonusDiscount();
+            return (int)Math.Round(total * 0.20);
+        }
+
+        public int GetBonusDiscount()
+        {
+            var items = FetchCartItems();
+            return items.First().Pris;
         }
     }
 }

@@ -51,6 +51,7 @@ namespace TomasosPizzaApplication.Controllers
                 User = user,
                 Kund = _userService.FetchCurrentCustomer(user.Id),
                 BonusPoints = _cartService.CalculateBonusPoints(),
+                Total = _cartService.FetchCartTotal()
             };
 
             return View(model);

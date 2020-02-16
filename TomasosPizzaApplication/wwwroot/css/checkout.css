@@ -11,12 +11,8 @@
 
 /* Items */
 #items {
-    width: 50%;
+    width: 40%;
     float: left;
-}
-
-#items h1 {
-    margin-left: 10px;
 }
 
 #items #counter {
@@ -79,4 +75,19 @@
 
 #details .button:hover {
     cursor: pointer;
+}
+
+/* Calculation */
+#calculation {
+    padding-top: 10px;
+}
+
+#calculation .total {
+    font-size: 24px;
+    color: #FF6C37;
+}
+
+#calculation p {
+    font-size: 20px;
+    color: #1C272B;
 }

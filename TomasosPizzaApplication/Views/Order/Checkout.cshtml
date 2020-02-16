@@ -1,4 +1,5 @@
 ﻿@inject IUserService UserService
+@inject ICartService CartService
 @model CheckoutViewModel
 
 @{
@@ -11,6 +12,7 @@
         <!-- CART -->
         <div id="items">
             <h1>Din beställning</h1>
+            <hr />
             <ul>
                 @foreach (var item in Model.Items)
                 {
@@ -26,14 +28,30 @@
                 }
             </ul>
 
-            <!-- PREMIUM USER -->
-            @if (await UserService.IsUserPremium(Model.User) == true)
-            {
-                <h3>Bonus för detta köp: @Model.BonusPoints poäng</h3>
-                <h3>Din nuvarande bonus: @Model.Kund.BonusPoints poäng</h3>
-            }
+            <div id="calculation">
+                <hr />
+                <!-- PREMIUM USER -->
+                @if (await UserService.IsUserPremium(Model.User) == true)
+                {
+                    <p>Din nuvarande bonus: @Model.Kund.BonusPoints poäng</p>
 
-            <h3>Total: @Model.Items.Sum(i => i.ItemTotal) kr</h3>
+                    @if (CartService.HasPointsForFreeDish(Model.Kund) == true)
+                    {
+                        <p>Grattis!</p>
+                        <p>Du har tjänat ihop 100 bonuspoäng så därför bjuder vi dig på en maträtt.</p>
+                    }
+
+                    <p>Antal bonuspoäng för den här beställningen: @Model.BonusPoints poäng</p>
+                    <p>Total: @Model.Total kr</p>
+                    <p>Bonusrabatt: -@CartService.GetBonusDiscount() kr</p>
+                    <p>Premiumrabatt: -@CartService.GetPremiumDiscount() kr</p>
+                    <h3 class="total">Total (inkl. rabatter): @CartService.FetchDiscountCartTotal(Model.Kund) kr</h3>
+                }
+                else
+                {
+                    <h3 class="total">Total: @Model.Total kr</h3>
+                }
+            </div>
         </div>
 
         <!-- FORM -->
