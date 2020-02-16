@@ -12,7 +12,6 @@
         <!-- CART -->
         <div id="items">
             <h1>Din beställning</h1>
-            <hr />
             <ul>
                 @foreach (var item in Model.Items)
                 {
@@ -27,34 +26,40 @@
                     </div>
                 }
             </ul>
-
+            <hr />
             <div id="calculation">
-                <hr />
                 <!-- PREMIUM USER -->
                 @if (await UserService.IsUserPremium(Model.User) == true)
                 {
-                    <p>Din nuvarande bonus: @Model.Kund.BonusPoints poäng</p>
+                    <div class="discount-group">
+                        <p>Din nuvarande bonuspoäng: @Model.Kund.BonusPoints poäng</p>
+                    </div>
 
                     @if (CartService.HasPointsForFreeDish(Model.Kund) == true)
                     {
-                        <p>Grattis!</p>
-                        <p>Du har tjänat ihop 100 bonuspoäng så därför bjuder vi dig på en maträtt.</p>
+                        <div class="discount-group">
+                            <p>Grattis!</p>
+                            <p>Du har tjänat ihop 100 bonuspoäng så därför bjuder vi dig på en maträtt.</p>
+                        </div>
                     }
 
-                    <p>Antal bonuspoäng för den här beställningen: @Model.BonusPoints poäng</p>
-                    <p>Total: @Model.Total kr</p>
+                    <div class="discount-group">
+                        <p>Antal bonuspoäng för den här beställningen: @Model.BonusPoints poäng</p>
+                    </div>
 
-                    @if (CartService.HasPointsForFreeDish(Model.Kund) == true)
-                    {
-                        <p>Bonusrabatt: -@CartService.GetBonusDiscount(Model.Kund) kr</p>
-                    }
+                    <div class="discount-group">
+                        <p class="first-total">Total: @Model.Total kr</p>
+                        @if (CartService.HasPointsForFreeDish(Model.Kund) == true)
+                        {
+                            <p class="discount">Bonusrabatt: -@CartService.GetBonusDiscount(Model.Kund) kr</p>
+                        }
 
-                    @if (CartService.FetchCartItems().Count() >= 3)
-                    {
-                        <p>Premiumrabatt: -@CartService.GetPremiumDiscount(Model.Kund) kr</p>
-                    }
-
-                    <h3 class="total">Total (inkl. rabatter): @CartService.FetchDiscountCartTotal(Model.Kund) kr</h3>
+                        @if (CartService.FetchCartItems().Count() >= 3)
+                        {
+                            <p class="discount">Premiumrabatt: -@CartService.GetPremiumDiscount(Model.Kund) kr</p>
+                        }
+                    </div>
+                    <h3 class="discount-total">Total (inkl. rabatter): @CartService.FetchDiscountCartTotal(Model.Kund) kr</h3>
                 }
                 else
                 {
@@ -64,56 +69,25 @@
         </div>
 
         <!-- FORM -->
-        <div id="details">
-            <form asp-controller="Order" asp-action="Checkout" method="post">
-                <div class="header">
-                    <h1>Dina uppgifter</h1>
-                </div>
+        <form asp-controller="Order" asp-action="Checkout" method="post">
+            @if (await UserService.IsUserPremium(Model.User) == true)
+            {
+                <input type="hidden" asp-for="Kund.BonusPoints" />
+            }
 
-                @if (await UserService.IsUserPremium(Model.User) == true)
-                {
-                    <div class="form-group">
-                        <input type="hidden" asp-for="Kund.BonusPoints" />
-                    </div>
-                }
+            <input type="hidden" asp-for="Kund.Namn" />
+            <input type="hidden" asp-for="Kund.Email" />
+            <input type="hidden" asp-for="Kund.Gatuadress" />
+            <input type="hidden" asp-for="Kund.Postnr" />
+            <input type="hidden" asp-for="Kund.Postort" />
+            <input type="hidden" asp-for="Kund.Telefon" />
 
-                <div class="form-group">
-                    <span asp-validation-for="Kund.Namn"></span>
-                    <input type="text" asp-for="Kund.Namn" maxlength="100" placeholder="Namn" readonly />
-                </div>
+            <!-- Hidden ID -->
+            <input type="hidden" asp-for="Kund.KundId" />
 
-                <div class="form-group">
-                    <span asp-validation-for="Kund.Email"></span>
-                    <input type="text" asp-for="Kund.Email" maxlength="50" placeholder="Email" readonly />
-                </div>
-
-                <div class="form-group">
-                    <span asp-validation-for="Kund.Gatuadress"></span>
-                    <input type="text" asp-for="Kund.Gatuadress" maxlength="50" placeholder="Adress" readonly />
-                </div>
-
-                <div class="form-group">
-                    <span asp-validation-for="Kund.Postnr"></span>
-                    <input type="text" asp-for="Kund.Postnr" maxlength="20" placeholder="Postnummer" readonly />
-                </div>
-
-                <div class="form-group">
-                    <span asp-validation-for="Kund.Postort"></span>
-                    <input type="text" asp-for="Kund.Postort" maxlength="100" placeholder="Postort" readonly />
-                </div>
-
-                <div class="form-group">
-                    <span asp-validation-for="Kund.Telefon"></span>
-                    <input type="text" asp-for="Kund.Telefon" maxlength="50" placeholder="Telefon" readonly />
-                </div>
-
-                <!-- Hidden ID -->
-                <input type="hidden" asp-for="Kund.KundId" />
-
-                <div class="button-group">
-                    <input type="submit" value="Slutför köp" class="button" />
-                </div>
-            </form>
-        </div>
+            <div class="button-group">
+                <input type="submit" value="Slutför köp" class="button" />
+            </div>
+        </form>
     </div>
 </section>

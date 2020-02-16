@@ -85,6 +85,11 @@
     color: #FF6C37;
 }
 
+#cart .total {
+    font-size: 24px;
+    color: #FF6C37;
+}
+
 #cart hr {
     background-color: #1C272B;
 }
@@ -95,6 +100,7 @@
 }
 
 #cart .name {
+    font-size: 20px;
     text-align: center;
 }
 
