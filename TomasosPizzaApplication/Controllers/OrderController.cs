@@ -63,14 +63,27 @@ namespace TomasosPizzaApplication.Controllers
         public async Task<IActionResult> Checkout(CheckoutViewModel model)
         {
             model.Items = _cartService.FetchGroupedCartItems();
-            model.Total = _cartService.FetchCartTotal();
             model.User = await _userService.FetchCurrentUser();
             model.BonusPoints = _cartService.CalculateBonusPoints();
+
+            if (await _userService.IsUserPremium(model.User) == true)
+            {
+                model.Total = _cartService.FetchDiscountCartTotal(model.Kund);
+            }
+            else
+            {
+                model.Total = _cartService.FetchCartTotal();
+            }
 
             if (ModelState.IsValid)
             {
                 if (await _userService.IsUserPremium(model.User) == true)
                 {
+                    if (model.Kund.BonusPoints >= 100)
+                    {
+                        await _userService.RemoveBonusPointsFromUser(model.Kund);
+                    }
+
                     await _userService.AddBonusPointsToUser(model.Kund, model.BonusPoints);
                 }
 

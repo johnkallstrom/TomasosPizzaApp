@@ -148,7 +148,24 @@ namespace TomasosPizzaApplication.Services
 
             if (await IsUserPremium(user) == true)
             {
-                kund.BonusPoints = bonusPoints;
+                kund.BonusPoints += bonusPoints;
+                kund.UserId = user.Id;
+                _userRepository.Update(kund);
+                succeeded = true;
+                return succeeded;
+            }
+
+            return succeeded;
+        }
+
+        public async Task<bool> RemoveBonusPointsFromUser(Kund kund)
+        {
+            var succeeded = false;
+            var user = await FetchCurrentUser();
+
+            if (await IsUserPremium(user) == true && kund.BonusPoints >= 100)
+            {
+                kund.BonusPoints -= 100;
                 kund.UserId = user.Id;
                 _userRepository.Update(kund);
                 succeeded = true;

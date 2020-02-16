@@ -8,8 +8,8 @@ namespace TomasosPizzaApplication.Services
 {
     public interface ICartService
     {
-        int GetBonusDiscount();
-        int GetPremiumDiscount();
+        int GetBonusDiscount(Kund kund);
+        int GetPremiumDiscount(Kund kund);
         bool HasPointsForFreeDish(Kund kund);
         int CalculateBonusPoints();
         int FetchDiscountCartTotal(Kund kund);

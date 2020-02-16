@@ -8,6 +8,7 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IUserService
     {
+        Task<bool> RemoveBonusPointsFromUser(Kund kund);
         Task<bool> AddBonusPointsToUser(Kund kund, int bonusPoints);
         Task<bool> IsUserAdmin(ApplicationUser user);
         Task<bool> IsUserPremium(ApplicationUser user);

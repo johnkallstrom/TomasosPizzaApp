@@ -172,17 +172,30 @@ namespace TomasosPizzaApplication.Services
             return total;
         }
 
-        public int GetPremiumDiscount()
-        {
-            var total = FetchCartTotal();
-            total -= GetBonusDiscount();
-            return (int)Math.Round(total * 0.20);
-        }
-
-        public int GetBonusDiscount()
+        public int GetPremiumDiscount(Kund kund)
         {
             var items = FetchCartItems();
-            return items.First().Pris;
+            var total = FetchCartTotal();
+
+            if (items.Count >= 3)
+            {
+                GetBonusDiscount(kund);
+                return (int)Math.Round(total * 0.20);
+            }
+
+            return 0;
+        }
+
+        public int GetBonusDiscount(Kund kund)
+        {
+            var items = FetchCartItems();
+
+            if (HasPointsForFreeDish(kund) == true)
+            {
+                return items.First().Pris;
+            }
+
+            return 0;
         }
     }
 }

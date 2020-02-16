@@ -43,8 +43,17 @@
 
                     <p>Antal bonuspoäng för den här beställningen: @Model.BonusPoints poäng</p>
                     <p>Total: @Model.Total kr</p>
-                    <p>Bonusrabatt: -@CartService.GetBonusDiscount() kr</p>
-                    <p>Premiumrabatt: -@CartService.GetPremiumDiscount() kr</p>
+
+                    @if (CartService.HasPointsForFreeDish(Model.Kund) == true)
+                    {
+                        <p>Bonusrabatt: -@CartService.GetBonusDiscount(Model.Kund) kr</p>
+                    }
+
+                    @if (CartService.FetchCartItems().Count() >= 3)
+                    {
+                        <p>Premiumrabatt: -@CartService.GetPremiumDiscount(Model.Kund) kr</p>
+                    }
+
                     <h3 class="total">Total (inkl. rabatter): @CartService.FetchDiscountCartTotal(Model.Kund) kr</h3>
                 }
                 else
