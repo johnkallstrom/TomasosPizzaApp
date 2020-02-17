@@ -103,5 +103,21 @@ namespace TomasosPizzaApplication.Controllers
 
             return View();
         }
+
+        public IActionResult DeleteOrder(int id)
+        {
+            var order = _orderService.FetchOrder(id);
+
+            if (order != null)
+            {
+                _orderService.DeleteOrder(order.BestallningId);
+
+                var model = _orderService.FetchAllOrders();
+
+                return ViewComponent("OrderTable", model);
+            }
+
+            return View();
+        }
     }
 }

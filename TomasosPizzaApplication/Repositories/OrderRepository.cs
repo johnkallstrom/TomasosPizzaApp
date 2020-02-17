@@ -22,11 +22,14 @@ namespace TomasosPizzaApplication.Repositories
 
         public void Delete(int id)
         {
-            var order = _context.Bestallning.FirstOrDefault(o => o.BestallningId == id);
-            var orderItems = _context.BestallningMatratt.FirstOrDefault(o => o.BestallningId == id);
+            var order = _context.Bestallning.FirstOrDefault(x => x.BestallningId == id);
+
+            foreach (var dish in order.BestallningMatratt)
+            {
+                _context.BestallningMatratt.Remove(dish);
+            }
 
             _context.Bestallning.Remove(order);
-            _context.BestallningMatratt.Remove(orderItems);
             _context.SaveChanges();
         }
 

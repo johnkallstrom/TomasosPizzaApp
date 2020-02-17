@@ -6,6 +6,7 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IOrderService
     {
+        void DeleteOrder(int id);
         void SetOrderAsNotDelivered(Bestallning order);
         void SetOrderAsDelivered(Bestallning order);
         Bestallning FetchOrder(int id);

@@ -43,6 +43,11 @@ namespace TomasosPizzaApplication.Services
             _sessionService.Clear();
         }
 
+        public void DeleteOrder(int id)
+        {
+            _orderRepository.Delete(id);
+        }
+
         public List<Bestallning> FetchAllOrders()
         {
             return _orderRepository.FetchAll();
