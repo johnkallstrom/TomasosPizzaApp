@@ -48,10 +48,35 @@ namespace TomasosPizzaApplication.Services
             return _orderRepository.FetchAll();
         }
 
-        public void UpdateOrderStatus(int id, bool isDelivered)
+        public Bestallning FetchOrder(int id)
         {
+            return _orderRepository.Fetch(id);
+        }
+
+        public bool isOrderDelivered(int id)
+        {
+            var result = false;
+
             var order = _orderRepository.Fetch(id);
-            order.Levererad = isDelivered;
+
+            if (order.Levererad == true)
+            {
+                result = true;
+                return result;
+            }
+
+            return result;
+        }
+
+        public void SetOrderAsDelivered(Bestallning order)
+        {
+            order.Levererad = true;
+            _orderRepository.Update(order);
+        }
+
+        public void SetOrderAsNotDelivered(Bestallning order)
+        {
+            order.Levererad = false;
             _orderRepository.Update(order);
         }
     }

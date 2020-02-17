@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TomasosPizzaApplication.IdentityData;
 using TomasosPizzaApplication.Services;
 
 namespace TomasosPizzaApplication.Controllers
@@ -78,6 +77,31 @@ namespace TomasosPizzaApplication.Controllers
             var model = _orderService.FetchAllOrders();
 
             return View(model);
+        }
+
+        public IActionResult UpdateOrderStatus(int id)
+        {
+            var order = _orderService.FetchOrder(id);
+
+            var isDelivered = _orderService.isOrderDelivered(order.BestallningId);
+            if (isDelivered == false)
+            {
+                _orderService.SetOrderAsDelivered(order);
+
+                var model = _orderService.FetchAllOrders();
+
+                return ViewComponent("OrderTable", model);
+            }
+            if (isDelivered == true)
+            {
+                _orderService.SetOrderAsNotDelivered(order);
+
+                var model = _orderService.FetchAllOrders();
+
+                return ViewComponent("OrderTable", model);
+            }
+
+            return View();
         }
     }
 }
