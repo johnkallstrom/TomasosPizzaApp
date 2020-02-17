@@ -3,17 +3,21 @@
 @model List<ApplicationUser>
 
 @{
-    ViewData["Title"] = "Uppdatera roller";
+    ViewData["Title"] = "Admin - Uppdatera roller";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section id="roles">
     <div class="container">
+        @if (Model == null)
+        {
+            <h1>Det finns inga användare.</h1>
+        }
         <div class="header">
             <h1>Uppdatera roller</h1>
             <hr />
         </div>
-        <div id="users">
+        <div>
             <table id="user-table">
                 <thead>
                     <tr>
@@ -43,7 +47,7 @@
                                        data-ajax="true"
                                        data-ajax-method="GET"
                                        data-ajax-mode="replace"
-                                       data-ajax-update="#users"
+                                       data-ajax-update="#user-table"
                                        class="update">
                                         <img src="~/img/arrow-alt-circle-up.svg" class="update-img" />
                                     </a>
@@ -58,7 +62,7 @@
                                        data-ajax="true"
                                        data-ajax-method="GET"
                                        data-ajax-mode="replace"
-                                       data-ajax-update="#users"
+                                       data-ajax-update="#user-table"
                                        class="update">
                                         <img src="~/img/arrow-alt-circle-down.svg" class="update-img" />
                                     </a>

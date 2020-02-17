@@ -35,7 +35,7 @@
     color: #1C272B
 }
 
-/* Roles */
+/* Users */
 #roles h1{
     font-size: 32px;
     color: #FF6C37;
@@ -80,6 +80,51 @@
     filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
 }
 
+/* Orders */
+#orders h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
 
+#order-table {
+    overflow: hidden;
+    margin-top: 25px;
+    border-collapse: collapse;
+    width: 100%;
+    color: #1C272B;
+    margin-bottom: 20px;
+}
+
+#order-table td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#order-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1C272B;
+    color: #fff;
+}
+
+#order-table .edit{
+    text-align: center;
+}
+
+#order-table img{
+    margin-top: 5px;
+    width: 35px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}
+
+#order-table .delete {
+    width: 28px;
+    filter: invert(42%) sepia(3%) saturate(33%) hue-rotate(16deg) brightness(98%) contrast(83%);
+}
+
+#order-table .status {
+    width: 35px;
+}
 
 

@@ -1,0 +1,49 @@
+﻿@model List<Bestallning>
+
+<table id="order-table">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Kund</th>
+            <th>Levererad</th>
+            <th>Total</th>
+            <th>Redigera</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+        <tr>
+            <td>@order.BestallningDatum</td>
+            <td>@order.Kund.Namn</td>
+            <td>@order.Levererad</td>
+            <td>@order.Totalbelopp kr</td>
+
+            <td class="edit">
+                <a asp-controller="Admin"
+                   asp-action="UpdateOrderStatus"
+                   asp-route-id="@order.BestallningId"
+                   data-ajax="true"
+                   data-ajax-method="GET"
+                   data-ajax-mode="replace"
+                   data-ajax-update="#order-table"
+                   class="update">
+                    <img src="~/img/truck.svg" class="status" />
+                </a>
+            </td>
+            <td class="edit">
+                <a asp-controller="Admin"
+                   asp-action="DeleteOrder"
+                   asp-route-id="@order.BestallningId"
+                   data-ajax="true"
+                   data-ajax-method="GET"
+                   data-ajax-mode="replace"
+                   data-ajax-update="#order-table"
+                   class="update">
+                    <img src="~/img/trash-alt.svg" class="delete" />
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -43,15 +43,18 @@ namespace TomasosPizzaApplication.Services
             _sessionService.Clear();
         }
 
-        public Bestallning FetchLatestOrder()
+        public List<Bestallning> FetchAllOrders()
         {
             var orders = _orderRepository.FetchAll();
+            orders.OrderBy(x => x.BestallningDatum);
+            return orders;
+        }
 
-            var latestOrder = orders
-                .OrderByDescending(o => o.BestallningDatum)
-                .First();
-
-            return latestOrder;
+        public void UpdateOrderStatus(int id, bool isDelivered)
+        {
+            var order = _orderRepository.Fetch(id);
+            order.Levererad = isDelivered;
+            _orderRepository.Update(order);
         }
     }
 }
