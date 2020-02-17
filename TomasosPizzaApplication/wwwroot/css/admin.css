@@ -135,4 +135,65 @@
     filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
 }
 
+/* Dishes */
+#dishes h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
 
+#dishes .button-group{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#dishes .button {
+    height: 60px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 200px;
+}
+
+#dishes .button:hover {
+    cursor: pointer;
+}
+
+#dish-table {
+    table-layout: fixed;
+    overflow: hidden;
+    margin-top: 25px;
+    border-collapse: collapse;
+    width: 100%;
+    color: #1C272B;
+    margin-bottom: 20px;
+}
+
+#dish-table td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#dish-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1C272B;
+    color: #fff;
+}
+
+#dish-table .edit {
+    text-align: center;
+}
+
+#dish-table img {
+    margin-top: 5px;
+    width: 35px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}
+
+#dish-table .edit-button {
+    width: 35px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}

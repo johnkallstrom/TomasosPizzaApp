@@ -40,5 +40,10 @@ namespace TomasosPizzaApplication.Services
                 .Where(d => d.MatrattTyp == 3)
                 .ToList();
         }
+
+        public List<Matratt> FetchAllDishes()
+        {
+            return _dishRepository.FetchAll();
+        }
     }
 }

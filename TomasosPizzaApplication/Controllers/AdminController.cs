@@ -8,15 +8,18 @@ namespace TomasosPizzaApplication.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        private readonly IDishService _dishService;
         private readonly IOrderService _orderService;
         private readonly IUserService _userService;
         private readonly IAdminService _adminService;
 
         public AdminController(
+            IDishService dishService,
             IOrderService orderService,
             IUserService userService,
             IAdminService adminService)
         {
+            _dishService = dishService;
             _orderService = orderService;
             _userService = userService;
             _adminService = adminService;
@@ -118,6 +121,13 @@ namespace TomasosPizzaApplication.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult ViewDishes()
+        {
+            var model = _dishService.FetchAllDishes();
+
+            return View(model);
         }
     }
 }

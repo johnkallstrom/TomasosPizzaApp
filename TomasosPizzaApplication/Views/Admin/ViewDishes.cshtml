@@ -1,0 +1,53 @@
+﻿@model List<Matratt>
+
+@{
+    ViewData["Title"] = "Admin - Ändra menyn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="dishes">
+    <div class="container">
+        <div class="header">
+            <h1>Ändra menyn</h1>
+            <hr />
+        </div>
+        <div>
+            <table id="dish-table">
+                <thead>
+                    <tr>
+                        <th>Namn</th>
+                        <th>Typ</th>
+                        <th>Beskrivning</th>
+                        <th>Pris</th>
+                        <th>Redigera</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dish in Model)
+                    {
+                    <tr>
+                        <td>@dish.MatrattNamn</td>
+                        <td>@dish.MatrattTypNavigation.Beskrivning</td>
+                        <td>@dish.Beskrivning</td>
+                        <td>@dish.Pris kr</td>
+
+                        <td class="edit">
+                            <a asp-controller="Admin"
+                               asp-action="EditDish"
+                               asp-route-id="@dish.MatrattId">
+                                <img src="~/img/edit.svg" class="edit-button" />
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="button-group">
+                <input type="button" class="button" value="Skapa ny maträtt" onclick="location.href='@Url.Action("CreateDish", "Admin")'" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
