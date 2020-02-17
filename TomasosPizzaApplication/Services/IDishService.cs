@@ -5,6 +5,7 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IDishService
     {
+        Matratt FetchDish(int id);
         List<Matratt> FetchAllDishes();
         List<Matratt> FetchPizzaDishes();
         List<Matratt> FetchPastaDishes();

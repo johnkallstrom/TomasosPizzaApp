@@ -129,5 +129,12 @@ namespace TomasosPizzaApplication.Controllers
 
             return View(model);
         }
+
+        public IActionResult EditDish(int id)
+        {
+            var model = _dishService.FetchDish(id);
+
+            return View(model);
+        }
     }
 }

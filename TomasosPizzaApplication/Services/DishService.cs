@@ -45,5 +45,10 @@ namespace TomasosPizzaApplication.Services
         {
             return _dishRepository.FetchAll();
         }
+
+        public Matratt FetchDish(int id)
+        {
+            return _dishRepository.FetchDishByID(id);
+        }
     }
 }

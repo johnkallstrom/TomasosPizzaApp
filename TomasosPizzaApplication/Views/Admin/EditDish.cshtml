@@ -1,0 +1,25 @@
+﻿@model Matratt
+
+@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="dishes">
+    <div class="container">
+        <div class="header">
+            <h1>Redigera maträtt</h1>
+            <hr />
+        </div>
+        <form asp-controller="Admin" asp-action="EditDish" method="post">
+            <div class="form-group">
+                <span asp-validation-for="MatrattNamn"></span>
+                <input type="text" asp-for="MatrattNamn" maxlength="20" placeholder="Namn" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Spara" class="button" />
+            </div>
+        </form>
+    </div>
+</section>
