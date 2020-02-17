@@ -45,9 +45,7 @@ namespace TomasosPizzaApplication.Services
 
         public List<Bestallning> FetchAllOrders()
         {
-            var orders = _orderRepository.FetchAll();
-            orders.OrderBy(x => x.BestallningDatum);
-            return orders;
+            return _orderRepository.FetchAll();
         }
 
         public void UpdateOrderStatus(int id, bool isDelivered)

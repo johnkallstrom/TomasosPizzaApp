@@ -19,19 +19,21 @@
                         <th>Kund</th>
                         <th>Levererad</th>
                         <th>Total</th>
-                        <th>Uppdatera</th>
+                        <th>Bekräfta leverans</th>
                         <th>Ta bort</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var order in Model)
                     {
-                        <tr>
-                            <td>@order.BestallningDatum</td>
-                            <td>@order.Kund.Namn</td>
-                            <td>@order.Levererad</td>
-                            <td>@order.Totalbelopp kr</td>
+                    <tr>
+                        <td>@order.BestallningDatum</td>
+                        <td>@order.Kund.Namn</td>
+                        <td>@order.Levererad</td>
+                        <td>@order.Totalbelopp kr</td>
 
+                        @if (order.Levererad == false)
+                        {
                             <td class="edit">
                                 <a asp-controller="Admin"
                                    asp-action="UpdateOrderStatus"
@@ -44,19 +46,36 @@
                                     <img src="~/img/truck.svg" class="status" />
                                 </a>
                             </td>
+                        }
+                        @if (order.Levererad == true)
+                        {
                             <td class="edit">
                                 <a asp-controller="Admin"
-                                   asp-action="DeleteOrder"
+                                   asp-action="UpdateOrderStatus"
                                    asp-route-id="@order.BestallningId"
                                    data-ajax="true"
                                    data-ajax-method="GET"
                                    data-ajax-mode="replace"
                                    data-ajax-update="#order-table"
                                    class="update">
-                                    <img src="~/img/trash-alt.svg" class="delete" />
+                                    <img src="~/img/truck.svg" class="is-delivered" />
                                 </a>
                             </td>
-                        </tr>
+                        }
+
+                        <td class="edit">
+                            <a asp-controller="Admin"
+                               asp-action="DeleteOrder"
+                               asp-route-id="@order.BestallningId"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#order-table"
+                               class="update">
+                                <img src="~/img/trash-alt.svg" class="delete" />
+                            </a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

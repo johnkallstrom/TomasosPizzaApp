@@ -43,6 +43,7 @@ namespace TomasosPizzaApplication.Repositories
                 .Include("Kund")
                 .Include(o => o.BestallningMatratt)
                 .ThenInclude(x => x.Matratt)
+                .OrderByDescending(o => o.BestallningDatum)
                 .ToList();
         }
 
