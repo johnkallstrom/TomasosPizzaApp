@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TomasosPizzaApplication.Services;
+using TomasosPizzaApplication.ViewModels;
 
 namespace TomasosPizzaApplication.Controllers
 {
@@ -132,9 +133,23 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult EditDish(int id)
         {
-            var model = _dishService.FetchDish(id);
+            var model = new EditDishViewModel
+            {
+                Dish = _dishService.FetchDish(id),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
+            };
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditDish(EditDishViewModel model)
+        {
+
+
+            return View();
         }
     }
 }

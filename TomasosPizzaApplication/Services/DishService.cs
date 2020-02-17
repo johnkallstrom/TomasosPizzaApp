@@ -50,5 +50,15 @@ namespace TomasosPizzaApplication.Services
         {
             return _dishRepository.FetchDishByID(id);
         }
+
+        public List<MatrattTyp> FetchDishCategories()
+        {
+            return _dishRepository.FetchDishCategories();
+        }
+
+        public List<Produkt> FetchDishIngredients()
+        {
+            return _dishRepository.FetchDishIngredients();
+        }
     }
 }

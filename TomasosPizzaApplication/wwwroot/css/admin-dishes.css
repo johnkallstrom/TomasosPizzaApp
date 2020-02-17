@@ -1,0 +1,178 @@
+﻿/* Dishes */
+#dishes h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#dishes .button-group {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#dishes .button {
+    height: 60px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 200px;
+}
+
+#dishes .button:hover {
+    cursor: pointer;
+}
+
+#dish-table {
+    table-layout: fixed;
+    overflow: hidden;
+    margin-top: 25px;
+    border-collapse: collapse;
+    width: 100%;
+    color: #1C272B;
+    margin-bottom: 20px;
+}
+
+#dish-table td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#dish-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1C272B;
+    color: #fff;
+}
+
+#dish-table .edit {
+    text-align: center;
+}
+
+#dish-table img {
+    margin-top: 5px;
+    width: 35px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}
+
+#dish-table .edit-button {
+    width: 35px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}
+
+/* Edit Dish */
+#edit-dish .header h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#edit-dish hr {
+    border-top: 1px solid #ddd;
+}
+
+#edit-dish .button {
+    margin-top: 10px;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+#edit-dish .button:hover {
+    cursor: pointer;
+}
+
+#dish {
+    float: left;
+    padding-top: 20px;
+    width: 50%;
+    overflow: hidden;
+}
+
+#dish label {
+    display: block;
+}
+
+#dish input[type="text"], .category-select, .description {
+    width: 80%;
+    padding: 6px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: 1px solid #ddd;
+}
+
+#dish .category-select {
+    height: 46px;
+    width: 82.3%;
+}
+
+#dish .description {
+    height: 175px;
+    width: 80%;
+}
+
+#ingredients {
+    padding-top: 10px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+#ingredients img {
+    width: 15px;
+    color: #1C272B
+}
+
+#ingredients .wrapper {
+    list-style: none;
+    border: 1px solid #ddd;
+    padding: 10px 0 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    width: 79%;
+}
+
+#ingredients .delete {
+    margin-top: 2px;
+    float: right;
+    padding-right: 15px;
+    filter: invert(42%) sepia(3%) saturate(33%) hue-rotate(16deg) brightness(98%) contrast(83%);
+}
+
+#ingredients .delete:hover {
+    filter: invert(24%) sepia(9%) saturate(3%) hue-rotate(16deg) brightness(101%) contrast(82%);
+}
+
+#all-ingredients {
+    padding-top: 20px;
+    width: 50%;
+    overflow: hidden;
+    float: right;
+}
+
+#all-ingredients .ingredient-select {
+    height: 46px;
+    width: 82.3%;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#all-ingredients .add {
+    text-align: center;
+    width: 18%;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #FF6C37;
+    padding: 10px;
+    padding-bottom: 13px;
+    padding-top: 13px;
+}
