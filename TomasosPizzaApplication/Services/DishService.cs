@@ -60,5 +60,20 @@ namespace TomasosPizzaApplication.Services
         {
             return _dishRepository.FetchDishIngredients();
         }
+
+        public void DeleteIngredientFromDish(int dishID, int ingredientID)
+        {
+            _dishRepository.DeleteIngredientFromDish(dishID, ingredientID);
+        }
+
+        public void AddIngredientToDish(int dishID, int ingredientID)
+        {
+            _dishRepository.AddIngredientToDish(dishID, ingredientID);
+        }
+
+        public void UpdateDish(Matratt dish)
+        {
+            _dishRepository.Update(dish);
+        }
     }
 }

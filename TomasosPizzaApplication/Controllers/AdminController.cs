@@ -146,9 +146,13 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult AddIngredient(int dishID, int ingredientID)
         {
+            _dishService.AddIngredientToDish(dishID, ingredientID);
+
             var model = new EditDishViewModel
             {
-
+                Dish = _dishService.FetchDish(dishID),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
             };
 
             return ViewComponent("IngredientList", model);
@@ -156,9 +160,13 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult DeleteIngredient(int dishID, int ingredientID)
         {
+            _dishService.DeleteIngredientFromDish(dishID, ingredientID);
+
             var model = new EditDishViewModel
             {
-
+                Dish = _dishService.FetchDish(dishID),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
             };
 
             return ViewComponent("IngredientList", model);
@@ -166,8 +174,19 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditDish(EditDishViewModel model)
+        public IActionResult EditDish(EditDishViewModel data)
         {
+            if (ModelState.IsValid)
+            {
+                _dishService.UpdateDish(data.Dish);
+                return RedirectToAction("ViewDishes", "Admin");
+            }
+
+            var model = new EditDishViewModel
+            {
+
+            };
+
             return View();
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TomasosPizzaApplication.Models
+﻿namespace TomasosPizzaApplication.Models
 {
     public partial class MatrattProdukt
     {

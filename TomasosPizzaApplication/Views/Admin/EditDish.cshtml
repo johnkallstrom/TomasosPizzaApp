@@ -46,7 +46,7 @@
                 <div id="ingredients">
                     <label>Ingredienser: </label>
                     <ul>
-                        @foreach (var ingredient in Model.Dish.MatrattProdukt)
+                        @foreach (var ingredient in Model.Dish.MatrattProdukt.OrderBy(p => p.ProduktId))
                         {
                             <div class="wrapper">
                                 <li>

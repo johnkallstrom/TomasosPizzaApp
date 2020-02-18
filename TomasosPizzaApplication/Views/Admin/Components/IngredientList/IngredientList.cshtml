@@ -1,14 +1,16 @@
 ﻿@model EditDishViewModel
 
+<label>Ingredienser: </label>
 <ul>
-    @foreach (var ingredient in Model.Dish.MatrattProdukt)
+    @foreach (var ingredient in Model.Dish.MatrattProdukt.OrderBy(p => p.ProduktId))
     {
         <div class="wrapper">
             <li>
                 @ingredient.Produkt.ProduktNamn
                 <a asp-controller="Admin"
                    asp-action="DeleteIngredient"
-                   asp-route-id="@Model.Dish.MatrattId"
+                   asp-route-dishID="@Model.Dish.MatrattId"
+                   asp-route-ingredientID="@ingredient.ProduktId"
                    data-ajax="true"
                    data-ajax-method="GET"
                    data-ajax-mode="replace"
