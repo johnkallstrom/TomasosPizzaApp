@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TomasosPizzaApplication.Models;
 
 namespace TomasosPizzaApplication.Repositories
@@ -48,8 +49,10 @@ namespace TomasosPizzaApplication.Repositories
             return _context.Produkt.FirstOrDefault(x => x.ProduktId == id);
         }
 
-        public void AddIngredientToDish(int dishID, int ingredientID)
+        public async Task<bool> AddIngredientToDish(int dishID, int ingredientID)
         {
+            var result = false;
+
             var dishIngredient = new MatrattProdukt
             {
                 MatrattId = dishID,
@@ -62,31 +65,45 @@ namespace TomasosPizzaApplication.Repositories
             if (ingredientExists == false)
             {
                 _context.MatrattProdukt.Add(dishIngredient);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                result = true;
+                return result;
             }
+
+            return result;
         }
 
-        public void DeleteIngredientFromDish(int dishID, int ingredientID)
+        public async Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID)
         {
+            var result = false;
             var dishIngredient = _context.MatrattProdukt
                 .FirstOrDefault(x => x.MatrattId == dishID && x.ProduktId == ingredientID);
 
             if (dishIngredient != null)
             {
                 _context.MatrattProdukt.Remove(dishIngredient);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                result = true;
+                return result;
             }
+
+            return result;
         }
 
-        public void Update(Matratt updatedDish)
+        public async Task<bool> UpdateAsync(Matratt updatedDish)
         {
+            var result = false;
             var currentDish = _context.Matratt.FirstOrDefault(x => x.MatrattId == updatedDish.MatrattId);
 
             if (updatedDish != null)
             {
                 _context.Entry(currentDish).CurrentValues.SetValues(updatedDish);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                result = true;
+                return result;
             }
+
+            return result;
         }
     }
 }

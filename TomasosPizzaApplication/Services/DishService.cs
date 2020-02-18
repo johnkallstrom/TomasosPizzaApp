@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Repositories;
 
@@ -61,19 +62,31 @@ namespace TomasosPizzaApplication.Services
             return _dishRepository.FetchDishIngredients();
         }
 
-        public void DeleteIngredientFromDish(int dishID, int ingredientID)
+        public async Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID)
         {
-            _dishRepository.DeleteIngredientFromDish(dishID, ingredientID);
+            var result = false;
+
+            await _dishRepository.DeleteIngredientFromDish(dishID, ingredientID);
+            result = true;
+            return result;
         }
 
-        public void AddIngredientToDish(int dishID, int ingredientID)
+        public async Task<bool> AddIngredientToDish(int dishID, int ingredientID)
         {
-            _dishRepository.AddIngredientToDish(dishID, ingredientID);
+            var result = false; 
+
+            await _dishRepository.AddIngredientToDish(dishID, ingredientID);
+            result = true;
+            return result;
         }
 
-        public void UpdateDish(Matratt dish)
+        public async Task<bool> UpdateDish(Matratt dish)
         {
-            _dishRepository.Update(dish);
+            var result = false;
+
+            await _dishRepository.UpdateAsync(dish);
+            result = true;
+            return result;
         }
     }
 }

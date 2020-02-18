@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace TomasosPizzaApplication.Models
 {
@@ -16,8 +18,12 @@ namespace TomasosPizzaApplication.Models
         public int Pris { get; set; }
         public int MatrattTyp { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual MatrattTyp MatrattTypNavigation { get; set; }
         public virtual ICollection<BestallningMatratt> BestallningMatratt { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<MatrattProdukt> MatrattProdukt { get; set; }
     }
 }
