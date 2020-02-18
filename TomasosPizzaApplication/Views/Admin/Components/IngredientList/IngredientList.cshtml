@@ -1,0 +1,21 @@
+﻿@model EditDishViewModel
+
+<ul>
+    @foreach (var ingredient in Model.Dish.MatrattProdukt)
+    {
+        <div class="wrapper">
+            <li>
+                @ingredient.Produkt.ProduktNamn
+                <a asp-controller="Admin"
+                   asp-action="DeleteIngredient"
+                   asp-route-id="@Model.Dish.MatrattId"
+                   data-ajax="true"
+                   data-ajax-method="GET"
+                   data-ajax-mode="replace"
+                   data-ajax-update="#ingredients">
+                    <img src="~/img/trash-alt.svg" class="delete" />
+                </a>
+            </li>
+        </div>
+    }
+</ul>

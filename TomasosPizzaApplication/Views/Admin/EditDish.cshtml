@@ -43,7 +43,6 @@
                 <!-- Hidden ID -->
                 <input type="hidden" asp-for="Dish.MatrattId" />
 
-                <!-- Ingredients -->
                 <div id="ingredients">
                     <label>Ingredienser: </label>
                     <ul>
@@ -54,7 +53,8 @@
                                     @ingredient.Produkt.ProduktNamn
                                     <a asp-controller="Admin"
                                        asp-action="DeleteIngredient"
-                                       asp-route-id="@Model.Dish.MatrattId"
+                                       asp-route-dishID="@Model.Dish.MatrattId"
+                                       asp-route-ingredientID="@ingredient.ProduktId"
                                        data-ajax="true"
                                        data-ajax-method="GET"
                                        data-ajax-mode="replace"
@@ -75,19 +75,26 @@
 
         <div id="all-ingredients">
             <label>Alla ingredienser: </label>
-            <select class="ingredient-select"
-                    asp-items="@(new SelectList(Model.Ingredients, "ProduktId", "ProduktNamn"))">
-            </select>
-            <a asp-controller="Admin"
-               asp-action="AddIngredient"
-               asp-route-id="@Model.Dish.MatrattId"
-               data-ajax="true"
-               data-ajax-method="GET"
-               data-ajax-mode="replace"
-               data-ajax-update="#ingredients"
-               class="add" >
-                Lägg till
-            </a>
+            <ul>
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                    <div class="wrapper">
+                        <li>
+                            <span class="ingredient-name">@ingredient.ProduktNamn</span>
+                            <a asp-controller="Admin"
+                               asp-action="AddIngredient"
+                               asp-route-dishID="@Model.Dish.MatrattId"
+                               asp-route-ingredientID="@ingredient.ProduktId"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#ingredients">
+                                <img src="~/img/plus-square.svg" class="add" />
+                            </a>
+                        </li>
+                    </div>
+                }
+            </ul>
         </div>
 
     </div>

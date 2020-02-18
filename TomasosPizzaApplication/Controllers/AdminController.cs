@@ -131,6 +131,7 @@ namespace TomasosPizzaApplication.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult EditDish(int id)
         {
             var model = new EditDishViewModel
@@ -143,12 +144,30 @@ namespace TomasosPizzaApplication.Controllers
             return View(model);
         }
 
+        public IActionResult AddIngredient(int dishID, int ingredientID)
+        {
+            var model = new EditDishViewModel
+            {
+
+            };
+
+            return ViewComponent("IngredientList", model);
+        }
+
+        public IActionResult DeleteIngredient(int dishID, int ingredientID)
+        {
+            var model = new EditDishViewModel
+            {
+
+            };
+
+            return ViewComponent("IngredientList", model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditDish(EditDishViewModel model)
         {
-
-
             return View();
         }
     }

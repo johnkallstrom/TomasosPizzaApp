@@ -164,15 +164,28 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
+#all-ingredients .wrapper {
+    list-style: none;
+    border: 1px solid #ddd;
+    padding: 10px 0 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    width: 79%;
+}
+
+#all-ingredients .ingredient-name{
+    padding-left: 15px;
+}
+
 #all-ingredients .add {
-    text-align: center;
-    width: 18%;
-    display: block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #FF6C37;
-    padding: 10px;
-    padding-bottom: 13px;
-    padding-top: 13px;
+    margin-top: 3px;
+    float: left;
+    width: 15px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+}
+
+#all-ingredients .add:hover {
+    cursor: pointer;
+    filter: invert(27%) sepia(32%) saturate(4467%) hue-rotate(358deg) brightness(105%) contrast(92%);
 }
