@@ -141,5 +141,24 @@ namespace TomasosPizzaApplication.Services
 
             return ingredients;
         }
+
+        public bool IngredientExists(int ingredientID)
+        {
+            List<Produkt> ingredients;
+
+            var selectedIngredient = _dishRepository.FetchIngredientByID(ingredientID);
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("Ingredients") == null)
+            {
+                ingredients = new List<Produkt>();
+            }
+            else
+            {
+                var dataJSON = _httpContextAccessor.HttpContext.Session.GetString("Ingredients");
+                ingredients = JsonConvert.DeserializeObject<List<Produkt>>(dataJSON);
+            }
+            
+            return ingredients.Any(x => x.ProduktId == selectedIngredient.ProduktId);
+        }
     }
 }

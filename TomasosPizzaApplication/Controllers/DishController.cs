@@ -111,7 +111,14 @@ namespace TomasosPizzaApplication.Controllers
 
         public IActionResult AddIngredientToSession(int ingredientID)
         {
-            _dishService.AddIngredientToSession(ingredientID);
+            if (_dishService.IngredientExists(ingredientID) == true)
+            {
+                ViewBag.IngredientError = "Ingrediensen finns redan i maträtten";
+            }
+            else
+            {
+                _dishService.AddIngredientToSession(ingredientID);
+            }
 
             var model = new CreateDishViewModel
             {
