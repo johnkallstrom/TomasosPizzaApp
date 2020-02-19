@@ -6,6 +6,7 @@ namespace TomasosPizzaApplication.Repositories
 {
     public interface IDishRepository
     {
+        void Add(Matratt dish, List<Produkt> ingredients);
         void Update(Matratt dish);
         Task<bool> DeleteIngredient(int dishID, int ingredientID);
         Task<bool> AddIngredient(int dishID, int ingredientID);

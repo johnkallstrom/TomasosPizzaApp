@@ -160,5 +160,13 @@ namespace TomasosPizzaApplication.Services
             
             return ingredients.Any(x => x.ProduktId == selectedIngredient.ProduktId);
         }
+
+        public void CreateNewDish(Matratt dish, List<Produkt> ingredients)
+        {
+            if (dish != null && ingredients != null)
+            {
+                _dishRepository.Add(dish, ingredients);
+            }
+        }
     }
 }

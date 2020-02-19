@@ -31,6 +31,7 @@ namespace TomasosPizzaApplication.Repositories
                 .Include(m => m.MatrattTypNavigation)
                 .Include(m => m.MatrattProdukt)
                 .ThenInclude(p => p.Produkt)
+                .OrderBy(x => x.MatrattNamn)
                 .ToList();
         }
 
@@ -99,6 +100,30 @@ namespace TomasosPizzaApplication.Repositories
                 _context.Entry(currentDish).CurrentValues.SetValues(updatedDish);
                 _context.SaveChanges();
             }
+        }
+
+        public void Add(Matratt dish, List<Produkt> ingredients)
+        {
+            _context.Matratt.Add(dish);
+            _context.SaveChanges();
+
+            AddDishIngredients(dish, ingredients);
+        }
+
+        private void AddDishIngredients(Matratt dish, List<Produkt> ingredients)
+        {
+            var dishIngredients = ingredients.Select(x => new MatrattProdukt
+            {
+                MatrattId = dish.MatrattId,
+                ProduktId = x.ProduktId
+            }).ToList();
+
+            foreach (var ingredient in dishIngredients)
+            {
+                _context.MatrattProdukt.Add(ingredient);
+            }
+
+            _context.SaveChanges();
         }
     }
 }

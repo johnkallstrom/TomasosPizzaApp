@@ -12,9 +12,13 @@ namespace TomasosPizzaApplication.Controllers
     public class DishController : Controller
     {
         private readonly IDishService _dishService;
+        private readonly ISessionService _sessionService;
 
-        public DishController(IDishService dishService)
+        public DishController(
+            IDishService dishService,
+            ISessionService sessionService)
         {
+            _sessionService = sessionService;
             _dishService = dishService;
         }
 
@@ -99,14 +103,24 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateDish(CreateDishViewModel model)
+        public IActionResult CreateDish(CreateDishViewModel data)
         {
             if (ModelState.IsValid)
             {
-
+                data.DishIngredients = _dishService.FetchIngredientsFromSession();
+                _dishService.CreateNewDish(data.Dish, data.DishIngredients);
+                _sessionService.Clear();
+                return RedirectToAction("ViewDishes", "Admin");
             }
 
-            return View();
+            var model = new CreateDishViewModel
+            {
+                DishIngredients = _dishService.FetchIngredientsFromSession(),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
+            };
+
+            return View(model);
         }
 
         public IActionResult AddIngredientToSession(int ingredientID)

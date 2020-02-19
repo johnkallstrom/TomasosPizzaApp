@@ -17,29 +17,29 @@
 
                 <div class="form-group">
                     <label>Kategori: </label>
-                    <select class="category-select" asp-for="Category"
+                    <select class="category-select" asp-for="Dish.MatrattTyp"
                             asp-items="@(new SelectList(Model.Categories, "MatrattTyp1", "Beskrivning"))">
                         <option disabled selected value">Välj en kategori</option>
                     </select>
-                    <span asp-validation-for="Category"></span>
+                    <span asp-validation-for="Dish.MatrattTyp"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Namn: </label>
-                    <input type="text" asp-for="Name" maxlength="50" />
-                    <span asp-validation-for="Name"></span>
+                    <input type="text" asp-for="Dish.MatrattNamn" maxlength="50" />
+                    <span asp-validation-for="Dish.MatrattNamn"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Beskrivning: </label>
-                    <textarea class="description" asp-for="Description" maxlength="250"></textarea>
-                    <span asp-validation-for="Description"></span>
+                    <textarea class="description" asp-for="Dish.Beskrivning" maxlength="250"></textarea>
+                    <span asp-validation-for="Dish.Beskrivning"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Pris: </label>
-                    <input type="text" asp-for="Price" maxlength="20" />
-                    <span asp-validation-for="Price"></span>
+                    <input type="text" asp-for="Dish.Pris" maxlength="20" />
+                    <span asp-validation-for="Dish.Pris"></span>
                 </div>
 
                 <!-- Ingredients from Dish -->
