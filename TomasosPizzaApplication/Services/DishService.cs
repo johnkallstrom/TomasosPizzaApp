@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TomasosPizzaApplication.Models;
@@ -8,10 +10,14 @@ namespace TomasosPizzaApplication.Services
 {
     public class DishService : IDishService
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IDishRepository _dishRepository;
 
-        public DishService(IDishRepository dishRepository)
+        public DishService(
+            IHttpContextAccessor httpContextAccessor,
+            IDishRepository dishRepository)
         {
+            _httpContextAccessor = httpContextAccessor;
             _dishRepository = dishRepository;
         }
 
@@ -75,6 +81,65 @@ namespace TomasosPizzaApplication.Services
         public void UpdateDish(Matratt dish)
         {
             _dishRepository.Update(dish);
+        }
+
+        public void AddIngredientToSession(int ingredientID)
+        {
+            List<Produkt> ingredients;
+
+            var selectedIngredient = _dishRepository.FetchIngredientByID(ingredientID);
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("Ingredients") == null)
+            {
+                ingredients = new List<Produkt>();
+            }
+            else
+            {
+                var dataJSON = _httpContextAccessor.HttpContext.Session.GetString("Ingredients");
+                ingredients = JsonConvert.DeserializeObject<List<Produkt>>(dataJSON);
+            }
+
+            ingredients.Add(selectedIngredient);
+
+            _httpContextAccessor.HttpContext.Session.SetString("Ingredients", JsonConvert.SerializeObject(ingredients));
+        }
+
+        public void DeleteIngredientFromSession(int ingredientID)
+        {
+            List<Produkt> ingredients;
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("Ingredients") == null)
+            {
+                ingredients = new List<Produkt>();
+            }
+            else
+            {
+                var dataJSON = _httpContextAccessor.HttpContext.Session.GetString("Ingredients");
+                ingredients = JsonConvert.DeserializeObject<List<Produkt>>(dataJSON);
+            }
+
+            var selectedIngredient = ingredients.FirstOrDefault(x => x.ProduktId == ingredientID);
+
+            ingredients.Remove(selectedIngredient);
+
+            _httpContextAccessor.HttpContext.Session.SetString("Ingredients", JsonConvert.SerializeObject(ingredients));
+        }
+
+        public List<Produkt> FetchIngredientsFromSession()
+        {
+            List<Produkt> ingredients;
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("Ingredients") == null)
+            {
+                ingredients = new List<Produkt>();
+            }
+            else
+            {
+                var dataJSON = _httpContextAccessor.HttpContext.Session.GetString("Ingredients");
+                ingredients = JsonConvert.DeserializeObject<List<Produkt>>(dataJSON);
+            }
+
+            return ingredients;
         }
     }
 }

@@ -6,6 +6,9 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IDishService
     {
+        List<Produkt> FetchIngredientsFromSession();
+        void AddIngredientToSession(int ingredientID);
+        void DeleteIngredientFromSession(int ingredientID);
         void UpdateDish(Matratt dish);
         Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID);
         Task<bool> AddIngredientToDish(int dishID, int ingredientID);

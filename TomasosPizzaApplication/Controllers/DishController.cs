@@ -18,39 +18,6 @@ namespace TomasosPizzaApplication.Controllers
             _dishService = dishService;
         }
 
-        [HttpGet]
-        public IActionResult EditDish(int id)
-        {
-            var model = new EditDishViewModel
-            {
-                Dish = _dishService.FetchDish(id),
-                Ingredients = _dishService.FetchDishIngredients(),
-                Categories = _dishService.FetchDishCategories()
-            };
-
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditDish(EditDishViewModel data)
-        {
-            if (ModelState.IsValid)
-            {
-                _dishService.UpdateDish(data.Dish);
-                return RedirectToAction("ViewDishes", "Admin");
-            }
-
-            var model = new EditDishViewModel
-            {
-                Dish = _dishService.FetchDish(data.Dish.MatrattId),
-                Categories = _dishService.FetchDishCategories(),
-                Ingredients = _dishService.FetchDishIngredients(),
-            };
-
-            return View(model);
-        }
-
         public async Task<IActionResult> AddIngredient(int dishID, int ingredientID)
         {
             var result = await _dishService.AddIngredientToDish(dishID, ingredientID);
@@ -85,11 +52,44 @@ namespace TomasosPizzaApplication.Controllers
         }
 
         [HttpGet]
+        public IActionResult EditDish(int id)
+        {
+            var model = new EditDishViewModel
+            {
+                Dish = _dishService.FetchDish(id),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditDish(EditDishViewModel data)
+        {
+            if (ModelState.IsValid)
+            {
+                _dishService.UpdateDish(data.Dish);
+                return RedirectToAction("ViewDishes", "Admin");
+            }
+
+            var model = new EditDishViewModel
+            {
+                Dish = _dishService.FetchDish(data.Dish.MatrattId),
+                Categories = _dishService.FetchDishCategories(),
+                Ingredients = _dishService.FetchDishIngredients(),
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
         public IActionResult CreateDish()
         {
             var model = new CreateDishViewModel
             {
-                DishIngredients = new List<Produkt>(),
+                DishIngredients = _dishService.FetchIngredientsFromSession(),
                 Ingredients = _dishService.FetchDishIngredients(),
                 Categories = _dishService.FetchDishCategories()
             };
@@ -107,6 +107,35 @@ namespace TomasosPizzaApplication.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult AddIngredientToSession(int ingredientID)
+        {
+            _dishService.AddIngredientToSession(ingredientID);
+
+            var model = new CreateDishViewModel
+            {
+                DishIngredients = _dishService.FetchIngredientsFromSession(),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
+            };
+
+            return ViewComponent("CreateDishIngredients", model);
+        }
+
+
+        public IActionResult DeleteIngredientFromSession(int ingredientID)
+        {
+            _dishService.DeleteIngredientFromSession(ingredientID);
+
+            var model = new CreateDishViewModel
+            {
+                DishIngredients = _dishService.FetchIngredientsFromSession(),
+                Ingredients = _dishService.FetchDishIngredients(),
+                Categories = _dishService.FetchDishCategories()
+            };
+
+            return ViewComponent("CreateDishIngredients", model);
         }
     }
 }

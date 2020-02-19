@@ -1,0 +1,23 @@
+﻿@model CreateDishViewModel
+
+<label>Ingredienser: </label>
+<ul>
+    @foreach (var ingredient in Model.DishIngredients.OrderBy(p => p.ProduktId))
+    {
+        <div class="wrapper">
+            <li>
+                @ingredient.ProduktNamn
+                <a asp-controller="Dish"
+                   asp-action="DeleteIngredientFromSession"
+                   asp-route-ingredientID="@ingredient.ProduktId"
+                   data-ajax="true"
+                   data-ajax-method="GET"
+                   data-ajax-mode="replace"
+                   data-ajax-update="#ingredients">
+                    <img src="~/img/trash-alt.svg" class="delete" />
+                </a>
+            </li>
+        </div>
+    }
+</ul>
+<span class="ingredient-error">@ViewBag.IngredientError</span>
