@@ -146,7 +146,12 @@ namespace TomasosPizzaApplication.Controllers
 
         public async Task<IActionResult> AddIngredient(int dishID, int ingredientID)
         {
-            await _dishService.AddIngredientToDish(dishID, ingredientID);
+            var result = await _dishService.AddIngredientToDish(dishID, ingredientID);
+
+            if (result == false)
+            {
+                ViewBag.IngredientError = "Ingrediensen finns redan i maträtten";
+            }
 
             var model = new EditDishViewModel
             {
@@ -174,11 +179,11 @@ namespace TomasosPizzaApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditDish(EditDishViewModel data)
+        public IActionResult EditDish(EditDishViewModel data)
         {
             if (ModelState.IsValid)
             {
-                await _dishService.UpdateDish(data.Dish);
+                _dishService.UpdateDish(data.Dish);
                 return RedirectToAction("ViewDishes", "Admin");
             }
 

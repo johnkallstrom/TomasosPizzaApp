@@ -49,7 +49,7 @@ namespace TomasosPizzaApplication.Repositories
             return _context.Produkt.FirstOrDefault(x => x.ProduktId == id);
         }
 
-        public async Task<bool> AddIngredientToDish(int dishID, int ingredientID)
+        public async Task<bool> AddIngredient(int dishID, int ingredientID)
         {
             var result = false;
 
@@ -73,7 +73,7 @@ namespace TomasosPizzaApplication.Repositories
             return result;
         }
 
-        public async Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID)
+        public async Task<bool> DeleteIngredient(int dishID, int ingredientID)
         {
             var result = false;
             var dishIngredient = _context.MatrattProdukt
@@ -90,20 +90,15 @@ namespace TomasosPizzaApplication.Repositories
             return result;
         }
 
-        public async Task<bool> UpdateAsync(Matratt updatedDish)
+        public void Update(Matratt updatedDish)
         {
-            var result = false;
             var currentDish = _context.Matratt.FirstOrDefault(x => x.MatrattId == updatedDish.MatrattId);
 
             if (updatedDish != null)
             {
                 _context.Entry(currentDish).CurrentValues.SetValues(updatedDish);
-                await _context.SaveChangesAsync();
-                result = true;
-                return result;
+                _context.SaveChanges();
             }
-
-            return result;
         }
     }
 }

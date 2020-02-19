@@ -64,29 +64,17 @@ namespace TomasosPizzaApplication.Services
 
         public async Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID)
         {
-            var result = false;
-
-            await _dishRepository.DeleteIngredientFromDish(dishID, ingredientID);
-            result = true;
-            return result;
+            return await _dishRepository.DeleteIngredient(dishID, ingredientID);
         }
 
         public async Task<bool> AddIngredientToDish(int dishID, int ingredientID)
         {
-            var result = false; 
-
-            await _dishRepository.AddIngredientToDish(dishID, ingredientID);
-            result = true;
-            return result;
+            return await _dishRepository.AddIngredient(dishID, ingredientID);
         }
 
-        public async Task<bool> UpdateDish(Matratt dish)
+        public void UpdateDish(Matratt dish)
         {
-            var result = false;
-
-            await _dishRepository.UpdateAsync(dish);
-            result = true;
-            return result;
+            _dishRepository.Update(dish);
         }
     }
 }

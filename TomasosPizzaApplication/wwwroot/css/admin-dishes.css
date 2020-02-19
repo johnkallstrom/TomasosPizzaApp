@@ -94,6 +94,13 @@
     overflow: hidden;
 }
 
+#dish .ingredient-error {
+    display: block;
+    padding-top: 8px;
+    color: #f00;
+    font-size: 14px;
+}
+
 #dish label {
     display: block;
 }

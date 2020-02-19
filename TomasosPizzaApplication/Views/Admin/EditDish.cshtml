@@ -14,6 +14,10 @@
 
         <div id="dish">
             <form asp-controller="Admin" asp-action="EditDish" method="post">
+
+                <!-- Hidden ID -->
+                <input type="hidden" asp-for="Dish.MatrattId" />
+
                 <div class="form-group">
                     <label>Kategori: </label>
                     <select class="category-select" asp-for="Dish.MatrattTyp"
@@ -40,9 +44,7 @@
                     <span asp-validation-for="Dish.Pris"></span>
                 </div>
 
-                <!-- Hidden ID -->
-                <input type="hidden" asp-for="Dish.MatrattId" />
-
+                <!-- Ingredients from Dish -->
                 <div id="ingredients">
                     <label>Ingredienser: </label>
                     <ul>
@@ -65,6 +67,7 @@
                             </div>
                         }
                     </ul>
+                    <span class="ingredient-error">@ViewBag.IngredientError</span>
                 </div>
 
                 <div class="form-group">
@@ -73,10 +76,11 @@
             </form>
         </div>
 
+        <!--All Ingredients -->
         <div id="all-ingredients">
             <label>Alla ingredienser: </label>
             <ul>
-                @foreach (var ingredient in Model.Ingredients)
+                @foreach (var ingredient in Model.Ingredients.OrderBy(x => x.ProduktNamn))
                 {
                     <div class="wrapper">
                         <li>

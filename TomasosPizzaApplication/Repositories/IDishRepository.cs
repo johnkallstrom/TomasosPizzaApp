@@ -6,9 +6,9 @@ namespace TomasosPizzaApplication.Repositories
 {
     public interface IDishRepository
     {
-        Task<bool> UpdateAsync(Matratt updatedDish);
-        Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID);
-        Task<bool> AddIngredientToDish(int dishID, int ingredientID);
+        void Update(Matratt dish);
+        Task<bool> DeleteIngredient(int dishID, int ingredientID);
+        Task<bool> AddIngredient(int dishID, int ingredientID);
         Produkt FetchIngredientByID(int id);
         List<MatrattTyp> FetchDishCategories();
         List<Produkt> FetchDishIngredients();

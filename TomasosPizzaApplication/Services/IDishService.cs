@@ -6,7 +6,7 @@ namespace TomasosPizzaApplication.Services
 {
     public interface IDishService
     {
-        Task<bool> UpdateDish(Matratt dish);
+        void UpdateDish(Matratt dish);
         Task<bool> DeleteIngredientFromDish(int dishID, int ingredientID);
         Task<bool> AddIngredientToDish(int dishID, int ingredientID);
         List<MatrattTyp> FetchDishCategories();
