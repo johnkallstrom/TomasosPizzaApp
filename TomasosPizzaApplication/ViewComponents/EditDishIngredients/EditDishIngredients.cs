@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TomasosPizzaApplication.ViewModels;
 
-namespace TomasosPizzaApplication.ViewComponents.IngredientList
+namespace TomasosPizzaApplication.ViewComponents.EditDishIngredients
 {
-    public class IngredientList : ViewComponent
+    public class EditDishIngredients : ViewComponent
     {
         public IViewComponentResult Invoke(EditDishViewModel model)
         {
-            return View("IngredientList", model);
+            return View("EditDishIngredients", model);
         }
     }
 }

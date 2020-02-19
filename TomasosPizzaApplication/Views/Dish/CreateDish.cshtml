@@ -1,61 +1,58 @@
-﻿@model EditDishViewModel
+﻿@model CreateDishViewModel
 
 @{
-    ViewData["Title"] = "Admin - Redigera maträtt";
+    ViewData["Title"] = "Skapa ny maträtt";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section id="edit-dish">
+<section id="create-dish">
     <div class="container">
         <div class="header">
-            <h1>Redigera maträtt</h1>
+            <h1>Skapa ny maträtt</h1>
             <hr />
         </div>
 
         <div id="dish">
-            <form asp-controller="Admin" asp-action="EditDish" method="post">
-
-                <!-- Hidden ID -->
-                <input type="hidden" asp-for="Dish.MatrattId" />
+            <form asp-controller="Dish" asp-action="CreateDish" method="post">
 
                 <div class="form-group">
                     <label>Kategori: </label>
-                    <select class="category-select" asp-for="Dish.MatrattTyp"
+                    <select class="category-select" asp-for="Category"
                             asp-items="@(new SelectList(Model.Categories, "MatrattTyp1", "Beskrivning"))">
+                        <option disabled selected value">Välj en kategori</option>
                     </select>
-                    <span asp-validation-for="Dish.MatrattTyp"></span>
+                    <span asp-validation-for="Category"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Namn: </label>
-                    <input type="text" asp-for="Dish.MatrattNamn" maxlength="50" placeholder="Namn" />
-                    <span asp-validation-for="Dish.MatrattNamn"></span>
+                    <input type="text" asp-for="Name" maxlength="50" />
+                    <span asp-validation-for="Name"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Beskrivning: </label>
-                    <textarea class="description" asp-for="Dish.Beskrivning" maxlength="250"></textarea>
-                    <span asp-validation-for="Dish.Beskrivning"></span>
+                    <textarea class="description" asp-for="Description" maxlength="250"></textarea>
+                    <span asp-validation-for="Description"></span>
                 </div>
 
                 <div class="form-group">
                     <label>Pris: </label>
-                    <input type="text" asp-for="Dish.Pris" maxlength="20" placeholder="Pris" />
-                    <span asp-validation-for="Dish.Pris"></span>
+                    <input type="text" asp-for="Price" maxlength="20" />
+                    <span asp-validation-for="Price"></span>
                 </div>
 
                 <!-- Ingredients from Dish -->
                 <div id="ingredients">
                     <label>Ingredienser: </label>
                     <ul>
-                        @foreach (var ingredient in Model.Dish.MatrattProdukt.OrderBy(p => p.ProduktId))
+                        @foreach (var ingredient in Model.DishIngredients.OrderBy(p => p.ProduktId))
                         {
                             <div class="wrapper">
                                 <li>
-                                    @ingredient.Produkt.ProduktNamn
-                                    <a asp-controller="Admin"
+                                    @ingredient.ProduktNamn
+                                    <a asp-controller="Dish"
                                        asp-action="DeleteIngredient"
-                                       asp-route-dishID="@Model.Dish.MatrattId"
                                        asp-route-ingredientID="@ingredient.ProduktId"
                                        data-ajax="true"
                                        data-ajax-method="GET"
@@ -85,9 +82,8 @@
                     <div class="wrapper">
                         <li>
                             <span class="ingredient-name">@ingredient.ProduktNamn</span>
-                            <a asp-controller="Admin"
+                            <a asp-controller="Dish"
                                asp-action="AddIngredient"
-                               asp-route-dishID="@Model.Dish.MatrattId"
                                asp-route-ingredientID="@ingredient.ProduktId"
                                data-ajax="true"
                                data-ajax-method="GET"

@@ -32,7 +32,7 @@
                         <td>@dish.Pris kr</td>
 
                         <td class="edit">
-                            <a asp-controller="Admin"
+                            <a asp-controller="Dish"
                                asp-action="EditDish"
                                asp-route-id="@dish.MatrattId">
                                 <img src="~/img/edit.svg" class="edit-button" />
@@ -43,7 +43,7 @@
                 </tbody>
             </table>
             <div class="button-group">
-                <input type="button" class="button" value="Skapa ny maträtt" onclick="location.href='@Url.Action("CreateDish", "Admin")'" />
+                <input type="button" class="button" value="Skapa ny maträtt" onclick="location.href='@Url.Action("CreateDish", "Dish")'" />
             </div>
         </div>
     </div>

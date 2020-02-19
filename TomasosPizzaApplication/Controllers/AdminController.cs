@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using TomasosPizzaApplication.Models;
 using TomasosPizzaApplication.Services;
 using TomasosPizzaApplication.ViewModels;
 
@@ -127,72 +129,6 @@ namespace TomasosPizzaApplication.Controllers
         public IActionResult ViewDishes()
         {
             var model = _dishService.FetchAllDishes();
-
-            return View(model);
-        }
-
-        [HttpGet]
-        public IActionResult EditDish(int id)
-        {
-            var model = new EditDishViewModel
-            {
-                Dish = _dishService.FetchDish(id),
-                Ingredients = _dishService.FetchDishIngredients(),
-                Categories = _dishService.FetchDishCategories()
-            };
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> AddIngredient(int dishID, int ingredientID)
-        {
-            var result = await _dishService.AddIngredientToDish(dishID, ingredientID);
-
-            if (result == false)
-            {
-                ViewBag.IngredientError = "Ingrediensen finns redan i maträtten";
-            }
-
-            var model = new EditDishViewModel
-            {
-                Dish = _dishService.FetchDish(dishID),
-                Ingredients = _dishService.FetchDishIngredients(),
-                Categories = _dishService.FetchDishCategories()
-            };
-
-            return ViewComponent("IngredientList", model);
-        }
-
-        public async Task<IActionResult> DeleteIngredient(int dishID, int ingredientID)
-        {
-            await _dishService.DeleteIngredientFromDish(dishID, ingredientID);
-
-            var model = new EditDishViewModel
-            {
-                Dish = _dishService.FetchDish(dishID),
-                Ingredients = _dishService.FetchDishIngredients(),
-                Categories = _dishService.FetchDishCategories()
-            };
-
-            return ViewComponent("IngredientList", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditDish(EditDishViewModel data)
-        {
-            if (ModelState.IsValid)
-            {
-                _dishService.UpdateDish(data.Dish);
-                return RedirectToAction("ViewDishes", "Admin");
-            }
-
-            var model = new EditDishViewModel
-            {
-                Dish = _dishService.FetchDish(data.Dish.MatrattId),
-                Categories = _dishService.FetchDishCategories(),
-                Ingredients = _dishService.FetchDishIngredients(),
-            };
 
             return View(model);
         }

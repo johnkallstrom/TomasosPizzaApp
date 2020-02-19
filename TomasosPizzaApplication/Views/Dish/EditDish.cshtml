@@ -1,0 +1,105 @@
+﻿@model EditDishViewModel
+
+@{
+    ViewData["Title"] = "Redigera maträtt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="edit-dish">
+    <div class="container">
+        <div class="header">
+            <h1>Redigera maträtt</h1>
+            <hr />
+        </div>
+
+        <div id="dish">
+            <form asp-controller="Dish" asp-action="EditDish" method="post">
+
+                <!-- Hidden ID -->
+                <input type="hidden" asp-for="Dish.MatrattId" />
+
+                <div class="form-group">
+                    <label>Kategori: </label>
+                    <select class="category-select" asp-for="Dish.MatrattTyp"
+                            asp-items="@(new SelectList(Model.Categories, "MatrattTyp1", "Beskrivning"))">
+                    </select>
+                    <span asp-validation-for="Dish.MatrattTyp"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Namn: </label>
+                    <input type="text" asp-for="Dish.MatrattNamn" maxlength="50" placeholder="Namn" />
+                    <span asp-validation-for="Dish.MatrattNamn"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Beskrivning: </label>
+                    <textarea class="description" asp-for="Dish.Beskrivning" maxlength="250"></textarea>
+                    <span asp-validation-for="Dish.Beskrivning"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Pris: </label>
+                    <input type="text" asp-for="Dish.Pris" maxlength="20" placeholder="Pris" />
+                    <span asp-validation-for="Dish.Pris"></span>
+                </div>
+
+                <!-- Ingredients from Dish -->
+                <div id="ingredients">
+                    <label>Ingredienser: </label>
+                    <ul>
+                        @foreach (var ingredient in Model.Dish.MatrattProdukt.OrderBy(p => p.ProduktId))
+                        {
+                            <div class="wrapper">
+                                <li>
+                                    @ingredient.Produkt.ProduktNamn
+                                    <a asp-controller="Dish"
+                                       asp-action="DeleteIngredient"
+                                       asp-route-dishID="@Model.Dish.MatrattId"
+                                       asp-route-ingredientID="@ingredient.ProduktId"
+                                       data-ajax="true"
+                                       data-ajax-method="GET"
+                                       data-ajax-mode="replace"
+                                       data-ajax-update="#ingredients">
+                                        <img src="~/img/trash-alt.svg" class="delete" />
+                                    </a>
+                                </li>
+                            </div>
+                        }
+                    </ul>
+                    <span class="ingredient-error">@ViewBag.IngredientError</span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Spara" class="button" />
+                </div>
+            </form>
+        </div>
+
+        <!--All Ingredients -->
+        <div id="all-ingredients">
+            <label>Alla ingredienser: </label>
+            <ul>
+                @foreach (var ingredient in Model.Ingredients.OrderBy(x => x.ProduktNamn))
+                {
+                    <div class="wrapper">
+                        <li>
+                            <span class="ingredient-name">@ingredient.ProduktNamn</span>
+                            <a asp-controller="Dish"
+                               asp-action="AddIngredient"
+                               asp-route-dishID="@Model.Dish.MatrattId"
+                               asp-route-ingredientID="@ingredient.ProduktId"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#ingredients">
+                                <img src="~/img/plus-square.svg" class="add" />
+                            </a>
+                        </li>
+                    </div>
+                }
+            </ul>
+        </div>
+
+    </div>
+</section>

@@ -196,3 +196,29 @@
     cursor: pointer;
     filter: invert(27%) sepia(32%) saturate(4467%) hue-rotate(358deg) brightness(105%) contrast(92%);
 }
+
+/* Create Dish */
+#create-dish .header h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#create-dish hr {
+    border-top: 1px solid #ddd;
+}
+
+#create-dish .button {
+    margin-top: 10px;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+#create-dish .button:hover {
+    cursor: pointer;
+}
