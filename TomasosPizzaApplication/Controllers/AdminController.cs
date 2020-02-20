@@ -52,7 +52,6 @@ namespace TomasosPizzaApplication.Controllers
 
                 if (result.Succeeded)
                 {
-                    currentCustomer.BonusPoints = 0;
                     _userService.UpdateUserDetails(user, currentCustomer);
 
                     var model = _userService.FetchAllUsers();
@@ -67,7 +66,6 @@ namespace TomasosPizzaApplication.Controllers
 
                 if (result.Succeeded)
                 {
-                    currentCustomer.BonusPoints = null;
                     _userService.UpdateUserDetails(user, currentCustomer);
 
                     var model = _userService.FetchAllUsers();

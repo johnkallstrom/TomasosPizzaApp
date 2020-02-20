@@ -48,6 +48,7 @@ namespace TomasosPizzaApplication.Services
             {
                 await _userManager.AddToRoleAsync(user, "RegularUser");
                 customer.UserId = user.Id;
+                customer.BonusPoints = 0;
                 _userRepository.Add(customer);
             }
 
