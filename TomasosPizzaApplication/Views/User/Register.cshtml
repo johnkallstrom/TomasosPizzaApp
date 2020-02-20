@@ -12,6 +12,8 @@
                 <h1>Skapa ett nytt konto</h1>
             </div>
 
+            <input type="hidden"  asp-for="Kund.BonusPoints" />
+
             <div class="form-group">
                 <span asp-validation-for="Username"></span>
                 <input type="text" asp-for="Username" maxlength="20" placeholder="Användarnamn" />

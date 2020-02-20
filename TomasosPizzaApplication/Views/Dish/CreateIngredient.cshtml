@@ -1,0 +1,29 @@
+﻿@model Produkt
+
+@{
+    ViewData["Title"] = "Skapa ny ingrediens";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="create-ingredient">
+    <div class="container">
+        <div class="header">
+            <h1>Skapa ny ingrediens</h1>
+            <hr />
+        </div>
+        
+        <div id="ingredient-form">
+            <form asp-controller="Dish" asp-action="CreateIngredient" method="post">
+
+                <div class="form-group">
+                    <span asp-validation-for="ProduktNamn"></span>
+                    <input type="text" asp-for="ProduktNamn" maxlength="20" placeholder="Namn" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Lägg till" class="button" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

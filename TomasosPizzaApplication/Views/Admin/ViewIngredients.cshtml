@@ -1,0 +1,37 @@
+﻿@model List<Produkt>
+
+@{
+    ViewData["Title"] = "Admin - Redigera ingredienser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="view-ingredients">
+    <div class="container">
+        <div class="header">
+            <h1>Redigera ingredienser</h1>
+            <hr />
+        </div>
+        <div class="button-group">
+            <input type="button" class="button" value="Skapa ny" onclick="location.href='@Url.Action("CreateIngredient", "Dish")'" />
+        </div>
+        <!--All Ingredients -->
+        <div class="ingredients-list">
+            <label>Alla ingredienser: </label>
+            <ul>
+                @foreach (var ingredient in Model.OrderBy(x => x.ProduktNamn))
+                {
+                    <div class="wrapper">
+                        <li>
+                            <span class="ingredient-name">@ingredient.ProduktNamn</span>
+                            <a asp-controller="Dish"
+                               asp-action="EditIngredient"
+                               asp-route-id="@ingredient.ProduktId">
+                                <img src="~/img/edit.svg" class="edit-button" />
+                            </a>
+                        </li>
+                    </div>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

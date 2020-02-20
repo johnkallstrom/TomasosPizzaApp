@@ -25,20 +25,20 @@
                 <tbody>
                     @foreach (var dish in Model)
                     {
-                    <tr>
-                        <td>@dish.MatrattNamn</td>
-                        <td>@dish.MatrattTypNavigation.Beskrivning</td>
-                        <td>@dish.Beskrivning</td>
-                        <td>@dish.Pris kr</td>
+                        <tr>
+                            <td>@dish.MatrattNamn</td>
+                            <td>@dish.MatrattTypNavigation.Beskrivning</td>
+                            <td>@dish.Beskrivning</td>
+                            <td>@dish.Pris kr</td>
 
-                        <td class="edit">
-                            <a asp-controller="Dish"
-                               asp-action="EditDish"
-                               asp-route-id="@dish.MatrattId">
-                                <img src="~/img/edit.svg" class="edit-button" />
-                            </a>
-                        </td>
-                    </tr>
+                            <td class="edit">
+                                <a asp-controller="Dish"
+                                   asp-action="EditDish"
+                                   asp-route-id="@dish.MatrattId">
+                                    <img src="~/img/edit.svg" class="edit-button" />
+                                </a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

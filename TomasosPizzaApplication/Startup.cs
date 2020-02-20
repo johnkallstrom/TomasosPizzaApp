@@ -35,12 +35,15 @@ namespace TomasosPizzaApplication
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IDishRepository, DishRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IProduktRepository, ProduktRepository>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IDishService, DishService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ISessionService, SessionService>();
             services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IProduktService, ProduktService>();
+
 
             services.AddDbContext<TomasosContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Tomasos")));

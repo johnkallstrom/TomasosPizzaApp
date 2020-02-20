@@ -1,0 +1,32 @@
+﻿@model Produkt
+
+@{
+    ViewData["Title"] = "Redigera ingrediens";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="edit-ingredient">
+    <div class="container">
+        <div class="header">
+            <h1>Uppdatera ingrediens</h1>
+            <hr />
+        </div>
+
+        <div id="ingredient-form">
+            <form asp-controller="Dish" asp-action="EditIngredient" method="post">
+
+                <!-- Hidden ID -->
+                <input type="hidden" asp-for="ProduktId" />
+
+                <div class="form-group">
+                    <span asp-validation-for="ProduktNamn"></span>
+                    <input type="text" asp-for="ProduktNamn" maxlength="20" placeholder="Namn" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Uppdatera" class="button" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

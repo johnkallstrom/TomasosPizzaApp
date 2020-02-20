@@ -1,0 +1,116 @@
+﻿#view-ingredients {
+    padding-top: 10px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+#view-ingredients .header h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#view-ingredients img {
+    width: 15px;
+    color: #1C272B
+}
+
+#view-ingredients .ingredients-list {
+    margin-top: 20px;
+}
+
+#view-ingredients .wrapper {
+    list-style: none;
+    border: 1px solid #ddd;
+    padding: 10px 0 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    width: 60%;
+}
+
+#view-ingredients .delete {
+    margin-top: 2px;
+    float: right;
+    padding-right: 15px;
+    filter: invert(42%) sepia(3%) saturate(33%) hue-rotate(16deg) brightness(98%) contrast(83%);
+}
+
+#view-ingredients .delete:hover {
+    filter: invert(24%) sepia(9%) saturate(3%) hue-rotate(16deg) brightness(101%) contrast(82%);
+}
+
+#view-ingredients .edit-button {
+    margin-top: 2px;
+    width: 19px;
+    float: right;
+    padding-right: 15px;
+    filter: invert(46%) sepia(96%) saturate(872%) hue-rotate(336deg) brightness(100%) contrast(103%);
+    float: right;
+}
+
+#view-ingredients .button {
+    margin-top: 10px;
+    height: 60px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 200px;
+}
+
+#view-ingredients .button:hover {
+    cursor: pointer;
+}
+
+/* Create Ingredient */
+#create-ingredient {
+    padding-top: 10px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+#create-ingredient .header h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}
+
+#ingredient-form {
+    margin-top: 20px;
+}
+
+#ingredient-form input[type="text"] {
+    width: 350px;
+    padding: 6px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#ingredient-form .button {
+    margin-top: 5px;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background-color: #FF6C37;
+    color: #fff;
+    width: 120px;
+}
+
+#ingredient-form .button:hover {
+    cursor: pointer;
+}
+
+/* Edit Ingredient */
+#edit-ingredient {
+    padding-top: 10px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+#edit-ingredient .header h1 {
+    font-size: 32px;
+    color: #FF6C37;
+}

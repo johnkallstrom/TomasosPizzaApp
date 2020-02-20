@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+#dishes .ingredient-button{
+    margin-left: 20px;
+}
+
 #dish-table {
     table-layout: fixed;
     overflow: hidden;

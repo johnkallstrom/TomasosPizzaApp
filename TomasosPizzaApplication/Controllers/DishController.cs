@@ -11,13 +11,16 @@ namespace TomasosPizzaApplication.Controllers
     [Authorize(Roles = "Admin")]
     public class DishController : Controller
     {
+        private readonly IProduktService _produktService;
         private readonly IDishService _dishService;
         private readonly ISessionService _sessionService;
 
         public DishController(
+            IProduktService produktService,
             IDishService dishService,
             ISessionService sessionService)
         {
+            _produktService = produktService;
             _sessionService = sessionService;
             _dishService = dishService;
         }
@@ -157,6 +160,48 @@ namespace TomasosPizzaApplication.Controllers
             };
 
             return ViewComponent("CreateDishIngredients", model);
+        }
+
+        [HttpGet]
+        public IActionResult CreateIngredient()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateIngredient(Produkt ingredient)
+        {
+            var result = _produktService.AddIngredient(ingredient);
+
+            if (result == true)
+            {
+                return RedirectToAction("ViewIngredients", "Admin");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult EditIngredient(int id)
+        {
+            var model = _produktService.FetchIngredient(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditIngredient(Produkt ingredient)
+        {
+            var result = _produktService.UpdateIngredient(ingredient);
+
+            if (result == true)
+            {
+                return RedirectToAction("ViewIngredients", "Admin");
+            }
+
+            return View();
         }
     }
 }
