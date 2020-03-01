@@ -6,19 +6,26 @@ namespace TomasosPizzaApplication.Services
 {
     public class AdminService : IAdminService
     {
+        private readonly IUserService _userService;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AdminService(
-            RoleManager<IdentityRole> roleManager,
+            IUserService userService,
             UserManager<ApplicationUser> userManager)
         {
-            _roleManager = roleManager;
+            _userService = userService;
             _userManager = userManager;
         }
 
         public async Task<IdentityResult> AddToPremiumRole(ApplicationUser user)
         {
+            var customer = _userService.FetchCurrentCustomer(user.Id);
+
+            if (customer.BonusPoints == null)
+            {
+                customer.BonusPoints = 0;
+            }
+
             await _userManager.RemoveFromRoleAsync(user, "RegularUser");
             var result = await _userManager.AddToRoleAsync(user, "PremiumUser");
             return result;

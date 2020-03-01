@@ -44,8 +44,6 @@ namespace TomasosPizzaApplication.Services
             var user = new ApplicationUser { UserName = username, Email = customer.Email };
             var result = await _userManager.CreateAsync(user, password);
 
-            customer.BonusPoints = 0;
-
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "RegularUser");

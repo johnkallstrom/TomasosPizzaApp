@@ -95,6 +95,7 @@ namespace TomasosPizzaApplication.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Confirmation()
         {
             return View();
